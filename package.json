@@ -1,7 +1,7 @@
 {
   "name": "@schemavaults/marketing-landing-page",
   "version": "0.0.1",
-  "private": false,
+  "private": true,
   "license": "UNLICENSED",
   "description": "SchemaVaults landing page. Product features, waitlist, screenshots, testimonials, etc.",
   "repository": {
