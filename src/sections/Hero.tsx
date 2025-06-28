@@ -6,7 +6,7 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "https://www.goodfreephotos.com/albums/astrophotography/starry-milky-way-galaxy.jpg";
 const description: string =
-  "Define your data types once as schemas. Use and re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
 
 function BehindBlurAnimation(): ReactElement {
   return (
@@ -29,7 +29,7 @@ function HeroSectionContent(): ReactElement {
       <h2 className="text-4xl">
         Welcome to <Wordmark />
       </h2>
-      <p className="max-w-[80vw] md:max-w-[74vw] lg:max-w-[68vw] xl:max-w-[62vw]">
+      <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw]">
         {description}
       </p>
     </div>

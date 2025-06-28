@@ -2,11 +2,15 @@
 
 import type { FC, ReactElement } from "react";
 import { cn } from "@schemavaults/ui";
-import HeroSection from "@/sections/Hero";
-import ExampleSection from "@/sections/Example";
 import type { ImageProps } from "next/image";
 import type { default as Link } from "next/link";
 import Header from "@/components/Header";
+
+/** Landing Page Sections */
+import HeroSection from "@/sections/Hero";
+import ExampleSection from "@/sections/Example";
+import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
+import CallToActionSection from "@/sections/CallToActionSection";
 
 export interface MarketingLandingPageProps {
   Image: FC<ImageProps>;
@@ -31,7 +35,9 @@ export function MarketingLandingPage(
         )}
       >
         <HeroSection />
+        <CoreFeaturesSection />
         <ExampleSection />
+        <CallToActionSection />
       </main>
     </>
   );
