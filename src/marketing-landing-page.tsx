@@ -11,6 +11,7 @@ import HeroSection from "@/sections/Hero";
 import ExampleSection from "@/sections/Example";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import CallToActionSection from "@/sections/CallToActionSection";
+import Footer from "@/sections/Footer";
 
 export interface MarketingLandingPageProps {
   Image: FC<ImageProps>;
@@ -21,13 +22,10 @@ export interface MarketingLandingPageProps {
 export function MarketingLandingPage(
   props: MarketingLandingPageProps,
 ): ReactElement {
+  const logoHref: string = props.logoHref ?? "/media/logo.png";
   return (
     <>
-      <Header
-        logoHref={props.logoHref ?? "/icon.png"}
-        Image={props.Image}
-        Link={props.Link}
-      />
+      <Header logoHref={logoHref} Image={props.Image} Link={props.Link} />
       <main
         className={cn(
           "w-full overflow-x-hidden min-h-full",
@@ -39,6 +37,7 @@ export function MarketingLandingPage(
         <ExampleSection />
         <CallToActionSection />
       </main>
+      <Footer Link={props.Link} Image={props.Image} logoHref={logoHref} />
     </>
   );
 }

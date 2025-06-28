@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input } from "@schemavaults/ui";
+import { Button, Input, Wordmark } from "@schemavaults/ui";
 import { cn } from "@schemavaults/ui";
 import { ArrowRight } from "lucide-react";
 import type { ReactElement } from "react";
@@ -17,8 +17,9 @@ export function CTASection(): ReactElement {
               Ready to transform your data relationships?
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with SchemaVaults as soon as it is publically
-              available. Enter your email below to get notified.
+              Start building with <Wordmark /> as soon as it is available to the
+              public. Enter your email below to get notified when early access
+              is available.
             </p>
           </div>
 
