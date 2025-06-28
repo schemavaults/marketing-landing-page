@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.pkg.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/app/*": ["./app/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "./app/**/*",
+    "./src/**/*",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ]
+}
