@@ -1,27 +1,6 @@
 "use client";
 
-import { BackgroundBlur, cn, Wordmark } from "@schemavaults/ui";
 import type { ReactElement } from "react";
-
-function BehindBlurAnimation(): ReactElement {
-  return <span></span>;
-}
-
-function HeroSectionContent(): ReactElement {
-  return (
-    <div
-      className={cn(
-        "w-full h-full",
-        "flex flex-col items-center justify-center",
-        "gap-2 md:gap-4",
-      )}
-    >
-      <h2 className="text-4xl">
-        Welcome to <Wordmark />
-      </h2>
-    </div>
-  );
-}
 
 export function ExampleSection(): ReactElement {
   return (
