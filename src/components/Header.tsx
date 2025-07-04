@@ -5,6 +5,8 @@ import { Button, cn, Wordmark } from "@schemavaults/ui";
 import { Menu } from "lucide-react";
 import type { FC, ReactElement } from "react";
 import type { ImageProps } from "next/image";
+import useLoginPageHref from "@/hooks/useLoginPageHref";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 
 export interface HeaderProps {
   logoHref: string;
@@ -13,6 +15,9 @@ export interface HeaderProps {
 }
 
 export function Header({ logoHref, Image, Link }: HeaderProps): ReactElement {
+  const loginHref: string = useLoginPageHref();
+  const registerHref: string = useRegisterPageHref();
+
   return (
     <header
       className={cn(
@@ -65,10 +70,16 @@ export function Header({ logoHref, Image, Link }: HeaderProps): ReactElement {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" className="hidden md:inline-flex">
-            Sign In
-          </Button>
-          <Button size="sm">Get Started</Button>
+          <Link href={loginHref}>
+            <Button variant="ghost" size="sm" className="hidden md:inline-flex">
+              Sign In
+            </Button>
+          </Link>
+
+          <Link href={registerHref}>
+            <Button size="sm">Get Started</Button>
+          </Link>
+
           <Button variant="ghost" size="sm" className="md:hidden">
             <Menu className="h-4 w-4" />
           </Button>

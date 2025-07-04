@@ -1,5 +1,3 @@
-"use client";
-
 import { type ReactElement } from "react";
 import MarketingLandingPage from "@/marketing-landing-page";
 import Image from "next/image";
@@ -11,6 +9,9 @@ export default function MarketingLandingPagePreview(): ReactElement {
       key="standalone-vault-graph-browser-page"
       Image={Image}
       Link={Link}
+      brandHref="https://schemavaults.com"
+      loginHref="https://schemavaults.com/auth/login"
+      registerHref="https://schemavaults.com/auth/register"
     />
   );
 }
