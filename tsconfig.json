@@ -9,7 +9,8 @@
     "paths": {
       "@/app/*": ["./app/*"],
       "@/*": ["./src/*"]
-    }
+    },
+    "jsx": "preserve"
   },
   "include": [
     "./app/**/*",
