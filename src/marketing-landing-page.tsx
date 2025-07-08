@@ -10,11 +10,11 @@ import AuthLinksHrefsProvider from "@/providers/AuthLinkHrefsProvider";
 
 /** Landing Page Sections */
 import HeroSection from "@/sections/Hero";
+import HowItWorksFeaturesFlow from "./sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
+import PricingSection from "./sections/PricingSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
-import PricingSection from "./sections/PricingSection";
-import HowItWorksFeaturesFlow from "./sections/HowItWorksFeaturesFlow";
 
 export interface MarketingLandingPageProps {
   Image: FC<ImageProps>;

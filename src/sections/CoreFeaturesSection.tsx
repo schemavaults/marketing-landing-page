@@ -26,13 +26,15 @@ const features = [
     icon: Database,
     title: "Vault Graph Storage",
     description:
-      '"Vaults" are graph databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
   },
   {
     icon: BotMessageSquare,
     title: "Type-Safe Agent Thoughts",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected. Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Ensure your AI agents store memories and produce output in the shape that you expected." +
+      " " +
+      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
   },
   {
     icon: Workflow,
@@ -44,7 +46,9 @@ const features = [
     icon: Recycle,
     title: "Stop repeating yourself",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows. Nest schemas within other schemas.",
+      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
+      " " +
+      "Nest schemas within other schemas.",
   },
   {
     icon: AppWindowMac,
