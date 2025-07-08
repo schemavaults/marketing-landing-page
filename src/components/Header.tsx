@@ -9,12 +9,18 @@ import useLoginPageHref from "@/hooks/useLoginPageHref";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 
 export interface HeaderProps {
+  brandHref: string;
   logoHref: string;
   Image: FC<ImageProps>;
   Link: typeof Link;
 }
 
-export function Header({ logoHref, Image, Link }: HeaderProps): ReactElement {
+export function Header({
+  brandHref,
+  logoHref,
+  Image,
+  Link,
+}: HeaderProps): ReactElement {
   const loginHref: string = useLoginPageHref();
   const registerHref: string = useRegisterPageHref();
 
@@ -29,10 +35,7 @@ export function Header({ logoHref, Image, Link }: HeaderProps): ReactElement {
       )}
     >
       <div className="w-full flex h-16 items-center justify-between">
-        <Link
-          className="flex items-center space-x-2"
-          href="https://schemavaults.com"
-        >
+        <Link className="flex items-center space-x-2" href={brandHref}>
           <Image
             src={logoHref}
             alt="SchemaVaults Logo"
@@ -50,7 +53,7 @@ export function Header({ logoHref, Image, Link }: HeaderProps): ReactElement {
             Features
           </Link>
           <Link
-            href="#pricing"
+            href="#pricing-section"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             Pricing

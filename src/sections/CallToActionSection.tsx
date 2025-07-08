@@ -1,5 +1,6 @@
 "use client";
 
+import JoinMailingListForm from "@/components/JoinMailingListForm";
 import { Button, Input, Wordmark } from "@schemavaults/ui";
 import { cn } from "@schemavaults/ui";
 import { ArrowRight } from "lucide-react";
@@ -23,17 +24,7 @@ export function CTASection(): ReactElement {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1"
-            />
-            <Button size="lg">
-              Join Mailing List
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
+          <JoinMailingListForm />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="outline" size="lg">
