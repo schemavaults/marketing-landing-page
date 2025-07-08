@@ -10,7 +10,6 @@ import AuthLinksHrefsProvider from "@/providers/AuthLinkHrefsProvider";
 
 /** Landing Page Sections */
 import HeroSection from "@/sections/Hero";
-import ExampleSection from "@/sections/Example";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
