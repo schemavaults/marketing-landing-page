@@ -2,7 +2,7 @@
 
 import type { ReactElement } from "react";
 
-export function ExampleSection(): ReactElement {
+export function LoremIpsumSection(): ReactElement {
   return (
     <section className="h-screen w-screen overflow-hidden flex items-center justify-center">
       <div className="max-w-[80vw] md:max-w-[70vw]">
@@ -18,4 +18,4 @@ export function ExampleSection(): ReactElement {
   );
 }
 
-export default ExampleSection;
+export default LoremIpsumSection;

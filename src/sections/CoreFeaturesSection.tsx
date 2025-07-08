@@ -92,7 +92,7 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database you can just talk to
+            The graph database that you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
             Powerful features designed to handle the most complex graph

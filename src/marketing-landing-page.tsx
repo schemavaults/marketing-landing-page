@@ -15,6 +15,7 @@ import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
 import PricingSection from "./sections/PricingSection";
+import HowItWorksFeaturesFlow from "./sections/HowItWorksFeaturesFlow";
 
 export interface MarketingLandingPageProps {
   Image: FC<ImageProps>;
@@ -47,8 +48,8 @@ export function MarketingLandingPage(
         )}
       >
         <HeroSection />
+        <HowItWorksFeaturesFlow />
         <CoreFeaturesSection />
-        <ExampleSection />
         <PricingSection />
         <CallToActionSection />
       </main>
