@@ -19,6 +19,11 @@ turbo.json
 .env.staging
 
 dist/**/*.test.d.ts
+dist/**/*.stories.tsx
+dist/**/*.stories.jsx
+dist/**/*.stories.js.map
+dist/**/*.stories.d.ts
+
 
 .github/
 
