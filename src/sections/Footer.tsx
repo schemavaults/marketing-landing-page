@@ -27,8 +27,8 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               <Wordmark className="text-xl" />
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              The next-generation data validation and storage platform for the
-              modern AI age.
+              The next-generation data validation, storage, and workflow
+              platform for the modern AI age.
             </p>
           </div>
 
@@ -37,7 +37,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href="#features"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Features
@@ -45,7 +45,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#pricing"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Pricing
@@ -53,7 +53,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://docs.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Documentation
@@ -83,23 +83,31 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
+                  href="https://mail.schemavaults.com"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Mailing Lists
+                </Link>
+              </li>
+              {/* <li>
+                <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Blog
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Careers
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
-                  href="#"
+                  href="https://schemavaults.com/contact"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Contact
