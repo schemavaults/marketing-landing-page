@@ -42,7 +42,7 @@ export function MarketingLandingPage(
       />
       <main
         className={cn(
-          "w-full overflow-x-hidden min-h-full",
+          "w-full overflow-x-hidden min-h-screen",
           "flex flex-col gap-0",
         )}
       >
@@ -51,8 +51,8 @@ export function MarketingLandingPage(
         <CoreFeaturesSection />
         <PricingSection />
         <CallToActionSection />
+        <Footer Link={props.Link} Image={props.Image} logoHref={logoHref} />
       </main>
-      <Footer Link={props.Link} Image={props.Image} logoHref={logoHref} />
     </AuthLinksHrefsProvider>
   );
 }

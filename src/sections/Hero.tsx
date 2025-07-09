@@ -20,7 +20,7 @@ function HeroSectionContent(): ReactElement {
   return (
     <div
       className={cn(
-        "w-full h-full",
+        "w-full h-auto min-h-[95vh]",
         "flex flex-col items-center justify-center",
         "gap-2 md:gap-4",
         "px-4 md:px-8 lg:px-16 xl:px-32",
