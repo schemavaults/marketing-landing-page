@@ -1,6 +1,7 @@
 "use client";
 
 import { JoinMailingListSubmitFunctionContext } from "@/contexts/JoinMailingListSubmitFunctionContext";
+import useDebug from "@/hooks/useDebug";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Button,
@@ -11,8 +12,8 @@ import {
   useForm,
   useToast,
 } from "@schemavaults/ui";
-import { ArrowRight } from "lucide-react";
-import { ReactElement, useContext } from "react";
+import { ArrowRight, Loader2 } from "lucide-react";
+import { ReactElement, useContext, useTransition } from "react";
 import { z } from "zod";
 
 const joinMailingListForm = z
@@ -25,6 +26,7 @@ const joinMailingListForm = z
 type JoinMailingListFormState = z.infer<typeof joinMailingListForm>;
 
 export function JoinMailingListForm(): ReactElement {
+  const debug: boolean = useDebug();
   const { toast } = useToast();
   const form = useForm<JoinMailingListFormState>({
     resolver: zodResolver(joinMailingListForm),
@@ -32,22 +34,21 @@ export function JoinMailingListForm(): ReactElement {
       email: "",
     },
   });
-
+  const [submitting, startSubmitting] = useTransition();
   const joinMailingList = useContext(JoinMailingListSubmitFunctionContext);
 
   function onSubmit(values: JoinMailingListFormState): void {
     const email: string = values.email;
-    const joinMailingListOperationPromise: Promise<void> =
-      joinMailingList(email);
+    if (debug) {
+      console.log(
+        `[JoinMailingListForm] onSubmit(values = ${JSON.stringify(values)})`,
+      );
+    }
 
-    joinMailingListOperationPromise
-      .then((): void => {
-        toast({
-          title: "Successfully joined mailing list!",
-          description: "Look forward to hearing from us soon!",
-        });
-      })
-      .catch((e: unknown): void => {
+    startSubmitting(async (): Promise<void> => {
+      try {
+        await joinMailingList(email);
+      } catch (e: unknown) {
         console.error("Failed to join mailing list: ", e);
         toast({
           variant: "destructive",
@@ -55,11 +56,26 @@ export function JoinMailingListForm(): ReactElement {
           description:
             e instanceof Error ? e.message : "An unknown error has occurred!",
         });
+        return;
+      }
+
+      if (debug) {
+        console.log(`[JoinMailingListForm] Successfully joined mailing list!`);
+      }
+      toast({
+        title: "Successfully joined mailing list!",
+        description: "Look forward to hearing from us soon!",
       });
+    });
   }
 
   function onSubmitFailure(e: unknown): void {
     console.error("Failed to submit join mailing list form: ", e);
+    toast({
+      variant: "destructive",
+      title: "Failed to submit form to join mailing list!",
+      description: "Double-check your form inputs!",
+    });
   }
 
   return (
@@ -73,10 +89,15 @@ export function JoinMailingListForm(): ReactElement {
           {...form.register("email")}
           type="email"
           placeholder="Enter your email"
+          disabled={submitting}
         />
-        <Button size="lg" type="submit">
+        <Button size="lg" type="submit" disabled={submitting}>
           Join Mailing List
-          <ArrowRight className="ml-2 h-4 w-4" />
+          {submitting ? (
+            <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+          ) : (
+            <ArrowRight className="ml-2 h-4 w-4" />
+          )}
         </Button>
       </form>
     </Form>

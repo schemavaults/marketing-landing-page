@@ -26,10 +26,10 @@ function HeroSectionContent(): ReactElement {
         "px-4 md:px-8 lg:px-16 xl:px-32",
       )}
     >
-      <h2 className="text-4xl">
+      <h2 className="text-4xl text-center">
         Welcome to <Wordmark />
       </h2>
-      <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw]">
+      <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
       </p>
     </div>
