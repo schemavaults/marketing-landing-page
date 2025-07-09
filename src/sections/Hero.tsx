@@ -20,7 +20,7 @@ function HeroSectionContent(): ReactElement {
   return (
     <div
       className={cn(
-        "w-full h-auto min-h-[95vh]",
+        "w-full h-full",
         "flex flex-col items-center justify-center",
         "gap-2 md:gap-4",
         "px-4 md:px-8 lg:px-16 xl:px-32",
@@ -38,7 +38,7 @@ function HeroSectionContent(): ReactElement {
 
 export function HeroSection(): ReactElement {
   return (
-    <section id="hero" className="h-screen w-screen">
+    <section id="hero" className="h-screen w-screen min-h-screen">
       <BackgroundBlur
         background={BehindBlurAnimation}
         foreground={HeroSectionContent}
