@@ -38,7 +38,10 @@ function HeroSectionContent(): ReactElement {
 
 export function HeroSection(): ReactElement {
   return (
-    <section id="hero" className="h-screen w-screen overflow-hidden">
+    <section
+      id="hero"
+      className="h-screen w-screen min-h-screen overflow-hidden"
+    >
       <BackgroundBlur
         background={BehindBlurAnimation}
         foreground={HeroSectionContent}
