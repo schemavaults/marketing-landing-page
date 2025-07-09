@@ -42,7 +42,7 @@ export function MarketingLandingPage(
       />
       <main
         className={cn(
-          "w-full overflow-x-hidden min-h-screen",
+          "w-full overflow-x-hidden min-h-screen h-auto",
           "flex flex-col gap-0",
         )}
       >
