@@ -11,6 +11,9 @@ import {
   CardTitle,
 } from "@schemavaults/ui";
 import { Badge } from "@schemavaults/ui";
+import { useMemo } from "react";
+import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 
 const plan_names = [
   "Free",
@@ -41,99 +44,106 @@ type PricingConfig = {
   [K in PlanName]: PricingPlan<K>;
 };
 
-// Easy configuration - adjust prices, limits, and features here
-const pricingConfig: PricingConfig = {
-  Free: {
-    name: "Free",
-    price: "$0",
-    period: "forever",
-    description: "Perfect for trying out SchemaVaults",
-    popular: false,
-    features: [
-      { name: "1 GB storage", included: true },
-      { name: "3 vaults", included: true },
-      { name: "5 schemas in global registry", included: true },
-      { name: "100 agent queries/month", included: true },
-      { name: "Community support", included: true },
-      { name: "API access", included: false },
-      { name: "Advanced analytics", included: false },
-      { name: "Priority support", included: false },
-      { name: "Custom integrations", included: false },
-      { name: "SSO authentication", included: false },
-    ],
-    cta: "Get Started Free",
-    ctaVariant: "outline" as const,
-  },
-  Personal: {
-    name: "Personal",
-    price: "$19",
-    period: "per month",
-    description: "For individual developers and small projects",
-    popular: true,
-    features: [
-      { name: "50 GB storage", included: true },
-      { name: "25 vaults", included: true },
-      { name: "100 schemas per vault", included: true },
-      { name: "5,000 agent queries/month", included: true },
-      { name: "Email support", included: true },
-      { name: "API access", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Priority support", included: false },
-      { name: "Custom integrations", included: false },
-      { name: "SSO authentication", included: false },
-    ],
-    cta: "Start Personal Plan",
-    ctaVariant: "default" as const,
-  },
-  Teams: {
-    name: "Teams",
-    price: "$79",
-    period: "per month",
-    description: "For growing teams and collaborative workflows",
-    popular: false,
-    features: [
-      { name: "500 GB storage", included: true },
-      { name: "Unlimited vaults", included: true },
-      { name: "Unlimited schemas", included: true },
-      { name: "50,000 agent queries/month", included: true },
-      { name: "Priority support", included: true },
-      { name: "API access", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Custom integrations", included: true },
-      { name: "SSO authentication", included: true },
-    ],
-    cta: "Start Teams Plan",
-    ctaVariant: "default" as const,
-  },
-  Enterprise: {
-    name: "Enterprise",
-    price: "Contact Sales",
-    period: "",
-    description: "For large organizations with custom needs",
-    popular: false,
-    features: [
-      { name: "Unlimited storage", included: true },
-      { name: "Unlimited vaults", included: true },
-      { name: "Unlimited schemas", included: true },
-      { name: "Unlimited agent queries", included: true },
-      { name: "24/7 dedicated support", included: true },
-      { name: "API access", included: true },
-      { name: "Advanced analytics", included: true },
-      { name: "Custom integrations", included: true },
-      { name: "SSO authentication", included: true },
-      { name: "Self-hosting options", included: true },
-      { name: "Bring your own compute/models", included: true },
-      { name: "Custom SLA", included: true },
-    ],
-    cta: "Contact Sales",
-    ctaVariant: "outline" as const,
-    ctaLink: "mailto:sales@schemavaults.com",
-  },
-};
-
 export default function PricingSection() {
-  const plans_list: readonly PricingPlan<PlanName>[] =
-    Object.values(pricingConfig);
+  const emails: IOrganizationContactEmailAddressesContextType =
+    useOrgEmailAddresses();
+
+  // Easy configuration - adjust prices, limits, and features here
+  const pricingConfig: PricingConfig = useMemo(() => {
+    return {
+      Free: {
+        name: "Free",
+        price: "$0",
+        period: "forever",
+        description: "Perfect for trying out SchemaVaults",
+        popular: false,
+        features: [
+          { name: "1 GB storage", included: true },
+          { name: "3 vaults", included: true },
+          { name: "5 schemas in global registry", included: true },
+          { name: "100 agent queries/month", included: true },
+          { name: "Community support", included: true },
+          { name: "API access", included: false },
+          { name: "Advanced analytics", included: false },
+          { name: "Priority support", included: false },
+          { name: "Custom integrations", included: false },
+          { name: "SSO authentication", included: false },
+        ],
+        cta: "Get Started Free",
+        ctaVariant: "outline" as const,
+      },
+      Personal: {
+        name: "Personal",
+        price: "$19",
+        period: "per month",
+        description: "For individual developers and small projects",
+        popular: true,
+        features: [
+          { name: "50 GB storage", included: true },
+          { name: "25 vaults", included: true },
+          { name: "100 schemas per vault", included: true },
+          { name: "5,000 agent queries/month", included: true },
+          { name: "Email support", included: true },
+          { name: "API access", included: true },
+          { name: "Advanced analytics", included: true },
+          { name: "Priority support", included: false },
+          { name: "Custom integrations", included: false },
+          { name: "SSO authentication", included: false },
+        ],
+        cta: "Start Personal Plan",
+        ctaVariant: "default" as const,
+      },
+      Teams: {
+        name: "Teams",
+        price: "$79",
+        period: "per month",
+        description: "For growing teams and collaborative workflows",
+        popular: false,
+        features: [
+          { name: "500 GB storage", included: true },
+          { name: "Unlimited vaults", included: true },
+          { name: "Unlimited schemas", included: true },
+          { name: "50,000 agent queries/month", included: true },
+          { name: "Priority support", included: true },
+          { name: "API access", included: true },
+          { name: "Advanced analytics", included: true },
+          { name: "Custom integrations", included: true },
+          { name: "SSO authentication", included: true },
+        ],
+        cta: "Start Teams Plan",
+        ctaVariant: "default" as const,
+      },
+      Enterprise: {
+        name: "Enterprise",
+        price: "Contact Sales",
+        period: "",
+        description: "For large organizations with custom needs",
+        popular: false,
+        features: [
+          { name: "Unlimited storage", included: true },
+          { name: "Unlimited vaults", included: true },
+          { name: "Unlimited schemas", included: true },
+          { name: "Unlimited agent queries", included: true },
+          { name: "24/7 dedicated support", included: true },
+          { name: "API access", included: true },
+          { name: "Advanced analytics", included: true },
+          { name: "Custom integrations", included: true },
+          { name: "SSO authentication", included: true },
+          { name: "Self-hosting options", included: true },
+          { name: "Bring your own compute/models", included: true },
+          { name: "Custom SLA", included: true },
+        ],
+        cta: "Contact Sales",
+        ctaVariant: "outline" as const,
+        ctaLink: `mailto:${emails.salesEmail satisfies string}`,
+      },
+    };
+  }, [emails]);
+
+  const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
+    () => Object.values(pricingConfig),
+    [pricingConfig],
+  );
 
   return (
     <section
@@ -152,7 +162,7 @@ export default function PricingSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {plans_list.map((plan: PricingPlan<PlanName>, index) => (
+          {pricingPlansList.map((plan: PricingPlan<PlanName>) => (
             <Card
               key={plan.name}
               className={`relative flex flex-col ${
@@ -225,7 +235,7 @@ export default function PricingSection() {
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}
             <a
-              href="mailto:sales@schemavaults.com"
+              href={`mailto:${emails.salesEmail}`}
               className="text-primary hover:underline"
             >
               Contact our sales team

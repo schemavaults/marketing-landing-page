@@ -3,7 +3,8 @@
 import type { default as LinkComponent } from "next/link";
 import { Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
-import { FC } from "react";
+import type { FC } from "react";
+import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 
 export interface FooterProps {
   logoHref: string;
@@ -12,6 +13,7 @@ export interface FooterProps {
 }
 
 export function Footer({ Link, Image, logoHref }: FooterProps) {
+  const emails = useOrgEmailAddresses();
   return (
     <footer className="border-t bg-muted/50">
       <div className="container px-4 md:px-6 py-12">
@@ -107,7 +109,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li> */}
               <li>
                 <Link
-                  href="https://schemavaults.com/contact"
+                  href={`mailto:${emails.supportEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Contact
@@ -119,36 +121,36 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Support</h4>
             <ul className="space-y-2 text-sm">
-              <li>
+              {/* <li>
                 <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Help Center
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Community
                 </Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Status
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
-                  href="#"
+                  href={`mailto:${emails.supportEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Security
+                  Contact Support
                 </Link>
               </li>
             </ul>
@@ -157,7 +159,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
 
         <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-xs text-muted-foreground">
-            © 2025 SchemaVaults. All rights reserved.
+            © 2025 <Wordmark />. All rights reserved.
           </p>
           <div className="flex space-x-4 text-xs text-muted-foreground">
             <Link href="#" className="hover:text-foreground">

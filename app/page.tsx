@@ -36,6 +36,8 @@ export default function MarketingLandingPagePreview(): ReactElement {
         brandHref="https://schemavaults.com"
         loginHref="https://schemavaults.com/auth/login"
         registerHref="https://schemavaults.com/auth/register"
+        salesEmail="sales@schemavaults.com"
+        supportEmail="support@schemavaults.com"
         debug={process.env.NODE_ENV === "development"}
       />
     </JoinMailingListSubmitFunctionContext.Provider>
