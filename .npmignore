@@ -47,5 +47,3 @@ next.config.ts
 next-env.d.ts
 
 .next/
-
-public/
