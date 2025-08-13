@@ -4,11 +4,11 @@ import { BackgroundBlur, cn, Wordmark } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 
 const backgroundImageHref =
-  "https://www.goodfreephotos.com/albums/astrophotography/starry-milky-way-galaxy.jpg";
+  "/media/marketing-landing-page/hero-background.webp";
 const description: string =
   "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
 
-function BehindBlurAnimation(): ReactElement {
+function HeroSectionBackgroundContent(): ReactElement {
   return (
     <div className="w-screen h-screen">
       <img className="object-cover w-full h-full" src={backgroundImageHref} />
@@ -43,7 +43,7 @@ export function HeroSection(): ReactElement {
       className="h-screen w-screen min-h-screen overflow-hidden"
     >
       <BackgroundBlur
-        background={BehindBlurAnimation}
+        background={HeroSectionBackgroundContent}
         foreground={HeroSectionContent}
         intensity="xs"
       />
