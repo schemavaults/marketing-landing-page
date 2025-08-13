@@ -1,12 +1,19 @@
 "use client";
 
 import type { default as Link } from "next/link";
-import { Button, cn, Wordmark } from "@schemavaults/ui";
+import {
+  Button,
+  cn,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  Wordmark,
+} from "@schemavaults/ui";
 import { Menu } from "lucide-react";
 import type { FC, ReactElement } from "react";
 import type { ImageProps } from "next/image";
 import useLoginPageHref from "@/hooks/useLoginPageHref";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import { MobileDropdownMenu } from "./MobileDropdownMenu";
 
 export interface HeaderProps {
   brandHref: string;
@@ -83,9 +90,7 @@ export function Header({
             <Button size="sm">Get Started</Button>
           </Link>
 
-          <Button variant="ghost" size="sm" className="md:hidden">
-            <Menu className="h-4 w-4" />
-          </Button>
+          <MobileDropdownMenu triggerClassName="md:hidden" />
         </div>
       </div>
     </header>

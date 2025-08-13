@@ -1,6 +1,6 @@
 {
   "name": "@schemavaults/marketing-landing-page",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": false,
   "license": "UNLICENSED",
   "description": "SchemaVaults landing page. Product features, waitlist, screenshots, testimonials, etc.",
@@ -15,7 +15,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "@schemavaults/theme": "0.22.7",
-    "@schemavaults/ui": "0.11.82",
+    "@schemavaults/ui": "0.11.101",
     "zod": "3.25.76",
     "@hookform/resolvers": "3.9.0"
   },
