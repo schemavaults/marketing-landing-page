@@ -18,9 +18,9 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 const defaultFeatures: Feature[] = [
   {
     id: "1",
-    heading: "Define Data Type",
+    heading: "Define Datatype Schema",
     subheading: "Structure Your Information",
-    body: "Start by defining your data schema and types. Our intuitive interface allows you to create custom data structures that fit your specific needs, ensuring consistency and reliability across your entire system.",
+    body: "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot. Create custom data structures that fit your specific needs.",
     image: "https://placehold.co/300x400",
   },
   {
@@ -32,9 +32,9 @@ const defaultFeatures: Feature[] = [
   },
   {
     id: "3",
-    heading: "Deploy Smart Agents",
+    heading: "Build, Automate, or Store",
     subheading: "Intelligent Automation",
-    body: "Create powerful agents that interact with your data and respond to real-time events. These intelligent systems can process information, trigger actions, and provide insights automatically, streamlining your workflow.",
+    body: "Create powerful agents or workflows that interact with your data and respond to real-time events. These intelligent systems (that actually know what type of data they're working with) can process information, trigger actions, and run custom code, streamlining your workflow. Or, just use SchemaVaults as a powerful content management system.",
     image: "https://placehold.co/300x400",
   },
 ];
@@ -58,8 +58,7 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get started in three simple steps and transform how you manage and
-            interact with your data
+            Get ready to transform how you manage and interact with your data.
           </p>
         </div>
 
