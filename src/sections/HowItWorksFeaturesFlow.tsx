@@ -21,7 +21,10 @@ const defaultFeatures: Feature[] = [
     id: "1",
     heading: "Define Datatype Schema",
     subheading: "Structure Your Information",
-    body: "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot. Create custom data structures that fit your specific needs.",
+    body:
+      "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot." +
+      " " +
+      "Create custom data structures that fit your specific needs.",
     image:
       "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
@@ -29,15 +32,21 @@ const defaultFeatures: Feature[] = [
     id: "2",
     heading: "Create Your Vault",
     subheading: "Secure Storage Solutions",
-    body: "Deploy your data vault anywhere - in the cloud for scalability, on your device for privacy, or in-memory for lightning-fast access. Choose the storage solution that best fits your security and performance requirements.",
+    body:
+      "Deploy your data vault anywhere - on our cloud platform for easy scalability and set-up, in-memory for lightning-fast local access, or in your own datacenter." +
+      " " +
+      "Choose the storage solution that best fits your security and performance requirements.",
     image:
       "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
     heading: "Integrate",
-    subheading: "Trigger Events & Load Vault Data",
-    body: "Create powerful agents or workflows that interact with your data and respond to real-time events. These intelligent systems (that actually know what type of data they're working with) can process information, trigger actions, and run custom code, streamlining your workflow. Or, just use SchemaVaults as a powerful content management system.",
+    subheading: "Trigger Events/Workflows & Load Vault Data",
+    body:
+      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
+      " " +
+      "Or, just use SchemaVaults as a powerful content management system.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];
@@ -109,7 +118,7 @@ export function HowItWorksFeaturesFlow({
               <div className="flex flex-col items-center max-w-md mx-auto">
                 <div className="relative mb-6">
                   <img
-                    src={feature.image || "/placeholder.svg"}
+                    src={feature.image}
                     alt={feature.heading}
                     className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
                   />
