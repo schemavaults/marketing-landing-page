@@ -12,6 +12,7 @@ export interface FeaturesFlowProps {
   features?: Feature[];
 }
 
+import FullscreenImage from "@/components/FullscreenImage";
 import { cn } from "@schemavaults/ui";
 import { ArrowRight, ArrowDown } from "lucide-react";
 
@@ -21,21 +22,23 @@ const defaultFeatures: Feature[] = [
     heading: "Define Datatype Schema",
     subheading: "Structure Your Information",
     body: "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot. Create custom data structures that fit your specific needs.",
-    image: "https://placehold.co/300x400",
+    image:
+      "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
   {
     id: "2",
     heading: "Create Your Vault",
     subheading: "Secure Storage Solutions",
     body: "Deploy your data vault anywhere - in the cloud for scalability, on your device for privacy, or in-memory for lightning-fast access. Choose the storage solution that best fits your security and performance requirements.",
-    image: "https://placehold.co/300x400",
+    image:
+      "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
-    heading: "Build, Automate, or Store",
-    subheading: "Intelligent Automation",
+    heading: "Integrate",
+    subheading: "Trigger Events & Load Vault Data",
     body: "Create powerful agents or workflows that interact with your data and respond to real-time events. These intelligent systems (that actually know what type of data they're working with) can process information, trigger actions, and run custom code, streamlining your workflow. Or, just use SchemaVaults as a powerful content management system.",
-    image: "https://placehold.co/300x400",
+    image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];
 
@@ -68,10 +71,12 @@ export function HowItWorksFeaturesFlow({
             <div key={feature.id} className="flex items-center">
               <div className="flex flex-col items-center max-w-sm">
                 <div className="relative mb-6">
-                  <img
-                    src={feature.image || "/placeholder.svg"}
+                  <FullscreenImage
+                    src={feature.image}
+                    width={400}
+                    height={350}
                     alt={feature.heading}
-                    className="rounded-lg shadow-lg w-80 h-60 object-cover"
+                    className="rounded-lg shadow-lg object-cover text-center"
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
                     {index + 1}

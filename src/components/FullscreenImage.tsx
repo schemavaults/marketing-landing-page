@@ -13,6 +13,7 @@ export interface FullscreenImageProps {
   alt: string;
   width: number;
   height: number;
+  className?: string;
 }
 
 export function FullscreenImage({
@@ -20,6 +21,7 @@ export function FullscreenImage({
   alt,
   width,
   height,
+  className,
 }: FullscreenImageProps) {
   const finalProps: FullscreenImageComponentProps<NextImageProps> = {
     src,
@@ -28,7 +30,13 @@ export function FullscreenImage({
     imageProps: {
       width,
       height,
+      className,
     },
+    fullscreenImageProps: {
+      fill: true,
+      className: "w-full h-full object-contain",
+    },
+    fullscreenContainerClassName: "h-full w-full",
   };
 
   return <FullscreenImageComponent {...finalProps} />;
