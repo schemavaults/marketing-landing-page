@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/install-deps-in-fresh-environment.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/install-send-email-skills.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
