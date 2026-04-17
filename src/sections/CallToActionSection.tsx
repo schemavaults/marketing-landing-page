@@ -22,12 +22,11 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to simplify how you work with data?
+              Ready to ship type-safe data in production?
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              Be first in line for <Wordmark />. Join the waitlist to get early
+              access, founder pricing, and updates as we roll out to the public.
             </p>
           </div>
 
@@ -39,9 +38,11 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
                 Schedule Demo
               </Button>
             </Link>
-            <Button variant="ghost" size="lg">
-              View Documentation
-            </Button>
+            <Link href="https://docs.schemavaults.com">
+              <Button variant="ghost" size="lg">
+                View Documentation
+              </Button>
+            </Link>
           </div>
 
           <p className="text-sm text-muted-foreground">

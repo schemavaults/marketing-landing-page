@@ -47,7 +47,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="#pricing"
+                  href="#pricing-section"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Pricing
@@ -63,7 +63,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://docs.schemavaults.com/api"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   API Reference
@@ -77,7 +77,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href="/about"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   About
@@ -162,13 +162,13 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             © 2025 <Wordmark />. All rights reserved.
           </p>
           <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
+            <Link href="/privacy" className="hover:text-foreground">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-foreground">
+            <Link href="/terms" className="hover:text-foreground">
               Terms of Service
             </Link>
-            <Link href="#" className="hover:text-foreground">
+            <Link href="/cookies" className="hover:text-foreground">
               Cookie Policy
             </Link>
           </div>

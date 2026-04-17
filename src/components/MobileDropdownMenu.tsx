@@ -10,7 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@schemavaults/ui";
-import { LogIn, Menu, UserPlus } from "lucide-react";
+import { DollarSign, FileText, LogIn, Menu, Sparkles, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { ReactElement } from "react";
 
@@ -36,6 +36,27 @@ export function MobileDropdownMenu({
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="start">
         <DropdownMenuLabel>Navigation Menu</DropdownMenuLabel>
+        <Link href="#features">
+          <DropdownMenuItem className={menuItemClassName}>
+            <Sparkles className={menuItemIconClassName} />
+            Features
+          </DropdownMenuItem>
+        </Link>
+
+        <Link href="#pricing-section">
+          <DropdownMenuItem className={menuItemClassName}>
+            <DollarSign className={menuItemIconClassName} />
+            Pricing
+          </DropdownMenuItem>
+        </Link>
+
+        <Link href="https://docs.schemavaults.com">
+          <DropdownMenuItem className={menuItemClassName}>
+            <FileText className={menuItemIconClassName} />
+            Documentation
+          </DropdownMenuItem>
+        </Link>
+
         <Link href={loginHref}>
           <DropdownMenuItem className={menuItemClassName}>
             <LogIn className={menuItemIconClassName} />
