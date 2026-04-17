@@ -63,7 +63,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://docs.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   API Reference
@@ -75,14 +75,6 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
