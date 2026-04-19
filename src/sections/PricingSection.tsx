@@ -13,6 +13,7 @@ import {
 import { Badge } from "@schemavaults/ui";
 import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 
 const plan_names = [
@@ -47,6 +48,7 @@ type PricingConfig = {
 export default function PricingSection() {
   const emails: IOrganizationContactEmailAddressesContextType =
     useOrgEmailAddresses();
+  const registerHref: string = useRegisterPageHref();
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -71,6 +73,7 @@ export default function PricingSection() {
         ],
         cta: "Get Started Free",
         ctaVariant: "outline" as const,
+        ctaLink: registerHref,
       },
       Personal: {
         name: "Personal",
@@ -92,6 +95,7 @@ export default function PricingSection() {
         ],
         cta: "Start Personal Plan",
         ctaVariant: "default" as const,
+        ctaLink: registerHref,
       },
       Teams: {
         name: "Teams",
@@ -112,6 +116,7 @@ export default function PricingSection() {
         ],
         cta: "Start Teams Plan",
         ctaVariant: "default" as const,
+        ctaLink: registerHref,
       },
       Enterprise: {
         name: "Enterprise",
@@ -138,7 +143,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails]);
+  }, [emails, registerHref]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
