@@ -1,6 +1,6 @@
 {
   "name": "@schemavaults/marketing-landing-page",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "private": false,
   "license": "UNLICENSED",
   "description": "SchemaVaults landing page. Product features, waitlist, screenshots, testimonials, etc.",
@@ -15,7 +15,7 @@
     "@hookform/resolvers": "3.9.0"
   },
   "peerDependencies": {
-    "@schemavaults/ui": "^0.16.4",
+    "@schemavaults/ui": "^0.18.0",
     "@schemavaults/theme": "0.25.9",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
