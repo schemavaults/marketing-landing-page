@@ -1,19 +1,14 @@
 "use client";
 
 import type { default as Link } from "next/link";
-import {
-  Button,
-  cn,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  Wordmark,
-} from "@schemavaults/ui";
+import { Button, cn, Wordmark } from "@schemavaults/ui";
 import { Menu } from "lucide-react";
 import type { FC, ReactElement } from "react";
 import type { ImageProps } from "next/image";
 import useLoginPageHref from "@/hooks/useLoginPageHref";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import { MobileDropdownMenu } from "./MobileDropdownMenu";
+import { PricingSectionId } from "@/sections/PricingSection";
 
 export interface HeaderProps {
   brandHref: string;
@@ -60,7 +55,7 @@ export function Header({
             Features
           </Link>
           <Link
-            href="#pricing-section"
+            href={`#${PricingSectionId}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             Pricing

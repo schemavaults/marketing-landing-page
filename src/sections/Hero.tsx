@@ -26,8 +26,17 @@ function HeroSectionContent(): ReactElement {
         "px-4 md:px-8 lg:px-16 xl:px-32",
       )}
     >
-      <h2 className="text-4xl text-center">
+      <h1
+        className={cn(
+          "text-4xl md:text-5xl lg:text-6xl",
+          "text-center",
+          "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
+        )}
+      >
         Welcome to <Wordmark />
+      </h1>
+      <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
+        Type-safe data for AI agents, workflows, and apps.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}

@@ -1,6 +1,6 @@
 {
   "name": "@schemavaults/marketing-landing-page",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "private": false,
   "license": "UNLICENSED",
   "description": "SchemaVaults landing page. Product features, waitlist, screenshots, testimonials, etc.",
@@ -15,7 +15,7 @@
     "@hookform/resolvers": "3.9.0"
   },
   "peerDependencies": {
-    "@schemavaults/ui": "^0.18.0",
+    "@schemavaults/ui": "^0.22.1",
     "@schemavaults/theme": "0.25.9",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
@@ -26,12 +26,13 @@
     "@types/react-dom": "19.2.3",
     "bun-types": "1.3.11",
     "tsc-alias": "1.8.16",
-    "typescript": "5.8.3",
+    "typescript": "5.9.3",
     "postcss": "8.5.3",
     "tailwindcss": "3.4.17",
     "autoprefixer": "10.4.21",
     "eslint": "9.17.0",
-    "skills": "1.5.0"
+    "skills": "1.5.0",
+    "@schemavaults/send-email": "latest"
   },
   "scripts": {
     "dev": "next dev --port 9817",

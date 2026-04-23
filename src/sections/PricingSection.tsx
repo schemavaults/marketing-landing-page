@@ -14,6 +14,7 @@ import { Badge } from "@schemavaults/ui";
 import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 
 const plan_names = [
   "Free",
@@ -44,9 +45,13 @@ type PricingConfig = {
   [K in PlanName]: PricingPlan<K>;
 };
 
+export const PricingSectionId = "pricing";
+
 export default function PricingSection() {
   const emails: IOrganizationContactEmailAddressesContextType =
     useOrgEmailAddresses();
+
+  const registerHref: string = useRegisterPageHref();
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -71,6 +76,7 @@ export default function PricingSection() {
         ],
         cta: "Get Started Free",
         ctaVariant: "outline" as const,
+        ctaLink: registerHref,
       },
       Personal: {
         name: "Personal",
@@ -92,6 +98,7 @@ export default function PricingSection() {
         ],
         cta: "Start Personal Plan",
         ctaVariant: "default" as const,
+        ctaLink: registerHref,
       },
       Teams: {
         name: "Teams",
@@ -112,6 +119,7 @@ export default function PricingSection() {
         ],
         cta: "Start Teams Plan",
         ctaVariant: "default" as const,
+        ctaLink: registerHref,
       },
       Enterprise: {
         name: "Enterprise",
@@ -147,7 +155,7 @@ export default function PricingSection() {
 
   return (
     <section
-      id="pricing-section"
+      id={PricingSectionId}
       className="py-24 bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container mx-auto px-4">

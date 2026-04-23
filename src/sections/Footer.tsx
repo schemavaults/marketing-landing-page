@@ -5,6 +5,7 @@ import { Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
 import type { FC } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import { PricingSectionId } from "./PricingSection";
 
 export interface FooterProps {
   logoHref: string;
@@ -47,7 +48,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href="#pricing"
+                  href={`#${PricingSectionId}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Pricing
