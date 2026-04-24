@@ -160,7 +160,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
 
         <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-xs text-muted-foreground">
-            © 2025 <Wordmark />. All rights reserved.
+            © {new Date().getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <div className="flex space-x-4 text-xs text-muted-foreground">
             <Link href="#" className="hover:text-foreground">

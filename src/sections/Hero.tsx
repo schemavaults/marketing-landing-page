@@ -1,7 +1,10 @@
 "use client";
 
-import { BackgroundBlur, cn, Wordmark } from "@schemavaults/ui";
+import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
+import { ArrowRight } from "lucide-react";
 import type { ReactElement } from "react";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import { PricingSectionId } from "@/sections/PricingSection";
 
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
@@ -17,6 +20,7 @@ function HeroSectionBackgroundContent(): ReactElement {
 }
 
 function HeroSectionContent(): ReactElement {
+  const registerHref: string = useRegisterPageHref();
   return (
     <div
       className={cn(
@@ -40,6 +44,20 @@ function HeroSectionContent(): ReactElement {
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
+      </p>
+      <div className="flex flex-col sm:flex-row gap-3 mt-4">
+        <Button size="lg" asChild>
+          <a href={registerHref}>
+            Get Started Free
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </a>
+        </Button>
+        <Button size="lg" variant="outline" asChild>
+          <a href={`#${PricingSectionId}`}>See Pricing</a>
+        </Button>
+      </div>
+      <p className="text-xs text-muted-foreground mt-1">
+        Free forever plan · No credit card required
       </p>
     </div>
   );
