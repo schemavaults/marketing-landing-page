@@ -61,16 +61,16 @@ export function Header({
             Pricing
           </Link>
           <Link
-            href="#docs"
+            href="https://docs.schemavaults.com"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             Documentation
           </Link>
           <Link
-            href="#about"
+            href="#how-it-works-features-flow"
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            About
+            How It Works
           </Link>
         </nav>
 

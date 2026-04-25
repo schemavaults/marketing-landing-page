@@ -96,12 +96,12 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            One schema. Every layer of your stack.
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            From agent memory to API payloads to your CMS — keep every piece of
+            data type-safe, validated, and in sync. Built so you never have to
+            write a line of code (unless you want to).
           </p>
         </div>
 

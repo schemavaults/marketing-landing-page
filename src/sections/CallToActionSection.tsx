@@ -39,9 +39,11 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
                 Schedule Demo
               </Button>
             </Link>
-            <Button variant="ghost" size="lg">
-              View Documentation
-            </Button>
+            <Link href="https://docs.schemavaults.com">
+              <Button variant="ghost" size="lg">
+                View Documentation
+              </Button>
+            </Link>
           </div>
 
           <p className="text-sm text-muted-foreground">
