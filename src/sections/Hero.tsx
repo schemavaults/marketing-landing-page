@@ -1,12 +1,20 @@
 "use client";
 
-import { BackgroundBlur, cn, Wordmark } from "@schemavaults/ui";
+import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
+import { ArrowRight, Check } from "lucide-react";
 import type { ReactElement } from "react";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data types once as schemas. Re-use them across your AI agents, workflows, websites, and mobile apps — no more guessing what shape your data is in.";
+
+const valueProps: readonly string[] = [
+  "Type-safe AI agent memory",
+  "Cloud, in-memory, or self-hosted",
+  "Zero schema duplication",
+] as const;
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -17,12 +25,14 @@ function HeroSectionBackgroundContent(): ReactElement {
 }
 
 function HeroSectionContent(): ReactElement {
+  const registerHref: string = useRegisterPageHref();
+
   return (
     <div
       className={cn(
         "w-screen h-screen",
         "flex flex-col items-center justify-center",
-        "gap-2 md:gap-4",
+        "gap-3 md:gap-5",
         "px-4 md:px-8 lg:px-16 xl:px-32",
       )}
     >
@@ -33,13 +43,42 @@ function HeroSectionContent(): ReactElement {
           "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for the AI age
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        Define your schema once. Power agents, workflows, and apps with{" "}
+        <Wordmark />.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
+      </p>
+      <ul
+        className={cn(
+          "flex flex-col sm:flex-row flex-wrap items-center justify-center",
+          "gap-x-6 gap-y-2 mt-2",
+          "text-sm md:text-base text-muted-foreground",
+        )}
+      >
+        {valueProps.map((prop) => (
+          <li key={prop} className="flex items-center gap-2">
+            <Check className="h-4 w-4 text-primary shrink-0" />
+            <span>{prop}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="flex flex-col sm:flex-row gap-3 mt-4">
+        <Button size="lg" asChild>
+          <a href={registerHref}>
+            Start Building Free
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </a>
+        </Button>
+        <Button size="lg" variant="outline" asChild>
+          <a href="#how-it-works-features-flow">See how it works</a>
+        </Button>
+      </div>
+      <p className="text-xs text-muted-foreground mt-1">
+        Free tier • No credit card required
       </p>
     </div>
   );
