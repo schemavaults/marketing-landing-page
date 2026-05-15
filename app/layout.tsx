@@ -11,7 +11,11 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className="w-full h-auto min-h-screen">
+    <html
+      lang="en"
+      className="w-full h-auto min-h-screen"
+      suppressHydrationWarning
+    >
       <body className="w-full h-auto min-h-screen">
         <ClientProviders key="marketing-landing-page-app-client-providers">
           {children}

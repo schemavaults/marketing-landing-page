@@ -60,7 +60,9 @@ export function HowItWorksFeaturesFlow({
       className={cn(
         "w-screen h-auto",
         "py-12 md:py-24 lg:py-32",
-        "bg-gradient-to-b from-gray-50 to-white",
+        "bg-gradient-to-b",
+        "from-gray-50 dark:from-gray-600",
+        "to-accent",
         "flex flex-col justify-start items-center",
       )}
     >
