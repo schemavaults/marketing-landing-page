@@ -12,5 +12,6 @@ node_modules/
 .env.staging
 
 .next/
+next-env.d.ts
 
 tsconfig.pkg.tsbuildinfo
