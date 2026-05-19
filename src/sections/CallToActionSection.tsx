@@ -6,6 +6,7 @@ import { cn } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -16,6 +17,7 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
 
   return (
     <section
+      id={MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}
       className={cn("py-24", "w-full", "flex justify-center items-start")}
     >
       <div className="container px-4 md:px-6">

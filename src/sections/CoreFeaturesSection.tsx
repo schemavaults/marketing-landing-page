@@ -1,3 +1,4 @@
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import {
   Card,
   CardContent,
@@ -86,7 +87,7 @@ const features = [
 export function CoreFeaturesSection(): ReactElement {
   return (
     <section
-      id="features"
+      id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
         "w-screen",

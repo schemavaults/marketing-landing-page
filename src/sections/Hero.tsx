@@ -1,5 +1,6 @@
 "use client";
 
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { BackgroundBlur, cn, Wordmark } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 
@@ -48,7 +49,7 @@ function HeroSectionContent(): ReactElement {
 export function HeroSection(): ReactElement {
   return (
     <section
-      id="hero"
+      id={MarketingLandingPageSectionIds.HERO_SECTION}
       className="h-screen w-screen min-h-screen overflow-hidden"
     >
       <BackgroundBlur

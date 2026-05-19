@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 const plan_names = [
   "Free",
@@ -44,8 +45,6 @@ interface PricingPlan<N extends PlanName> {
 type PricingConfig = {
   [K in PlanName]: PricingPlan<K>;
 };
-
-export const PricingSectionId = "pricing";
 
 export default function PricingSection() {
   const emails: IOrganizationContactEmailAddressesContextType =
@@ -155,7 +154,7 @@ export default function PricingSection() {
 
   return (
     <section
-      id={PricingSectionId}
+      id={MarketingLandingPageSectionIds.PRICING_SECTION}
       className="py-24 bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container mx-auto px-4">

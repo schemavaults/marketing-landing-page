@@ -8,7 +8,7 @@ import type { ImageProps } from "next/image";
 import useLoginPageHref from "@/hooks/useLoginPageHref";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import { MobileDropdownMenu } from "./MobileDropdownMenu";
-import { PricingSectionId } from "@/sections/PricingSection";
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 export interface HeaderProps {
   brandHref: string;
@@ -49,28 +49,28 @@ export function Header({
 
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           <Link
-            href="#features"
+            href={`#${MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}`}
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            How It Works
+          </Link>
+          <Link
+            href={`#${MarketingLandingPageSectionIds.FEATURES_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             Features
           </Link>
           <Link
-            href={`#${PricingSectionId}`}
+            href={`#${MarketingLandingPageSectionIds.PRICING_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
             Pricing
           </Link>
           <Link
-            href="#docs"
+            href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Documentation
-          </Link>
-          <Link
-            href="#about"
-            className="transition-colors hover:text-foreground/80 text-foreground/60"
-          >
-            About
+            Mailing List
           </Link>
         </nav>
 

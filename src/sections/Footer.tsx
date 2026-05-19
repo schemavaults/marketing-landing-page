@@ -5,7 +5,7 @@ import { Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
 import type { FC } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
-import { PricingSectionId } from "./PricingSection";
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 export interface FooterProps {
   logoHref: string;
@@ -14,6 +14,7 @@ export interface FooterProps {
 }
 
 export function Footer({ Link, Image, logoHref }: FooterProps) {
+  const currentDate = new Date();
   const emails = useOrgEmailAddresses();
   return (
     <footer className="border-t bg-muted/50">
@@ -40,7 +41,15 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#features"
+                  href={`#${MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FEATURES_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Features
@@ -48,13 +57,13 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
-                  href={`#${PricingSectionId}`}
+                  href={`#${MarketingLandingPageSectionIds.PRICING_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Pricing
                 </Link>
               </li>
-              <li>
+              {/*<li>
                 <Link
                   href="https://docs.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
@@ -69,7 +78,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                 >
                   API Reference
                 </Link>
-              </li>
+              </li>*/}
             </ul>
           </div>
 
@@ -122,14 +131,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Support</h4>
             <ul className="space-y-2 text-sm">
-              {/* <li>
+              <li>
                 <Link
-                  href="#"
+                  href={"https://auth.schemavaults.com/help"}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Help Center
+                  Auth Help Center
                 </Link>
-              </li> */}
+              </li>
               {/* <li>
                 <Link
                   href="#"
@@ -159,8 +168,8 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
         </div>
 
         <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-xs text-muted-foreground">
-            © 2025 <Wordmark />. All rights reserved.
+          <p className="text-xs text-muted-foreground" suppressHydrationWarning>
+            © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <div className="flex space-x-4 text-xs text-muted-foreground">
             <Link href="#" className="hover:text-foreground">

@@ -13,6 +13,7 @@ export interface FeaturesFlowProps {
 }
 
 import FullscreenImage from "@/components/FullscreenImage";
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { cn } from "@schemavaults/ui";
 import { ArrowRight, ArrowDown } from "lucide-react";
 
@@ -56,7 +57,7 @@ export function HowItWorksFeaturesFlow({
 }: FeaturesFlowProps) {
   return (
     <section
-      id="how-it-works-features-flow"
+      id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
         "w-screen h-auto",
         "py-12 md:py-24 lg:py-32",
