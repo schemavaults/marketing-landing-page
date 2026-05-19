@@ -61,7 +61,7 @@ function HeroSectionContent(): ReactElement {
         {privateBeta && (
           <Button size="lg" asChild>
             <a
-              href={registerHref}
+              href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
               className="flex flex-row flex-nowrap gap-2 items-center justify-start"
             >
               <Mail className="h-4 w-4" />
