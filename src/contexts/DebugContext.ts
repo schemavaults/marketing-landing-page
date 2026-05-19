@@ -3,3 +3,5 @@
 import { createContext } from "react";
 
 export const DebugContext = createContext<boolean>(false);
+
+export default DebugContext;

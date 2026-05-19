@@ -15,19 +15,24 @@ import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import PricingSection from "@/sections/PricingSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
-import { DebugContext } from "@/contexts/DebugContext";
+
+/** Context Providers */
+import DebugContext from "@/contexts/DebugContext";
 import OrganizationContactEmailAddressesProvider from "@/providers/OrganizationContactEmailAddressesProvider";
 import type { AuthLinkHrefsContextType } from "@/contexts/AuthLinkHrefsContext";
-import { IOrganizationContactEmailAddressesContextType } from "./contexts/OrganizationContactEmailAddressesContext";
+import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
+import PrivateBetaContext from "@/contexts/PrivateBetaContext";
 
 export interface MarketingLandingPageProps
-  extends AuthLinkHrefsContextType,
+  extends
+    AuthLinkHrefsContextType,
     IOrganizationContactEmailAddressesContextType {
   Image: FC<ImageProps>;
   Link: typeof Link;
   logoHref?: string;
   brandHref: string;
   debug?: boolean;
+  privateBeta?: boolean;
 }
 
 export function MarketingLandingPage(
@@ -37,35 +42,45 @@ export function MarketingLandingPage(
   const logoHref: string = props.logoHref ?? "/media/logo.png";
   return (
     <DebugContext.Provider value={debug}>
-      <OrganizationContactEmailAddressesProvider
-        salesEmail={props.salesEmail}
-        supportEmail={props.supportEmail}
+      <PrivateBetaContext.Provider
+        value={
+          typeof props.privateBeta === "boolean" ? props.privateBeta : false
+        }
       >
-        <AuthLinksHrefsProvider
-          loginHref={props.loginHref}
-          registerHref={props.registerHref}
+        <OrganizationContactEmailAddressesProvider
+          salesEmail={props.salesEmail}
+          supportEmail={props.supportEmail}
         >
-          <Header
-            brandHref={props.brandHref}
-            logoHref={logoHref}
-            Image={props.Image}
-            Link={props.Link}
-          />
-          <main
-            className={cn(
-              "w-full overflow-x-hidden min-h-screen h-auto",
-              "flex flex-col gap-0",
-            )}
+          <AuthLinksHrefsProvider
+            loginHref={props.loginHref}
+            registerHref={props.registerHref}
           >
-            <HeroSection />
-            <HowItWorksFeaturesFlow />
-            <CoreFeaturesSection />
-            <PricingSection />
-            <CallToActionSection Link={props.Link} />
-            <Footer Link={props.Link} Image={props.Image} logoHref={logoHref} />
-          </main>
-        </AuthLinksHrefsProvider>
-      </OrganizationContactEmailAddressesProvider>
+            <Header
+              brandHref={props.brandHref}
+              logoHref={logoHref}
+              Image={props.Image}
+              Link={props.Link}
+            />
+            <main
+              className={cn(
+                "w-full overflow-x-hidden min-h-screen h-auto",
+                "flex flex-col gap-0",
+              )}
+            >
+              <HeroSection />
+              <HowItWorksFeaturesFlow />
+              <CoreFeaturesSection />
+              <PricingSection />
+              <CallToActionSection Link={props.Link} />
+              <Footer
+                Link={props.Link}
+                Image={props.Image}
+                logoHref={logoHref}
+              />
+            </main>
+          </AuthLinksHrefsProvider>
+        </OrganizationContactEmailAddressesProvider>
+      </PrivateBetaContext.Provider>
     </DebugContext.Provider>
   );
 }

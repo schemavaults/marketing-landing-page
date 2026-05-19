@@ -1,7 +1,10 @@
 "use client";
 
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { BackgroundBlur, cn, Wordmark } from "@schemavaults/ui";
+import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
+import { ArrowRight, BookOpenText, Mail } from "lucide-react";
 import type { ReactElement } from "react";
 
 const backgroundImageHref =
@@ -18,6 +21,9 @@ function HeroSectionBackgroundContent(): ReactElement {
 }
 
 function HeroSectionContent(): ReactElement {
+  const privateBeta: boolean = usePrivateBeta();
+  const registerHref: string = useRegisterPageHref();
+
   return (
     <div
       className={cn(
@@ -42,6 +48,37 @@ function HeroSectionContent(): ReactElement {
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
       </p>
+      <div className="flex flex-col flex-nowrap sm:flex-wrap sm:flex-row gap-3 md:gap-4 items-center justify-center mt-2">
+        <Button size="lg" variant="outline" asChild>
+          <a
+            href={`#${MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}`}
+            className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+          >
+            <BookOpenText className="h-4 w-4" />
+            See how it works
+          </a>
+        </Button>
+        {privateBeta && (
+          <Button size="lg" asChild>
+            <a
+              href={registerHref}
+              className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+            >
+              <Mail className="h-4 w-4" />
+              Join the launch waitlist
+            </a>
+          </Button>
+        )}
+        <Button size="lg" asChild>
+          <a
+            href={registerHref}
+            className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+          >
+            {privateBeta ? "Register with invite code" : "Get started"}
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </Button>
+      </div>
     </div>
   );
 }

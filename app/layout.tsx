@@ -13,7 +13,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <html
       lang="en"
-      className="w-full h-auto min-h-screen"
+      className="w-full h-auto min-h-screen scroll-smooth"
       suppressHydrationWarning
     >
       <body className="w-full h-auto min-h-screen">

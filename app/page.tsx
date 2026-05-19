@@ -39,6 +39,7 @@ export default function MarketingLandingPagePreview(): ReactElement {
         salesEmail="sales@schemavaults.com"
         supportEmail="support@schemavaults.com"
         debug={process.env.NODE_ENV === "development"}
+        privateBeta
       />
     </JoinMailingListSubmitFunctionContext.Provider>
   );
