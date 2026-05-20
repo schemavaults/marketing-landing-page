@@ -11,12 +11,12 @@ import {
   type SchemaVaultsAppEnvironment,
 } from "@schemavaults/app-definitions";
 import joinPublicMailingList from "@/lib/client/joinPublicMailingList";
-import getPublicBetaWaitlistMailingListId from "@/lib/client/getPublicBetaWaitlistMailingListId";
 import isValidUuid from "@/lib/isValidUuid";
 import isValidEmail from "@/lib/isValidEmail";
 
 export interface MarketingLandingPageClientComponentProps {
   environment: SchemaVaultsAppEnvironment;
+  mailing_list_id?: string;
   private_beta?: boolean;
 }
 
@@ -34,6 +34,7 @@ async function mockJoinMailingListCallback(email: string): Promise<void> {
 
 export default function MarketingLandingPageClientComponent({
   environment,
+  mailing_list_id,
   private_beta,
 }: MarketingLandingPageClientComponentProps): ReactElement {
   const registry_url: string = useMemo(
@@ -44,16 +45,6 @@ export default function MarketingLandingPageClientComponent({
       ),
     [environment],
   );
-
-  const mailing_list_id: string | undefined = useMemo(():
-    | string
-    | undefined => {
-    try {
-      return getPublicBetaWaitlistMailingListId();
-    } catch (e: unknown) {
-      return undefined;
-    }
-  }, []);
 
   const joinMailingListCallback = useCallback(
     environment === "production"
