@@ -24,7 +24,7 @@ export default function IndexPageServerComponent(): ReactElement {
       );
     } else {
       console.warn(
-        "Failed to load public beta waitlist mailing list ID in non-production environment: ",
+        `Failed to load public beta waitlist mailing list ID in non-production ('${environment}') environment: `,
         e,
       );
     }
