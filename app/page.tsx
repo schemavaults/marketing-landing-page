@@ -12,6 +12,10 @@ function safeLoadMailingListId(): string | undefined {
   try {
     return getPublicBetaWaitlistMailingListId();
   } catch (e: unknown) {
+    console.warn(
+      "[safeLoadMailingListId] Failed to load public beta waitlist mailing list ID: ",
+      e,
+    );
     return undefined;
   }
 }
