@@ -5,8 +5,7 @@ import ClientProviders from "./client-providers";
 
 export const metadata: Metadata = {
   title: "SchemaVaults",
-  description:
-    "Preview app displaying @schemavaults/marketing-landing-page (without having to load the full @schemavaults/web application)",
+  description: "Schema-validated secure cloud data storage",
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
