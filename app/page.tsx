@@ -8,23 +8,32 @@ import isPrivateBetaFlagSet from "@/lib/isPrivateBetaFlagSet";
 import IndexPageView from "./view";
 import getPublicBetaWaitlistMailingListId from "@/lib/getPublicBetaWaitlistMailingListId";
 
-function safeLoadMailingListId(): string | undefined {
+export default function IndexPageServerComponent(): ReactElement {
+  const environment: SchemaVaultsAppEnvironment = getAppEnvironment();
+  let mailing_list_id: string | undefined = undefined;
   try {
-    return getPublicBetaWaitlistMailingListId();
+    mailing_list_id = getPublicBetaWaitlistMailingListId();
   } catch (e: unknown) {
-    console.warn(
-      "[safeLoadMailingListId] Failed to load public beta waitlist mailing list ID: ",
-      e,
-    );
-    return undefined;
+    mailing_list_id = undefined;
+    if (environment === "production") {
+      throw new Error(
+        "Failed to load public beta waitlist mailing list ID in production!",
+        {
+          cause: e,
+        },
+      );
+    } else {
+      console.warn(
+        "Failed to load public beta waitlist mailing list ID in non-production environment: ",
+        e,
+      );
+    }
   }
-}
 
-export default async function IndexPageServerComponent(): Promise<ReactElement> {
   return (
     <IndexPageView
-      environment={getAppEnvironment() satisfies SchemaVaultsAppEnvironment}
-      mailing_list_id={safeLoadMailingListId() satisfies string | undefined}
+      environment={environment}
+      mailing_list_id={mailing_list_id}
       private_beta={isPrivateBetaFlagSet() satisfies boolean}
     />
   );
