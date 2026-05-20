@@ -7,6 +7,7 @@ import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+import { Mail } from "lucide-react";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -37,13 +38,25 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`mailto:${emails.salesEmail}`}>
-              <Button variant="outline" size="lg">
-                Schedule Demo
+              <Button
+                variant="outline"
+                size="lg"
+                className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+              >
+                <Mail className="h-4 w-4" />
+                Contact Sales
               </Button>
             </Link>
-            <Button variant="ghost" size="lg">
-              View Documentation
-            </Button>
+            <Link href={`mailto:${emails.supportEmail}`}>
+              <Button
+                variant="outline"
+                size="lg"
+                className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+              >
+                <Mail className="h-4 w-4" />
+                Contact Support
+              </Button>
+            </Link>
           </div>
 
           <p className="text-sm text-muted-foreground">
