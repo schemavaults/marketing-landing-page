@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies with Bun
         run: bun install
       - name: Build package with Bun
-        run: bun run build
+        run: bun run build:pkg
       - name: Configure .npmrc to publish to GitHub NPM registry
         run: cp .npmrc.github .npmrc
       - name: Publish package to GitHub NPM registry
