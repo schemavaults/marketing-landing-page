@@ -1,7 +1,7 @@
 "use client";
 
 import type { default as Link } from "next/link";
-import { Button, cn, Wordmark } from "@schemavaults/ui";
+import { Button, cn, ThemeSelector, Wordmark } from "@schemavaults/ui";
 import { Menu } from "lucide-react";
 import type { FC, ReactElement } from "react";
 import type { ImageProps } from "next/image";
@@ -75,6 +75,8 @@ export function Header({
         </nav>
 
         <div className="flex items-center space-x-4">
+          <ThemeSelector variant="compact" className="hidden md:inline-flex" />
+
           <Link href={loginHref}>
             <Button variant="ghost" size="sm" className="hidden md:inline-flex">
               Sign In
