@@ -1,7 +1,7 @@
 "use client";
 
 import type { default as LinkComponent } from "next/link";
-import { Wordmark } from "@schemavaults/ui";
+import { ThemeSelector, Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
 import type { FC } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
@@ -171,6 +171,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
+          <ThemeSelector variant="segmented" size="sm" />
           <div className="flex space-x-4 text-xs text-muted-foreground">
             <Link href="#" className="hover:text-foreground">
               Privacy Policy
