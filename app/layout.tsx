@@ -4,22 +4,20 @@ import "@schemavaults/theme/globals.css";
 import ClientProviders from "./client-providers";
 
 export const metadata: Metadata = {
-  title: "@schemavaults/marketing-landing-page Preview",
+  title: "SchemaVaults",
   description:
     "Preview app displaying @schemavaults/marketing-landing-page (without having to load the full @schemavaults/web application)",
 };
 
-export default function Layout({ children }: PropsWithChildren) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html
       lang="en"
       className="w-full h-auto min-h-screen scroll-smooth"
       suppressHydrationWarning
     >
-      <body className="w-full h-auto min-h-screen">
-        <ClientProviders key="marketing-landing-page-app-client-providers">
-          {children}
-        </ClientProviders>
+      <body className="w-full h-auto min-h-screen scroll-smooth">
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

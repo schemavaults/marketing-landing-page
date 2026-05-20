@@ -1,6 +1,6 @@
 {
   "name": "@schemavaults/marketing-landing-page",
-  "version": "0.0.36",
+  "version": "0.1.0",
   "private": false,
   "license": "UNLICENSED",
   "description": "SchemaVaults landing page. Product features, waitlist, screenshots, testimonials, etc.",
@@ -12,14 +12,14 @@
     "lucide-react": "0.575.0",
     "next-themes": "0.4.6",
     "zod": "3.25.76",
-    "@hookform/resolvers": "3.9.0"
-  },
-  "peerDependencies": {
-    "@schemavaults/ui": "^0.50.2",
+    "@hookform/resolvers": "3.9.0",
+    "@schemavaults/ui": "0.53.1",
     "@schemavaults/theme": "0.25.9",
+    "@schemavaults/app-definitions": "0.7.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "next": "16.2.6"
+    "next": "16.2.6",
+    "server-only": "0.0.1"
   },
   "devDependencies": {
     "@types/react": "19.2.14",
@@ -37,8 +37,8 @@
   "scripts": {
     "dev": "next dev --port 9817",
     "build:pkg": "tsc --project tsconfig.pkg.json && tsc-alias --project tsconfig.pkg.json",
-    "build": "bun run build:pkg",
     "build:preview": "next build",
+    "build": "bun run build:pkg && bun run build:preview",
     "prebuild": "bun run clean",
     "clean": "rm -rf ./dist",
     "preview": "bun run dev"
