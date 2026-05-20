@@ -38,16 +38,18 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`mailto:${emails.salesEmail}`}>
               <Button variant="outline" size="lg">
-                Schedule Demo
+                Schedule a Demo
               </Button>
             </Link>
-            <Button variant="ghost" size="lg">
-              View Documentation
-            </Button>
+            <Link href={`mailto:${emails.salesEmail}?subject=SchemaVaults%20design%20partner%20inquiry`}>
+              <Button variant="ghost" size="lg">
+                Become a Design Partner
+              </Button>
+            </Link>
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            Free tier on launch • No credit card to join the waitlist • Built by engineers for engineers
           </p>
         </div>
       </div>
