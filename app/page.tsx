@@ -12,7 +12,7 @@ export default function IndexPageServerComponent(): ReactElement {
   const environment: SchemaVaultsAppEnvironment = getAppEnvironment();
   let mailing_list_id: string | undefined = undefined;
   try {
-    mailing_list_id = getPublicBetaWaitlistMailingListId();
+    mailing_list_id = getPublicBetaWaitlistMailingListId() satisfies string;
   } catch (e: unknown) {
     mailing_list_id = undefined;
     if (environment === "production") {

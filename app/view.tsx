@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, type ReactElement } from "react";
+import { useMemo, type ReactElement } from "react";
 import MarketingLandingPage from "@/marketing-landing-page";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,23 +46,24 @@ export default function MarketingLandingPageClientComponent({
     [environment],
   );
 
-  const joinMailingListCallback = useCallback(
-    environment === "production"
-      ? async (email: string) => {
-          if (!mailing_list_id || !isValidUuid(mailing_list_id)) {
-            throw new TypeError("Failed to load mailing list ID!");
-          } else if (typeof email !== "string" || !isValidEmail(email)) {
-            throw new TypeError("Invalid email to join mailing list with!");
+  const joinMailingListCallback: (email: string) => Promise<void> = useMemo(
+    () =>
+      environment === "production"
+        ? async (email: string) => {
+            if (!mailing_list_id || !isValidUuid(mailing_list_id)) {
+              throw new TypeError("Failed to load mailing list ID!");
+            } else if (typeof email !== "string" || !isValidEmail(email)) {
+              throw new TypeError("Invalid email to join mailing list with!");
+            }
+            await joinPublicMailingList({
+              email,
+              mailing_list_id,
+              environment,
+            });
+            return;
           }
-          await joinPublicMailingList({
-            email,
-            mailing_list_id,
-            environment,
-          });
-          return;
-        }
-      : mockJoinMailingListCallback,
-    [environment],
+        : mockJoinMailingListCallback,
+    [environment, mailing_list_id],
   );
 
   return (
@@ -77,7 +78,7 @@ export default function MarketingLandingPageClientComponent({
         supportEmail="support@schemavaults.com"
         Image={Image}
         Link={Link}
-        debug={environment !== "production"}
+        debug={environment === "development"}
         privateBeta={private_beta}
       />
     </JoinMailingListSubmitFunctionContext.Provider>
