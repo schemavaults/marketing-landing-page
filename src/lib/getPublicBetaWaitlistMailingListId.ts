@@ -1,5 +1,3 @@
-"use client";
-
 import isValidUuid from "@/lib/isValidUuid";
 
 export default function getPublicBetaWaitlistMailingListId(): string {
