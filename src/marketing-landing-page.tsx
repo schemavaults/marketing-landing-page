@@ -11,8 +11,10 @@ import AuthLinksHrefsProvider from "@/providers/AuthLinkHrefsProvider";
 /** Landing Page Sections */
 import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
+import CodeShowcaseSection from "@/sections/CodeShowcaseSection";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import PricingSection from "@/sections/PricingSection";
+import FAQSection from "@/sections/FAQSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
 
@@ -69,8 +71,10 @@ export function MarketingLandingPage(
             >
               <HeroSection />
               <HowItWorksFeaturesFlow />
+              <CodeShowcaseSection />
               <CoreFeaturesSection />
               <PricingSection />
+              <FAQSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}
