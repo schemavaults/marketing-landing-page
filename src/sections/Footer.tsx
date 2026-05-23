@@ -63,6 +63,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
+                </Link>
+              </li>
               {/*<li>
                 <Link
                   href="https://docs.schemavaults.com"
@@ -85,14 +93,6 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
@@ -173,13 +173,22 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </p>
           <ThemeSelector variant="segmented" size="sm" />
           <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
+            <Link
+              href={`mailto:${emails.supportEmail}?subject=Privacy%20Policy%20Request`}
+              className="hover:text-foreground"
+            >
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-foreground">
+            <Link
+              href={`mailto:${emails.supportEmail}?subject=Terms%20of%20Service%20Request`}
+              className="hover:text-foreground"
+            >
               Terms of Service
             </Link>
-            <Link href="#" className="hover:text-foreground">
+            <Link
+              href={`mailto:${emails.supportEmail}?subject=Cookie%20Policy%20Request`}
+              className="hover:text-foreground"
+            >
               Cookie Policy
             </Link>
           </div>

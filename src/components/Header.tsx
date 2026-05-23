@@ -66,10 +66,16 @@ export function Header({
             Pricing
           </Link>
           <Link
+            href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            FAQ
+          </Link>
+          <Link
             href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Mailing List
+            Join Waitlist
           </Link>
         </nav>
 

@@ -9,11 +9,9 @@ import {
 } from "@schemavaults/ui";
 import {
   Database,
-  Zap,
   Shield,
   Globe,
   Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
   Workflow,
@@ -25,62 +23,57 @@ import { ReactElement } from "react";
 const features = [
   {
     icon: Database,
-    title: "Vault Graph Storage",
+    title: "Schema-enforced Vaults",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "A Vault is a database that only accepts data conforming to the schema you define. Graph-shaped, not row-shaped — model relationships the way they actually exist.",
   },
   {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Type-safe agent memory",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
-      " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Your AI agents read & write through a typed Model Context Protocol (MCP) interface. No more re-parsing string blobs or hoping the model returned the right JSON.",
   },
   {
     icon: Workflow,
-    title: "Workflows & Data Pipelines",
+    title: "Workflows that can't drift",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Every stage of every pipeline validates against its schema. Bad data is rejected at the boundary, not three steps later in production.",
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "Write schemas once",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
-      " " +
-      "Nest schemas within other schemas.",
+      "Share the same nested, composable schemas across your frontend, backend, agents, and pipelines. One source of truth — no drift between layers.",
   },
   {
     icon: AppWindowMac,
-    title: "Low-Code Type Safety",
+    title: "Visual editor or SDK",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Define schemas in a visual editor, describe them to our AI in plain English, or write them directly with our TypeScript SDK. Use whichever fits the task.",
   },
   {
     icon: Cloud,
-    title: "Serverless or Self-Hosted",
+    title: "Serverless or self-hosted",
     description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
+      "Run on our managed cloud, in-memory for local dev, or fully self-hosted in your own compute. Same SDK, same schemas, your choice of deployment.",
   },
   {
     icon: Globe,
-    title: "Global CDN Sync",
+    title: "Global edge sync",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
+      "Replicate data across regions so users read from the closest vault. Strong consistency where you need it, eventual where you don't.",
   },
-
   {
     icon: Code,
-    title: "Developer Friendly",
+    title: "End-to-end TypeScript",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "Generated types flow from schema to SDK to UI. Rename a field once — your compiler tells you everywhere it broke.",
   },
   {
-    icon: Zap,
-    title: "Lightning Fast Queries",
+    icon: Shield,
+    title: "Built for production",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Fine-grained access controls, audit logs, and encryption at rest. Bring your own auth provider or use ours.",
   },
 ];
 
@@ -97,12 +90,11 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Built for teams shipping AI agents, data pipelines, and apps that
+            can&apos;t afford to guess what their data looks like. Code optional.
           </p>
         </div>
 
