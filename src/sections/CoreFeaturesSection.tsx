@@ -78,9 +78,9 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Built for Query Performance",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Indexed graph storage with query planning designed for the kinds of traversals real agent workflows actually run.",
   },
 ];
 
@@ -100,9 +100,8 @@ export function CoreFeaturesSection(): ReactElement {
             The graph database that you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Everything you need to design, store, and query schema-validated
+            data — no glue code required (unless you want it).
           </p>
         </div>
 

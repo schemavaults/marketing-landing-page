@@ -236,8 +236,13 @@ export default function PricingSection() {
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">
-            All plans include our core features and regular updates
+          <p className="text-muted-foreground mb-2">
+            All plans include the full schema editor, agent SDK, and ongoing
+            updates.
+          </p>
+          <p className="text-sm text-muted-foreground mb-4">
+            No credit card required to start • Upgrade, downgrade, or cancel
+            anytime
           </p>
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}
