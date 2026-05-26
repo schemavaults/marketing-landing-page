@@ -10,7 +10,7 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data once as schemas. Validate it everywhere. Power AI agents, workflows, websites, mobile apps, and CMSs with data your code (and your LLMs) can actually trust.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -33,17 +33,20 @@ function HeroSectionContent(): ReactElement {
         "px-4 md:px-8 lg:px-16 xl:px-32",
       )}
     >
+      <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+        <Wordmark />
+      </p>
       <h1
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
           "text-center",
-          "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
+          "font-bold tracking-tight max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        The type-safe data layer for AI-native apps
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        One schema, validated everywhere — agents, workflows, websites, and CMSs.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}

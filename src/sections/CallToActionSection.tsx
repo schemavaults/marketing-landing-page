@@ -6,6 +6,7 @@ import { cn } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { Mail } from "lucide-react";
 
@@ -15,6 +16,7 @@ export interface CTASectionProps {
 
 export function CTASection({ Link }: CTASectionProps): ReactElement {
   const emails = useOrgEmailAddresses();
+  const privateBeta: boolean = usePrivateBeta();
 
   return (
     <section
@@ -60,7 +62,9 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            {privateBeta
+              ? "Free during private beta • No credit card required • Unsubscribe anytime"
+              : "Free tier available • No setup fees • Cancel anytime"}
           </p>
         </div>
       </div>

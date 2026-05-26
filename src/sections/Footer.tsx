@@ -85,14 +85,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>
+              {/* <li>
                 <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   About
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
@@ -172,6 +172,10 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
+          {/* Policy links hidden until pages exist — re-enable when Privacy
+              Policy, Terms of Service, and Cookie Policy are published. */}
+          <div className="flex space-x-4 text-xs text-muted-foreground" />
+          {/*
           <div className="flex space-x-4 text-xs text-muted-foreground">
             <Link href="#" className="hover:text-foreground">
               Privacy Policy
@@ -183,6 +187,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               Cookie Policy
             </Link>
           </div>
+          */}
         </div>
       </div>
     </footer>
