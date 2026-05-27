@@ -174,7 +174,7 @@ export default function PricingSection() {
               key={plan.name}
               className={`relative flex flex-col ${
                 plan.popular
-                  ? "border-primary shadow-lg scale-105"
+                  ? "border-primary shadow-lg lg:scale-105"
                   : "border-border"
               }`}
             >

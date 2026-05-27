@@ -10,12 +10,19 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data once. Re-use it everywhere — agents, workflows, apps, and content. SchemaVaults is the schema-validated graph database for the AI age.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
     <div className="w-screen h-screen">
-      <img className="object-cover w-full h-full" src={backgroundImageHref} />
+      <img
+        className="object-cover w-full h-full"
+        src={backgroundImageHref}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
+      />
     </div>
   );
 }
@@ -40,10 +47,10 @@ function HeroSectionContent(): ReactElement {
           "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for AI agents, workflows, and apps.
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        Built on <Wordmark /> — the schema-validated graph database for the AI age.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}

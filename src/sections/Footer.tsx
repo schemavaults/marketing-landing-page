@@ -63,22 +63,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
-              {/*<li>
-                <Link
-                  href="https://docs.schemavaults.com"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Documentation
-                </Link>
-              </li>
               <li>
                 <Link
-                  href="#"
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  API Reference
+                  FAQ
                 </Link>
-              </li>*/}
+              </li>
             </ul>
           </div>
 
@@ -87,42 +79,26 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="https://mail.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Mailing Lists
                 </Link>
               </li>
-              {/* <li>
+              <li>
                 <Link
-                  href="#"
+                  href={`mailto:${emails.salesEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Blog
+                  Contact Sales
                 </Link>
-              </li> */}
-              {/* <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Careers
-                </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   href={`mailto:${emails.supportEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Contact
+                  Contact Support
                 </Link>
               </li>
             </ul>
@@ -139,22 +115,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Auth Help Center
                 </Link>
               </li>
-              {/* <li>
+              <li>
                 <Link
-                  href="#"
+                  href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Community
+                  Join the Waitlist
                 </Link>
-              </li> */}
-              {/* <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Status
-                </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   href={`mailto:${emails.supportEmail}`}
