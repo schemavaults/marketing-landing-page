@@ -25,12 +25,12 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to simplify how you work with data?
+              Stop duplicating types. Start shipping faster.
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              Be the first to build with <Wordmark /> when early access opens.
+              Drop your email below — we&apos;ll send you an invite the moment
+              the platform is ready.
             </p>
           </div>
 
