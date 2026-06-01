@@ -13,6 +13,7 @@ import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import PricingSection from "@/sections/PricingSection";
+import FrequentlyAskedQuestionsSection from "@/sections/FrequentlyAskedQuestionsSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
 
@@ -65,12 +66,15 @@ export function MarketingLandingPage(
               className={cn(
                 "w-full overflow-x-hidden min-h-screen h-auto",
                 "flex flex-col gap-0",
+                // Offset fixed header (h-16 = 64px) when jumping to in-page anchors
+                "[&_section]:scroll-mt-16",
               )}
             >
               <HeroSection />
               <HowItWorksFeaturesFlow />
               <CoreFeaturesSection />
               <PricingSection />
+              <FrequentlyAskedQuestionsSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}

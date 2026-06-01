@@ -10,10 +10,8 @@ import {
 import {
   Database,
   Zap,
-  Shield,
   Globe,
   Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
   Workflow,
@@ -45,11 +43,11 @@ const features = [
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "Stop Repeating Yourself",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
+      "Write schemas once and reuse the same data-types across your frontend, backend, and workflows." +
       " " +
-      "Nest schemas within other schemas.",
+      "Nest schemas inside other schemas to compose richer structures.",
   },
   {
     icon: AppWindowMac,

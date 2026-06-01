@@ -4,7 +4,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "SchemaVaults",
     short_name: "SchemaVaults",
-    description: "Schema-validated secure cloud data storage",
+    description:
+      "Type-safe data for AI agents, workflows, and apps. The graph database you can just talk to.",
     start_url: "/",
     icons: [
       {
