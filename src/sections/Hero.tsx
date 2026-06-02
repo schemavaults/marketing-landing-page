@@ -10,7 +10,7 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data once. Validate, store, and compose schemas across AI agents, workflows, apps, and CMS — without the glue code, drift, or runtime surprises.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -43,10 +43,13 @@ function HeroSectionContent(): ReactElement {
         Welcome to <Wordmark />
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        The type-safe graph database for AI agents, workflows, and modern apps.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
+      </p>
+      <p className="text-xs md:text-sm text-muted-foreground text-center mt-1">
+        Schema-first &middot; TypeScript-native &middot; Self-host or cloud
       </p>
       <div className="flex flex-col flex-nowrap sm:flex-wrap sm:flex-row gap-3 md:gap-4 items-center justify-center mt-2">
         <Button size="lg" variant="outline" asChild>
