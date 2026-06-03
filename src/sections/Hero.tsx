@@ -4,13 +4,13 @@ import usePrivateBeta from "@/hooks/usePrivateBeta";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
-import { ArrowRight, BookOpenText, Mail } from "lucide-react";
+import { ArrowRight, BookOpenText, Mail, Sparkles } from "lucide-react";
 import type { ReactElement } from "react";
 
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data types once as schemas, then reuse them everywhere — across your AI agents, workflows, websites, mobile apps, and content systems. No more guessing what shape your data is in.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -33,6 +33,19 @@ function HeroSectionContent(): ReactElement {
         "px-4 md:px-8 lg:px-16 xl:px-32",
       )}
     >
+      {privateBeta && (
+        <div
+          className={cn(
+            "inline-flex items-center gap-2 rounded-full",
+            "border border-primary/30 bg-primary/10 backdrop-blur",
+            "px-3 py-1 text-xs md:text-sm font-medium",
+            "text-primary",
+          )}
+        >
+          <Sparkles className="h-3.5 w-3.5" />
+          Now in private beta — invites rolling out weekly
+        </div>
+      )}
       <h1
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
@@ -40,10 +53,10 @@ function HeroSectionContent(): ReactElement {
           "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for AI agents, workflows, and apps.
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        Define once. Validate everywhere. Ship with confidence.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
@@ -74,11 +87,17 @@ function HeroSectionContent(): ReactElement {
             href={registerHref}
             className="flex flex-row flex-nowrap gap-2 items-center justify-start"
           >
-            {privateBeta ? "Register with invite code" : "Get started"}
+            {privateBeta ? "Register with invite code" : "Get started free"}
             <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
       </div>
+      <p className="text-xs md:text-sm text-muted-foreground mt-3">
+        Free tier available • No credit card required • Self-host or use our cloud
+      </p>
+      <p className="sr-only">
+        <Wordmark /> is the graph database you can talk to.
+      </p>
     </div>
   );
 }
