@@ -63,6 +63,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
+                </Link>
+              </li>
               {/*<li>
                 <Link
                   href="https://docs.schemavaults.com"
@@ -85,14 +93,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>
+              {/* <li>
                 <Link
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   About
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
@@ -172,17 +180,9 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
-          <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
-          </div>
+          {/* Legal links removed until real Privacy / Terms / Cookie pages
+              exist — broken "#" anchors damage trust on a marketing page. */}
+          <div className="flex space-x-4 text-xs text-muted-foreground" />
         </div>
       </div>
     </footer>

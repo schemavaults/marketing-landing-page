@@ -27,7 +27,7 @@ const features = [
     icon: Database,
     title: "Vault Graph Storage",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Vaults are schema-enforced graph databases — more flexible than a relational store, but with the type guarantees you'd expect from a strongly typed codebase.",
   },
   {
     icon: BotMessageSquare,
@@ -97,12 +97,12 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Everything you need to ship type-safe data — from agent memories to
+            global content. No code required (and a TypeScript SDK waiting when
+            you want it).
           </p>
         </div>
 
