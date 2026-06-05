@@ -10,7 +10,7 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data shape once. Reuse the same type-safe schemas across your AI agents, workflows, frontends, and backends — and stop writing the same validation, storage, and migration code over and over.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -40,10 +40,11 @@ function HeroSectionContent(): ReactElement {
           "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for the AI age.
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        <Wordmark /> is the schema-first graph database for AI agents,
+        workflows, and apps.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
@@ -74,11 +75,14 @@ function HeroSectionContent(): ReactElement {
             href={registerHref}
             className="flex flex-row flex-nowrap gap-2 items-center justify-start"
           >
-            {privateBeta ? "Register with invite code" : "Get started"}
+            {privateBeta ? "Register with invite code" : "Get started — free"}
             <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
       </div>
+      <p className="text-xs md:text-sm text-muted-foreground text-center mt-2">
+        Free forever plan · No credit card required · Self-host or cloud
+      </p>
     </div>
   );
 }

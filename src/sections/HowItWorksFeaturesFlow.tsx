@@ -20,34 +20,34 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 const defaultFeatures: Feature[] = [
   {
     id: "1",
-    heading: "Define Datatype Schema",
-    subheading: "Structure Your Information",
+    heading: "Define your schema",
+    subheading: "Visual editor, chat, or TypeScript",
     body:
-      "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot." +
+      "Sketch out your data shape in our visual schema editor, describe it to our AI, or write it in TypeScript." +
       " " +
-      "Create custom data structures that fit your specific needs.",
+      "Compose and nest schemas to model anything from a single document to a full domain.",
     image:
       "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
   {
     id: "2",
-    heading: "Create Your Vault",
-    subheading: "Secure Storage Solutions",
+    heading: "Spin up a vault",
+    subheading: "Cloud, in-memory, or self-hosted",
     body:
-      "Deploy your data vault anywhere - on our cloud platform for easy scalability and set-up, in-memory for lightning-fast local access, or in your own datacenter." +
+      "Deploy a fully-typed graph database in seconds — managed in our cloud, embedded in-memory for local-first apps, or hosted in your own datacenter for full data sovereignty." +
       " " +
-      "Choose the storage solution that best fits your security and performance requirements.",
+      "Same schema, anywhere it runs.",
     image:
       "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
-    heading: "Integrate",
-    subheading: "Trigger Events/Workflows & Load Vault Data",
+    heading: "Ship & integrate",
+    subheading: "Type-safe agents, workflows, and apps",
     body:
-      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
+      "Wire up AI agents, event-driven workflows, and frontends that already know the shape of every record they read or write." +
       " " +
-      "Or, just use SchemaVaults as a powerful content management system.",
+      "Or just use SchemaVaults as a headless, AI-native CMS.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];
