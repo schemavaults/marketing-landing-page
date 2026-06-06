@@ -7,7 +7,7 @@ import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { Mail } from "lucide-react";
+import { Check, Mail } from "lucide-react";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -25,14 +25,33 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to simplify how you work with data?
+              Stop hand-rolling validation. Ship type-safe data.
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              Be the first to build on <Wordmark /> the moment public access
+              opens. Drop your email below — we&apos;ll send a single message
+              when early access is live.
             </p>
           </div>
+
+          <ul className="flex flex-col sm:flex-row flex-wrap gap-x-6 gap-y-2 justify-center text-sm text-muted-foreground">
+            <li className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-green-500 shrink-0" />
+              Free forever tier
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-green-500 shrink-0" />
+              No credit card to start
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-green-500 shrink-0" />
+              Self-host or cloud
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="h-4 w-4 text-green-500 shrink-0" />
+              One unsubscribe email — no spam
+            </li>
+          </ul>
 
           <JoinMailingListForm />
 
