@@ -70,10 +70,11 @@ export function HowItWorksFeaturesFlow({
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            How It Works
+            From schema to production in 3 steps
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Design your data model, deploy a vault, and start writing
+            schema-validated data from your agents, workflows, and apps.
           </p>
         </div>
 

@@ -41,7 +41,7 @@ const features = [
     icon: Workflow,
     title: "Workflows & Data Pipelines",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Know exactly what shape your data is in at every stage. Catch type errors at the boundary instead of three steps downstream.",
   },
   {
     icon: Recycle,
