@@ -7,8 +7,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SchemaVaults",
-  description: "Schema-validated secure cloud data storage",
+  title: "SchemaVaults — Type-safe data for AI agents, workflows & apps",
+  description:
+    "Define your data types once as schemas. Reuse and compose them across AI agents, workflows, websites, mobile apps, and content management systems. Cloud or self-hosted.",
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {

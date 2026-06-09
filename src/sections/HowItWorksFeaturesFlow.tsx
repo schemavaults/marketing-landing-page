@@ -20,34 +20,34 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 const defaultFeatures: Feature[] = [
   {
     id: "1",
-    heading: "Define Datatype Schema",
-    subheading: "Structure Your Information",
+    heading: "Define Your Schema",
+    subheading: "Describe data once, in plain English or code",
     body:
-      "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot." +
+      "Use the visual schema editor or chat with our AI to model your data types." +
       " " +
-      "Create custom data structures that fit your specific needs.",
+      "Compose and nest schemas to fit any domain — no boilerplate, no drift between layers.",
     image:
       "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
   {
     id: "2",
     heading: "Create Your Vault",
-    subheading: "Secure Storage Solutions",
+    subheading: "Deploy in the cloud, in-memory, or on your own infrastructure",
     body:
-      "Deploy your data vault anywhere - on our cloud platform for easy scalability and set-up, in-memory for lightning-fast local access, or in your own datacenter." +
+      "Spin up a managed vault for instant scalability, run in-memory for local-first speed, or self-host in your own datacenter for full control." +
       " " +
-      "Choose the storage solution that best fits your security and performance requirements.",
+      "Same schemas, same SDK, anywhere you need them.",
     image:
       "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
     heading: "Integrate",
-    subheading: "Trigger Events/Workflows & Load Vault Data",
+    subheading: "Wire up agents, workflows, and apps with full type-safety",
     body:
-      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
+      "Build AI agents and workflows that know exactly what shape their data is in — at every step." +
       " " +
-      "Or, just use SchemaVaults as a powerful content management system.",
+      "Or use SchemaVaults as a powerful, type-safe content management system for your sites and apps.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];

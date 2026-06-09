@@ -60,7 +60,7 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            Free forever tier • No credit card required • Cancel anytime
           </p>
         </div>
       </div>

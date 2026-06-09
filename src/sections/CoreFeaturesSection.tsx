@@ -45,11 +45,11 @@ const features = [
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "Stop Repeating Yourself",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
+      "Write schemas once and reuse the same data-types across your frontend, backend, and workflows." +
       " " +
-      "Nest schemas within other schemas.",
+      "Nest schemas inside other schemas to compose richer models.",
   },
   {
     icon: AppWindowMac,
@@ -78,9 +78,9 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Fast Graph Traversals",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Execute complex graph traversals with our query optimization engine — designed for low-latency reads at agent and app scale.",
   },
 ];
 
@@ -97,12 +97,11 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            Everything you need to ship type-safe data
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            A schema-first graph database that your agents, workflows, and apps
+            can all share — without writing a line of code (unless you want to).
           </p>
         </div>
 
