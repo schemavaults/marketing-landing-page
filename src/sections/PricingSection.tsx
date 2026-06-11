@@ -166,6 +166,10 @@ export default function PricingSection() {
             Choose the perfect plan for your needs. Start free and scale as you
             grow.
           </p>
+          <p className="text-sm text-muted-foreground mt-4">
+            No credit card required to start • Upgrade, downgrade, or cancel
+            anytime
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
