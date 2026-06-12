@@ -63,6 +63,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="#faq"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
+                </Link>
+              </li>
               {/*<li>
                 <Link
                   href="https://docs.schemavaults.com"
