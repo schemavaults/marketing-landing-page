@@ -27,60 +27,55 @@ const features = [
     icon: Database,
     title: "Vault Graph Storage",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Vaults are databases governed by a schema — a strict specification for the shape of data they accept. More flexible than a relational database, more reliable than a document store.",
   },
   {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Type-Safe Agent Memory",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
-      " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Stop hoping your AI agents produce well-formed output. Vaults validate every memory, thought, and artifact at write time, and expose them to agents over Model Context Protocol (MCP).",
   },
   {
     icon: Workflow,
     title: "Workflows & Data Pipelines",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Know the exact shape of your data at every stage of every workflow — no more runtime surprises in production.",
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "Write Schemas Once",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
-      " " +
-      "Nest schemas within other schemas.",
+      "Define a schema one time and reuse it everywhere — frontend, backend, workflows, AI agents. Compose and nest schemas without duplicating types.",
   },
   {
     icon: AppWindowMac,
-    title: "Low-Code Type Safety",
+    title: "Low-Code Schema Editor",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Design schemas visually, describe them to our AI, or import them from your TypeScript SDK. Whichever way fits your team.",
   },
   {
     icon: Cloud,
     title: "Serverless or Self-Hosted",
     description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
+      "Run on our managed cloud for zero-ops scaling, or self-host in your own datacenter for full control over data residency and compliance.",
   },
   {
     icon: Globe,
-    title: "Global CDN Sync",
+    title: "Global Edge Sync",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
+      "Replicate your data to storage regions close to your users, so reads stay fast no matter where in the world they sign in.",
   },
-
   {
     icon: Code,
-    title: "Developer Friendly",
+    title: "End-to-End Type Safety",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "First-class TypeScript SDKs generate types from your schemas, so your IDE catches the bug before your tests do.",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Fast Graph Queries",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Traverse deeply nested relationships in a single query without N+1 round trips — even across millions of nodes.",
   },
 ];
 
