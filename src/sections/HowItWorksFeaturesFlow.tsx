@@ -73,7 +73,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            From schema definition to AI agents that respect your data shapes —
+            in three steps.
           </p>
         </div>
 
