@@ -101,8 +101,8 @@ export function CoreFeaturesSection(): ReactElement {
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
             Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            workloads at any scale — without ever writing a line of code,
+            unless you want to.
           </p>
         </div>
 
