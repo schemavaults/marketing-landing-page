@@ -10,7 +10,7 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Visually design schemas, deploy vaults to our cloud or your own datacenter, and let AI agents query type-safe data over MCP — without writing a line of code (unless you want to).";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -33,17 +33,22 @@ function HeroSectionContent(): ReactElement {
         "px-4 md:px-8 lg:px-16 xl:px-32",
       )}
     >
+      <p className="text-sm md:text-base font-medium tracking-wide uppercase text-muted-foreground">
+        Welcome to <Wordmark />
+      </p>
       <h1
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
           "text-center",
-          "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
+          "font-bold max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw]",
+          "tracking-tight",
         )}
       >
-        Welcome to <Wordmark />
+        Define your data once. Type-safe everywhere.
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        The graph database your AI agents, workflows, and apps can actually
+        trust.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
@@ -74,11 +79,16 @@ function HeroSectionContent(): ReactElement {
             href={registerHref}
             className="flex flex-row flex-nowrap gap-2 items-center justify-start"
           >
-            {privateBeta ? "Register with invite code" : "Get started"}
+            {privateBeta
+              ? "Register with invite code"
+              : "Create your first vault — free"}
             <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
       </div>
+      <p className="text-xs text-muted-foreground mt-2">
+        Free forever tier · No credit card required · Self-host or use our cloud
+      </p>
     </div>
   );
 }
