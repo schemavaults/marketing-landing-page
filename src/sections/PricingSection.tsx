@@ -235,9 +235,13 @@ export default function PricingSection() {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">
-            All plans include our core features and regular updates
+        <div className="text-center mt-16 space-y-2">
+          <p className="text-muted-foreground">
+            Start on the Free tier — no credit card required. Upgrade, downgrade,
+            or cancel anytime.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            All plans include our core features and regular updates.
           </p>
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}
