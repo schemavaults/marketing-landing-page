@@ -87,14 +87,6 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="https://mail.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
                 >
