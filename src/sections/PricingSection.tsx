@@ -163,8 +163,8 @@ export default function PricingSection() {
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Start free. Upgrade only when your data scales — no surprise bills,
+            no per-seat lock-in.
           </p>
         </div>
 
