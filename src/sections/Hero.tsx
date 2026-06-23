@@ -10,7 +10,14 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data types once as schemas, then use them everywhere — to validate LLM output, ground agent memory, power workflows, and serve content to your apps. No more shape-guessing, no more brittle JSON.";
+
+const valuePropChips: readonly string[] = [
+  "Type-safe by default",
+  "LLM & MCP native",
+  "Cloud or self-hosted",
+  "TypeScript SDKs",
+] as const;
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -42,12 +49,29 @@ function HeroSectionContent(): ReactElement {
       >
         Welcome to <Wordmark />
       </h1>
-      <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+      <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground max-w-[90vw] md:max-w-[70vw] lg:max-w-[55vw]">
+        The type-safe graph database for AI agents, workflows, and apps.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
       </p>
+      <ul
+        aria-label="Key capabilities"
+        className="flex flex-row flex-wrap gap-2 items-center justify-center max-w-[90vw] mt-1"
+      >
+        {valuePropChips.map((chip) => (
+          <li
+            key={chip}
+            className={cn(
+              "px-3 py-1 rounded-full text-xs md:text-sm",
+              "border border-border bg-background/40 backdrop-blur-sm",
+              "text-foreground/80",
+            )}
+          >
+            {chip}
+          </li>
+        ))}
+      </ul>
       <div className="flex flex-col flex-nowrap sm:flex-wrap sm:flex-row gap-3 md:gap-4 items-center justify-center mt-2">
         <Button size="lg" variant="outline" asChild>
           <a
@@ -58,7 +82,7 @@ function HeroSectionContent(): ReactElement {
             See how it works
           </a>
         </Button>
-        {privateBeta && (
+        {privateBeta ? (
           <Button size="lg" asChild>
             <a
               href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
@@ -66,19 +90,30 @@ function HeroSectionContent(): ReactElement {
             >
               <Mail className="h-4 w-4" />
               Join the launch waitlist
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+        ) : (
+          <Button size="lg" asChild>
+            <a
+              href={registerHref}
+              className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+            >
+              Get started — it's free
+              <ArrowRight className="h-4 w-4" />
             </a>
           </Button>
         )}
-        <Button size="lg" asChild>
-          <a
-            href={registerHref}
-            className="flex flex-row flex-nowrap gap-2 items-center justify-start"
-          >
-            {privateBeta ? "Register with invite code" : "Get started"}
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </Button>
       </div>
+      {privateBeta && (
+        <p className="text-xs text-muted-foreground mt-1">
+          Have an invite code?{" "}
+          <a href={registerHref} className="underline hover:text-foreground">
+            Register here
+          </a>
+          .
+        </p>
+      )}
     </div>
   );
 }

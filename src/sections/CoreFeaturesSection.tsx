@@ -78,9 +78,9 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Built for Real-Time Agents",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "In-memory and edge-cached read paths so agents and workflows don't stall waiting on data fetches.",
   },
 ];
 
@@ -100,9 +100,9 @@ export function CoreFeaturesSection(): ReactElement {
             The graph database that you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Schemas, storage, and SDKs designed for the way modern AI products
+            actually get built — describe what you need, ship it, then scale
+            from prototype to production without rewriting your data layer.
           </p>
         </div>
 

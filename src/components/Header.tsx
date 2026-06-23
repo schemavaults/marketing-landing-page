@@ -69,7 +69,7 @@ export function Header({
             href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Mailing List
+            Waitlist
           </Link>
         </nav>
 
