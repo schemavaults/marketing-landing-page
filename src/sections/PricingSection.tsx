@@ -163,8 +163,8 @@ export default function PricingSection() {
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Start on the free tier — no credit card required. Upgrade when your
+            workloads do.
           </p>
         </div>
 
@@ -237,15 +237,16 @@ export default function PricingSection() {
 
         <div className="text-center mt-16">
           <p className="text-muted-foreground mb-4">
-            All plans include our core features and regular updates
+            Every plan includes the full schema editor, TypeScript SDKs, MCP
+            access, and regular updates.
           </p>
           <p className="text-sm text-muted-foreground">
-            Need something custom?{" "}
+            Need volume pricing, on-prem deployment, or a custom SLA?{" "}
             <a
               href={`mailto:${emails.salesEmail}`}
               className="text-primary hover:underline"
             >
-              Contact our sales team
+              Talk to our sales team
             </a>
           </p>
         </div>
