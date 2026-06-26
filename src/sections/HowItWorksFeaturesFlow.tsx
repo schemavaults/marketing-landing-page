@@ -73,7 +73,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from idea to type-safe data in production — no schema
+            drift, no guessing.
           </p>
         </div>
 

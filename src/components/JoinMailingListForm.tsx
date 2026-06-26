@@ -63,8 +63,9 @@ export function JoinMailingListForm(): ReactElement {
         console.log(`[JoinMailingListForm] Successfully joined mailing list!`);
       }
       toast({
-        title: "Successfully joined mailing list!",
-        description: "Look forward to hearing from us soon!",
+        title: "You're on the list!",
+        description:
+          "We'll email you the moment early access opens. No spam — promise.",
       });
     });
   }
@@ -88,7 +89,7 @@ export function JoinMailingListForm(): ReactElement {
           className="flex-1"
           {...form.register("email")}
           type="email"
-          placeholder="Enter your email"
+          placeholder="you@company.com"
           disabled={submitting}
         />
         <Button size="lg" type="submit" disabled={submitting}>

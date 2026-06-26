@@ -87,14 +87,6 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="https://mail.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
                 >
@@ -172,17 +164,11 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
-          <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
-          </div>
+          {/*
+            Legal links (Privacy Policy / Terms of Service / Cookie Policy) are
+            intentionally omitted until real destinations exist — empty `#`
+            anchors that jump to the top read as broken to first-time visitors.
+          */}
         </div>
       </div>
     </footer>
