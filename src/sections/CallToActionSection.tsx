@@ -6,8 +6,10 @@ import { cn } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -15,6 +17,8 @@ export interface CTASectionProps {
 
 export function CTASection({ Link }: CTASectionProps): ReactElement {
   const emails = useOrgEmailAddresses();
+  const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
 
   return (
     <section
@@ -28,11 +32,35 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
               Ready to simplify how you work with data?
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              {privateBeta ? (
+                <>
+                  Start building with <Wordmark /> as soon as it is available to
+                  the public. Enter your email below to get notified when early
+                  access opens.
+                </>
+              ) : (
+                <>
+                  Spin up your first vault in minutes. Or drop your email below
+                  and we&apos;ll keep you posted on new features as we ship
+                  them.
+                </>
+              )}
             </p>
           </div>
+
+          {!privateBeta && (
+            <div className="flex justify-center">
+              <Link href={registerHref}>
+                <Button
+                  size="lg"
+                  className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+                >
+                  Start free
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          )}
 
           <JoinMailingListForm />
 
