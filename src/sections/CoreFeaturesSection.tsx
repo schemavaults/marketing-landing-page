@@ -10,10 +10,8 @@ import {
 import {
   Database,
   Zap,
-  Shield,
   Globe,
   Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
   Workflow,
@@ -78,9 +76,9 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Fast Graph Traversals",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Walk nested relationships across schemas without N+1 round-trips — the query planner resolves graph paths in a single pass.",
   },
 ];
 

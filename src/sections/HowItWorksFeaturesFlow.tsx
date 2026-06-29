@@ -43,11 +43,11 @@ const defaultFeatures: Feature[] = [
   {
     id: "3",
     heading: "Integrate",
-    subheading: "Trigger Events/Workflows & Load Vault Data",
+    subheading: "Power agents, workflows & apps",
     body:
-      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
+      "Build intelligent agents and workflows that respond to real-time events and already know the shape of the data they're working with." +
       " " +
-      "Or, just use SchemaVaults as a powerful content management system.",
+      "Or use SchemaVaults as a typed, headless CMS.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];
