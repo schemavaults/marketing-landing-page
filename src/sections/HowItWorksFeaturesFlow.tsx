@@ -20,34 +20,32 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 const defaultFeatures: Feature[] = [
   {
     id: "1",
-    heading: "Define Datatype Schema",
-    subheading: "Structure Your Information",
+    heading: "Define Your Schema",
+    subheading: "Structure your data, once.",
     body:
-      "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot." +
+      "Sketch your data shape in our visual schema editor or just describe it to our AI." +
       " " +
-      "Create custom data structures that fit your specific needs.",
+      "Compose schemas, nest them, and version them — no migrations required.",
     image:
       "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
   {
     id: "2",
-    heading: "Create Your Vault",
-    subheading: "Secure Storage Solutions",
+    heading: "Spin Up a Vault",
+    subheading: "Storage that fits your stack.",
     body:
-      "Deploy your data vault anywhere - on our cloud platform for easy scalability and set-up, in-memory for lightning-fast local access, or in your own datacenter." +
+      "Deploy your vault on our cloud for instant scale, in-memory for lightning-fast local access, or in your own datacenter for full control." +
       " " +
-      "Choose the storage solution that best fits your security and performance requirements.",
+      "Switch any time without rewriting your code.",
     image:
       "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
-    heading: "Integrate",
-    subheading: "Trigger Events/Workflows & Load Vault Data",
+    heading: "Plug In Anywhere",
+    subheading: "Agents, workflows, apps — all type-safe.",
     body:
-      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
-      " " +
-      "Or, just use SchemaVaults as a powerful content management system.",
+      "Drive intelligent agents and workflows that finally know the shape of their data. Sync vault content into your frontend, backend, or CMS with end-to-end type safety baked in.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];
@@ -70,10 +68,10 @@ export function HowItWorksFeaturesFlow({
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            How It Works
+            From schema to shipped — in three steps
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Stop wiring brittle types between your database, backend, and agents. Model your data once, then plug it in everywhere.
           </p>
         </div>
 

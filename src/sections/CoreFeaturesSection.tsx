@@ -27,60 +27,55 @@ const features = [
     icon: Database,
     title: "Vault Graph Storage",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Vaults are databases governed by a schema — a contract for the exact shape of every record. More flexible than relational, safer than schemaless.",
   },
   {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Type-Safe Agent Memory",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
-      " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Your AI agents store memories and produce outputs in the shape you actually expect. Persist thoughts and artifacts through Model Context Protocol (MCP) — no more JSON-parsing roulette.",
   },
   {
     icon: Workflow,
     title: "Workflows & Data Pipelines",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Move data between steps with guaranteed types at every hop. No more silent drift, no more 3 a.m. 'undefined is not a function'.",
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "Stop Repeating Yourself",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
-      " " +
-      "Nest schemas within other schemas.",
+      "Write schemas once and share them across your frontend apps, backend services, and workflows. Compose and nest schemas like Lego bricks.",
   },
   {
     icon: AppWindowMac,
     title: "Low-Code Type Safety",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Sketch a schema in our visual editor, describe it to our AI, or hand-roll it with our TypeScript SDK. Whichever you reach for, the result is fully typed.",
   },
   {
     icon: Cloud,
     title: "Serverless or Self-Hosted",
     description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
+      "Run on our managed cloud, embed in-memory for tests, or self-host in your own compute cluster. Same SDK, same schemas, your choice of where the data lives.",
   },
   {
     icon: Globe,
     title: "Global CDN Sync",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
+      "Replicate vaults across regions so your data lands fast for every user — no matter where they are.",
   },
-
   {
     icon: Code,
     title: "Developer Friendly",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "End-to-end type safety in our TypeScript SDKs — autocomplete from your IDE all the way through to the database.",
   },
   {
     icon: Zap,
     title: "Lightning Fast Queries",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Traverse complex graphs in milliseconds. Our query optimizer plans across vaults so deep joins stay snappy.",
   },
 ];
 
@@ -97,12 +92,10 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Built for the messy, evolving data behind modern AI apps. Powerful enough for production graph workloads — and you never have to write a line of code unless you want to.
           </p>
         </div>
 

@@ -59,7 +59,7 @@ export default function PricingSection() {
         name: "Free",
         price: "$0",
         period: "forever",
-        description: "Perfect for trying out SchemaVaults",
+        description: "Everything you need to try SchemaVaults end-to-end",
         popular: false,
         features: [
           { name: "1 GB storage", included: true },
@@ -163,8 +163,7 @@ export default function PricingSection() {
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Start free, scale when you ship. No setup fees, no surprise invoices, cancel anytime.
           </p>
         </div>
 
@@ -237,16 +236,17 @@ export default function PricingSection() {
 
         <div className="text-center mt-16">
           <p className="text-muted-foreground mb-4">
-            All plans include our core features and regular updates
+            Every plan includes type-safe SDKs, the visual schema editor, and our managed cloud — for free.
           </p>
           <p className="text-sm text-muted-foreground">
-            Need something custom?{" "}
+            Need something custom, on-prem, or with a tailored SLA?{" "}
             <a
               href={`mailto:${emails.salesEmail}`}
               className="text-primary hover:underline"
             >
-              Contact our sales team
+              Talk to sales
             </a>
+            .
           </p>
         </div>
       </div>
