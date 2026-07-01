@@ -24,18 +24,17 @@ import { ReactElement } from "react";
 
 const features = [
   {
-    icon: Database,
-    title: "Vault Graph Storage",
+    icon: BotMessageSquare,
+    title: "Type-Safe Agent Memory",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Stop shipping agents that hallucinate the shape of their own outputs. " +
+      "Store thoughts, artifacts, and long-term memory in your vaults over the Model Context Protocol (MCP) — validated against your schemas on every write.",
   },
   {
-    icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    icon: Database,
+    title: "Schema-Enforced Graph Storage",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
-      " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Vaults are graph databases governed by schemas you define — more flexible than relational tables, more reliable than a document store. If it doesn't fit the schema, it doesn't get stored.",
   },
   {
     icon: Workflow,
@@ -97,12 +96,13 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Everything you need to build reliable AI agents, workflows, and
+            content platforms on top of structured, validated data. Ship
+            without writing a single line of code — or drop into our
+            TypeScript SDKs whenever you want to.
           </p>
         </div>
 

@@ -73,7 +73,7 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: "Start free",
         ctaVariant: "outline" as const,
         ctaLink: registerHref,
       },
@@ -81,7 +81,7 @@ export default function PricingSection() {
         name: "Personal",
         price: "$19",
         period: "per month",
-        description: "For individual developers and small projects",
+        description: "For individual developers and side projects",
         popular: true,
         features: [
           { name: "50 GB storage", included: true },
@@ -95,7 +95,7 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: "Start building",
         ctaVariant: "default" as const,
         ctaLink: registerHref,
       },
@@ -116,15 +116,16 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: "Start a team trial",
         ctaVariant: "default" as const,
         ctaLink: registerHref,
       },
       Enterprise: {
         name: "Enterprise",
-        price: "Contact Sales",
+        price: "Custom",
         period: "",
-        description: "For large organizations with custom needs",
+        description:
+          "For teams with security, compliance, or on-prem needs — let's talk.",
         popular: false,
         features: [
           { name: "Unlimited storage", included: true },
@@ -140,7 +141,7 @@ export default function PricingSection() {
           { name: "Bring your own compute/models", included: true },
           { name: "Custom SLA", included: true },
         ],
-        cta: "Contact Sales",
+        cta: "Talk to sales",
         ctaVariant: "outline" as const,
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
@@ -160,11 +161,11 @@ export default function PricingSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight mb-4">
-            Simple, transparent pricing
+            Start free. Scale when you're ready.
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Transparent, usage-friendly pricing with no hidden fees. Every
+            plan includes schema validation, graph storage, and MCP access.
           </p>
         </div>
 

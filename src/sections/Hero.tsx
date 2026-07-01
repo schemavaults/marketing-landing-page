@@ -10,12 +10,17 @@ import type { ReactElement } from "react";
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data types once as schemas. Reuse and compose them to validate and store data across your AI agents, workflows, apps, and content platforms — with end-to-end type safety.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
     <div className="w-screen h-screen">
-      <img className="object-cover w-full h-full" src={backgroundImageHref} />
+      <img
+        className="object-cover w-full h-full"
+        src={backgroundImageHref}
+        alt=""
+        aria-hidden="true"
+      />
     </div>
   );
 }
@@ -37,13 +42,14 @@ function HeroSectionContent(): ReactElement {
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
           "text-center",
-          "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
+          "font-bold max-w-[90vw] md:max-w-[80vw] lg:max-w-[70vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Structured data your AI agents can actually trust.
       </h1>
-      <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+      <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground max-w-[80vw] md:max-w-[65vw] lg:max-w-[55vw]">
+        <Wordmark /> is the schema-first graph database for AI agents,
+        workflows, and apps.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
@@ -74,11 +80,14 @@ function HeroSectionContent(): ReactElement {
             href={registerHref}
             className="flex flex-row flex-nowrap gap-2 items-center justify-start"
           >
-            {privateBeta ? "Register with invite code" : "Get started"}
+            {privateBeta ? "Register with invite code" : "Start free"}
             <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
       </div>
+      <p className="text-sm text-muted-foreground text-center mt-3">
+        Free forever plan · No credit card required · MCP-ready
+      </p>
     </div>
   );
 }
