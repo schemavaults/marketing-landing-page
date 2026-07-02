@@ -4,13 +4,13 @@ import usePrivateBeta from "@/hooks/usePrivateBeta";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
-import { ArrowRight, BookOpenText, Mail } from "lucide-react";
+import { ArrowRight, BookOpenText, Mail, ShieldCheck, Zap, Code2 } from "lucide-react";
 import type { ReactElement } from "react";
 
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data types once. Reuse the same validated schemas across your AI agents, workflows, websites, and mobile apps — with end-to-end type safety from schema to storage.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -40,10 +40,10 @@ function HeroSectionContent(): ReactElement {
           "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for AI agents, workflows, and apps
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        Meet <Wordmark /> — schemas, storage, and MCP for the modern AI stack.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
@@ -74,10 +74,31 @@ function HeroSectionContent(): ReactElement {
             href={registerHref}
             className="flex flex-row flex-nowrap gap-2 items-center justify-start"
           >
-            {privateBeta ? "Register with invite code" : "Get started"}
+            {privateBeta ? "Register with invite code" : "Start free"}
             <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
+      </div>
+      <div
+        className={cn(
+          "mt-3 md:mt-4",
+          "flex flex-row flex-wrap gap-x-4 gap-y-2 md:gap-x-6",
+          "items-center justify-center",
+          "text-xs md:text-sm text-muted-foreground",
+        )}
+      >
+        <span className="inline-flex items-center gap-1.5">
+          <ShieldCheck className="h-4 w-4 text-primary" />
+          End-to-end type safety
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <Zap className="h-4 w-4 text-primary" />
+          Free tier — no credit card
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <Code2 className="h-4 w-4 text-primary" />
+          TypeScript SDK + MCP built-in
+        </span>
       </div>
     </div>
   );
