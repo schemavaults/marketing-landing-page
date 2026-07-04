@@ -25,62 +25,60 @@ import { ReactElement } from "react";
 const features = [
   {
     icon: Database,
-    title: "Vault Graph Storage",
+    title: "Schema-Enforced Vaults",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "A vault is a database that only accepts data matching its schema — the shape you defined up front. More flexible than a relational DB, safer than a document store.",
   },
   {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Type-Safe Agent Memory",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
+      "Guarantee your AI agents produce output — and store memories — in exactly the shape you expected." +
       " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "First-class Model Context Protocol (MCP) support out of the box.",
   },
   {
     icon: Workflow,
     title: "Workflows & Data Pipelines",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Every stage of your pipeline knows the shape of its input and output. Stop patching mystery objects three steps downstream.",
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "Write Schemas Once",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
-      " " +
-      "Nest schemas within other schemas.",
+      "Reuse the same data types across your frontend, backend, and workflows. Nest schemas within schemas — no duplicated definitions to drift apart.",
   },
   {
     icon: AppWindowMac,
-    title: "Low-Code Type Safety",
+    title: "Low-Code or Code-First",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Use the visual schema editor, describe what you need in plain English, or drop into our TypeScript SDKs. Same result, your choice.",
   },
   {
     icon: Cloud,
     title: "Serverless or Self-Hosted",
     description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
+      "Run on our managed cloud for zero ops, or self-host in your own cluster for full control over data residency and compute.",
   },
   {
     icon: Globe,
-    title: "Global CDN Sync",
+    title: "Global Edge Sync",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
+      "Replicate across storage regions so your users hit the closest copy — millisecond reads no matter where they are.",
   },
 
   {
     icon: Code,
     title: "Developer Friendly",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "End-to-end type safety with TypeScript SDKs. Read and write schema-validated data without a compile-time surprise in production.",
   },
   {
     icon: Zap,
     title: "Lightning Fast Queries",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Complex graph traversals in milliseconds, powered by an optimizer built for schema-aware storage.",
   },
 ];
 
@@ -97,12 +95,11 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Everything you need to model, store, and query typed data at
+            scale — without writing a line of code unless you want to.
           </p>
         </div>
 

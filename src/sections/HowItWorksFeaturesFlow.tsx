@@ -20,34 +20,34 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 const defaultFeatures: Feature[] = [
   {
     id: "1",
-    heading: "Define Datatype Schema",
-    subheading: "Structure Your Information",
+    heading: "Define Your Schema",
+    subheading: "Describe it — or click it together",
     body:
-      "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot." +
+      "Sketch your data model in the visual schema editor, or just tell our AI what you want to store." +
       " " +
-      "Create custom data structures that fit your specific needs.",
+      "No boilerplate, no ORM setup, no migrations to hand-write.",
     image:
       "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
   {
     id: "2",
-    heading: "Create Your Vault",
-    subheading: "Secure Storage Solutions",
+    heading: "Spin Up a Vault",
+    subheading: "Cloud, in-memory, or on your own hardware",
     body:
-      "Deploy your data vault anywhere - on our cloud platform for easy scalability and set-up, in-memory for lightning-fast local access, or in your own datacenter." +
+      "Deploy anywhere — our managed cloud for instant scale, in-memory for local speed, or self-hosted in your datacenter." +
       " " +
-      "Choose the storage solution that best fits your security and performance requirements.",
+      "The same schema, backed by the storage that fits your workload.",
     image:
       "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
-    heading: "Integrate",
-    subheading: "Trigger Events/Workflows & Load Vault Data",
+    heading: "Wire It Up",
+    subheading: "One data model. Agents, workflows, and apps.",
     body:
-      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
+      "Build agents and workflows that know exactly what shape your data is in — end-to-end type safety, no more guessing." +
       " " +
-      "Or, just use SchemaVaults as a powerful content management system.",
+      "Or plug SchemaVaults in as a strongly-typed content management backend.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];

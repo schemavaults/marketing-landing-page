@@ -87,10 +87,10 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href="https://github.com/schemavaults"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  About
+                  GitHub
                 </Link>
               </li>
               <li>
@@ -173,14 +173,17 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </p>
           <ThemeSelector variant="segmented" size="sm" />
           <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
+            <Link
+              href={`mailto:${emails.supportEmail}`}
+              className="hover:text-foreground"
+            >
+              Contact
             </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
+            <Link
+              href="https://github.com/schemavaults"
+              className="hover:text-foreground"
+            >
+              GitHub
             </Link>
           </div>
         </div>
