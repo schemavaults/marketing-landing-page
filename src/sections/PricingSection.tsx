@@ -62,10 +62,11 @@ export default function PricingSection() {
         description: "Perfect for trying out SchemaVaults",
         popular: false,
         features: [
-          { name: "1 GB storage", included: true },
           { name: "3 vaults", included: true },
+          { name: "1 GB storage", included: true },
           { name: "5 schemas in global registry", included: true },
           { name: "100 agent queries/month", included: true },
+          { name: "TypeScript SDK & MCP tools", included: true },
           { name: "Community support", included: true },
           { name: "API access", included: false },
           { name: "Advanced analytics", included: false },
@@ -73,7 +74,7 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: "Start free",
         ctaVariant: "outline" as const,
         ctaLink: registerHref,
       },
@@ -95,7 +96,7 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: "Try Personal — free for 14 days",
         ctaVariant: "default" as const,
         ctaLink: registerHref,
       },
@@ -163,8 +164,8 @@ export default function PricingSection() {
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Start free — no credit card. Upgrade when your workflow outgrows
+            it.
           </p>
         </div>
 
