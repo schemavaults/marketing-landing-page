@@ -25,9 +25,9 @@ import { ReactElement } from "react";
 const features = [
   {
     icon: Database,
-    title: "Vault Graph Storage",
+    title: "Schema-Enforced Vault Storage",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Store data in vaults that guarantee every record matches a schema you defined — more flexible than a relational database, safer than a document store.",
   },
   {
     icon: BotMessageSquare,
@@ -100,9 +100,9 @@ export function CoreFeaturesSection(): ReactElement {
             The graph database that you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Define once in the schema editor or chat — then use the same
+            type-safe data across your apps, workflows, and AI agents. Reach for
+            the TypeScript SDK anytime you want to go deeper.
           </p>
         </div>
 

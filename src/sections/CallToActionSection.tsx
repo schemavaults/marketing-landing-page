@@ -34,7 +34,12 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
             </p>
           </div>
 
-          <JoinMailingListForm />
+          <div className="space-y-3">
+            <JoinMailingListForm />
+            <p className="text-sm text-muted-foreground">
+              Free to try • No credit card required • Unsubscribe anytime
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`mailto:${emails.salesEmail}`}>
@@ -58,10 +63,6 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
               </Button>
             </Link>
           </div>
-
-          <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
-          </p>
         </div>
       </div>
     </section>
