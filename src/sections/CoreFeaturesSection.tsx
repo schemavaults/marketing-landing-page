@@ -10,77 +10,49 @@ import {
 import {
   Database,
   Zap,
-  Shield,
   Globe,
-  Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
-  Workflow,
-  AppWindowMac,
   Recycle,
 } from "lucide-react";
 import { ReactElement } from "react";
 
 const features = [
   {
-    icon: Database,
-    title: "Vault Graph Storage",
-    description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
-  },
-  {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Type-safe agent memory",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
-      " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
-  },
-  {
-    icon: Workflow,
-    title: "Workflows & Data Pipelines",
-    description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Agents store thoughts, memories, and artifacts in the exact shape you expect — over Model Context Protocol (MCP) — so no more brittle prompt-parsing.",
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "Write schemas once, use everywhere",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
-      " " +
-      "Nest schemas within other schemas.",
+      "Share the same nestable, versioned schemas across your frontend, backend, and workflows. One source of truth for every data-type in your stack.",
   },
   {
-    icon: AppWindowMac,
-    title: "Low-Code Type Safety",
+    icon: Database,
+    title: "Schema-enforced graph vaults",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
-  },
-  {
-    icon: Cloud,
-    title: "Serverless or Self-Hosted",
-    description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
-  },
-  {
-    icon: Globe,
-    title: "Global CDN Sync",
-    description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
-  },
-
-  {
-    icon: Code,
-    title: "Developer Friendly",
-    description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "Vaults are databases guarded by your schemas — more flexible than a relational DB, safer than a document store, and queryable as a graph.",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Lightning-fast graph queries",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Traverse complex relationships in milliseconds with a query engine tuned for schema-aware graph workloads.",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud, in-memory, or self-hosted",
+    description:
+      "Run in our managed cloud for zero-ops scale, in-memory for local speed, or in your own datacenter for full control.",
+  },
+  {
+    icon: Globe,
+    title: "Global multi-region sync",
+    description:
+      "Replicate vaults across regions so your users, agents, and apps read from the closest edge — wherever they are.",
   },
 ];
 
@@ -97,12 +69,12 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            One typed data layer for your agents, workflows, and apps — with a
+            visual schema editor, an agentic chat, and TypeScript SDKs when you
+            want them.
           </p>
         </div>
 

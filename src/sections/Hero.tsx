@@ -4,13 +4,13 @@ import usePrivateBeta from "@/hooks/usePrivateBeta";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
-import { ArrowRight, BookOpenText, Mail } from "lucide-react";
+import { ArrowRight, BookOpenText, Mail, Sparkles } from "lucide-react";
 import type { ReactElement } from "react";
 
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data types once as schemas. Compose and re-use them to validate, store, and stream data — across your agents, backend, and UI — with end-to-end type safety.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -29,26 +29,58 @@ function HeroSectionContent(): ReactElement {
       className={cn(
         "w-screen h-screen",
         "flex flex-col items-center justify-center",
-        "gap-2 md:gap-4",
+        "gap-3 md:gap-5",
         "px-4 md:px-8 lg:px-16 xl:px-32",
       )}
     >
+      <div
+        className={cn(
+          "inline-flex flex-row items-center gap-2",
+          "rounded-full border border-border/60 bg-background/70 backdrop-blur",
+          "px-3 py-1 text-xs md:text-sm text-muted-foreground",
+        )}
+      >
+        <Sparkles className="h-3.5 w-3.5 text-primary" />
+        <span>
+          <Wordmark /> {privateBeta ? "· Private beta" : "· Now in early access"}
+        </span>
+      </div>
       <h1
         className={cn(
           "text-4xl md:text-5xl lg:text-6xl",
-          "text-center",
-          "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
+          "text-center leading-tight tracking-tight",
+          "font-bold max-w-[90vw] md:max-w-[80vw] lg:max-w-[68vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for AI agents,
+        <br className="hidden sm:inline" /> workflows, and apps
       </h1>
-      <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
-      </h2>
-      <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
+      <p className="max-w-[80vw] md:max-w-[65vw] lg:max-w-[55vw] xl:max-w-[48vw] text-center text-base md:text-lg text-muted-foreground">
         {description}
       </p>
       <div className="flex flex-col flex-nowrap sm:flex-wrap sm:flex-row gap-3 md:gap-4 items-center justify-center mt-2">
+        <Button size="lg" asChild>
+          <a
+            href={
+              privateBeta
+                ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+                : registerHref
+            }
+            className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+          >
+            {privateBeta ? (
+              <>
+                <Mail className="h-4 w-4" />
+                Join the launch waitlist
+              </>
+            ) : (
+              <>
+                Start free
+                <ArrowRight className="h-4 w-4" />
+              </>
+            )}
+          </a>
+        </Button>
         <Button size="lg" variant="outline" asChild>
           <a
             href={`#${MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}`}
@@ -59,26 +91,20 @@ function HeroSectionContent(): ReactElement {
           </a>
         </Button>
         {privateBeta && (
-          <Button size="lg" asChild>
+          <Button size="lg" variant="ghost" asChild>
             <a
-              href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
+              href={registerHref}
               className="flex flex-row flex-nowrap gap-2 items-center justify-start"
             >
-              <Mail className="h-4 w-4" />
-              Join the launch waitlist
+              Register with invite code
+              <ArrowRight className="h-4 w-4" />
             </a>
           </Button>
         )}
-        <Button size="lg" asChild>
-          <a
-            href={registerHref}
-            className="flex flex-row flex-nowrap gap-2 items-center justify-start"
-          >
-            {privateBeta ? "Register with invite code" : "Get started"}
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </Button>
       </div>
+      <p className="text-xs md:text-sm text-muted-foreground mt-2 text-center">
+        Free forever plan · No credit card required · Self-host or cloud
+      </p>
     </div>
   );
 }

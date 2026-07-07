@@ -5,6 +5,7 @@ import { Button, cn, ThemeSelector, Wordmark } from "@schemavaults/ui";
 import type { FC, ReactElement } from "react";
 import type { ImageProps } from "next/image";
 import useLoginPageHref from "@/hooks/useLoginPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import { MobileDropdownMenu } from "./MobileDropdownMenu";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
@@ -24,6 +25,13 @@ export function Header({
 }: HeaderProps): ReactElement {
   const loginHref: string = useLoginPageHref();
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+  const primaryCtaHref: string = privateBeta
+    ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+    : registerHref;
+  const primaryCtaLabel: string = privateBeta
+    ? "Join Waitlist"
+    : "Get Started";
 
   return (
     <header
@@ -81,8 +89,8 @@ export function Header({
             </Button>
           </Link>
 
-          <Link href={registerHref}>
-            <Button size="sm">Get Started</Button>
+          <Link href={primaryCtaHref}>
+            <Button size="sm">{primaryCtaLabel}</Button>
           </Link>
 
           <MobileDropdownMenu triggerClassName="md:hidden" />
