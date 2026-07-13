@@ -4,18 +4,34 @@ import usePrivateBeta from "@/hooks/usePrivateBeta";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
-import { ArrowRight, BookOpenText, Mail } from "lucide-react";
+import { ArrowRight, BookOpenText, Mail, ShieldCheck } from "lucide-react";
 import type { ReactElement } from "react";
 
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data shapes once as schemas, then use, re-use, and compose them across your AI agents, workflows, apps, and content — with end-to-end type safety guaranteed.";
+
+const trustBadges: readonly string[] = [
+  "TypeScript-first",
+  "Zod-powered validation",
+  "MCP-ready for AI agents",
+  "Self-hostable",
+];
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
     <div className="w-screen h-screen">
-      <img className="object-cover w-full h-full" src={backgroundImageHref} />
+      <img
+        className="object-cover w-full h-full"
+        src={backgroundImageHref}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        // @ts-expect-error - fetchpriority is a valid HTML attribute the React types don't yet recognize
+        fetchpriority="high"
+      />
     </div>
   );
 }
@@ -40,10 +56,10 @@ function HeroSectionContent(): ReactElement {
           "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for AI agents, workflows, and apps
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        Welcome to <Wordmark /> — the graph database you can just talk to.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
@@ -74,11 +90,37 @@ function HeroSectionContent(): ReactElement {
             href={registerHref}
             className="flex flex-row flex-nowrap gap-2 items-center justify-start"
           >
-            {privateBeta ? "Register with invite code" : "Get started"}
+            {privateBeta ? "Register with invite code" : "Get started free"}
             <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
       </div>
+      <p className="flex flex-row flex-wrap items-center justify-center gap-1.5 text-xs md:text-sm text-muted-foreground mt-1">
+        <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+        <span>Free forever plan • No credit card required • Cancel anytime</span>
+      </p>
+      <ul
+        className={cn(
+          "mt-4 md:mt-6",
+          "flex flex-row flex-wrap items-center justify-center",
+          "gap-x-4 gap-y-2",
+          "text-xs md:text-sm text-muted-foreground",
+        )}
+        aria-label="Built with"
+      >
+        {trustBadges.map((label: string) => (
+          <li
+            key={label}
+            className={cn(
+              "px-3 py-1 rounded-full",
+              "border border-border/60 bg-background/40 backdrop-blur",
+              "whitespace-nowrap",
+            )}
+          >
+            {label}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

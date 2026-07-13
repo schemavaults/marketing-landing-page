@@ -87,10 +87,10 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href={`mailto:${emails.salesEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  About
+                  Contact Sales
                 </Link>
               </li>
               <li>
@@ -99,6 +99,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Mailing Lists
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
                 </Link>
               </li>
               {/* <li>
@@ -167,22 +175,21 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
-          <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
+          <p className="text-xs text-muted-foreground">
+            Questions about legal or privacy?{" "}
+            <Link
+              href={`mailto:${emails.supportEmail}`}
+              className="hover:text-foreground underline"
+            >
+              Contact us
             </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
-          </div>
+            .
+          </p>
         </div>
       </div>
     </footer>

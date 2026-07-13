@@ -28,9 +28,9 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
               Ready to simplify how you work with data?
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              Be first in line when <Wordmark /> opens to the public. Drop your
+              email below and we&apos;ll send your early-access invite the moment
+              we&apos;re live.
             </p>
           </div>
 

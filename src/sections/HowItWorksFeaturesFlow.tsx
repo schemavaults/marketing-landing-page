@@ -14,8 +14,10 @@ export interface FeaturesFlowProps {
 
 import FullscreenImage from "@/components/FullscreenImage";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { cn } from "@schemavaults/ui";
+import { Button, cn } from "@schemavaults/ui";
 import { ArrowRight, ArrowDown } from "lucide-react";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 
 const defaultFeatures: Feature[] = [
   {
@@ -55,6 +57,8 @@ const defaultFeatures: Feature[] = [
 export function HowItWorksFeaturesFlow({
   features = defaultFeatures,
 }: FeaturesFlowProps) {
+  const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
   return (
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
@@ -70,10 +74,11 @@ export function HowItWorksFeaturesFlow({
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            How It Works
+            From idea to running vault in under 5 minutes
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps to turn brittle, untyped data into a schema you can
+            trust — everywhere it flows.
           </p>
         </div>
 
@@ -147,6 +152,21 @@ export function HowItWorksFeaturesFlow({
               )}
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 md:mt-16 flex flex-col items-center gap-2">
+          <Button size="lg" asChild>
+            <a
+              href={registerHref}
+              className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+            >
+              {privateBeta ? "Register with invite code" : "Try it free"}
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+          <p className="text-xs md:text-sm text-muted-foreground">
+            No credit card. Free forever plan.
+          </p>
         </div>
       </div>
     </section>
