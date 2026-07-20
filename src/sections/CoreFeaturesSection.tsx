@@ -25,62 +25,57 @@ import { ReactElement } from "react";
 const features = [
   {
     icon: Database,
-    title: "Vault Graph Storage",
+    title: "Schema-Enforced Vaults",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Store data in graph vaults where every write is validated against a schema you control — more flexible than SQL, safer than plain document stores.",
   },
   {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Type-Safe Agent Memory",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
-      " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Give AI agents structured memory over MCP. Every thought, artifact, and tool result gets stored with the exact shape you designed.",
   },
   {
     icon: Workflow,
-    title: "Workflows & Data Pipelines",
+    title: "Reliable Workflows",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Never debug \"what shape is this?\" again. Vault-backed workflows carry typed context between every step, service, and retry.",
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "One Schema, Every Surface",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
-      " " +
-      "Nest schemas within other schemas.",
+      "Compose and nest schemas once, then reuse the same types across your frontend, backend, workflows, and agents. Zero drift.",
   },
   {
     icon: AppWindowMac,
-    title: "Low-Code Type Safety",
+    title: "Visual & Agentic Editor",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Design schemas with the visual editor, describe them to our AI, or write them in code with the TypeScript SDK. All three stay in sync.",
   },
   {
     icon: Cloud,
-    title: "Serverless or Self-Hosted",
+    title: "Cloud or Self-Hosted",
     description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
+      "Ship on our managed cloud, run in-memory for lightning-fast local workflows, or deploy inside your own VPC. Same SDK either way.",
   },
   {
     icon: Globe,
-    title: "Global CDN Sync",
+    title: "Global Multi-Region Sync",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
+      "Replicate vaults across regions so users get data from the closest edge — with strong consistency guarantees you can reason about.",
   },
-
   {
     icon: Code,
-    title: "Developer Friendly",
+    title: "End-to-End TypeScript",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "Auto-generated types flow from schema to SDK to UI. Rename a field once and let the compiler find every caller for you.",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Millisecond Graph Queries",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Traverse deeply nested relationships in milliseconds with a query planner tuned for schema-aware workloads.",
   },
 ];
 
@@ -97,12 +92,12 @@ export function CoreFeaturesSection(): ReactElement {
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+          <p className="mx-auto max-w-[720px] text-muted-foreground text-lg">
+            A schema-first data layer purpose-built for AI agents, modern
+            workflows, and product teams — designed so non-engineers can ship
+            without giving up type safety.
           </p>
         </div>
 
