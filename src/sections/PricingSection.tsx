@@ -59,7 +59,7 @@ export default function PricingSection() {
         name: "Free",
         price: "$0",
         period: "forever",
-        description: "Perfect for trying out SchemaVaults",
+        description: "Perfect for trying out SchemaVaults — no credit card required.",
         popular: false,
         features: [
           { name: "1 GB storage", included: true },
@@ -163,8 +163,8 @@ export default function PricingSection() {
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Start free. Upgrade only when you outgrow it. No seat minimums, no
+            surprise usage bills.
           </p>
         </div>
 

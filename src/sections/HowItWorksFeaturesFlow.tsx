@@ -20,34 +20,28 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 const defaultFeatures: Feature[] = [
   {
     id: "1",
-    heading: "Define Datatype Schema",
-    subheading: "Structure Your Information",
+    heading: "Define your schema",
+    subheading: "In minutes, not sprints",
     body:
-      "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot." +
-      " " +
-      "Create custom data structures that fit your specific needs.",
+      "Model your data in the visual editor, describe it to our AI, or import a Zod / JSON Schema. Compose and reuse schemas across every project.",
     image:
       "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
   {
     id: "2",
-    heading: "Create Your Vault",
-    subheading: "Secure Storage Solutions",
+    heading: "Spin up a vault",
+    subheading: "Cloud, self-hosted, or in-memory",
     body:
-      "Deploy your data vault anywhere - on our cloud platform for easy scalability and set-up, in-memory for lightning-fast local access, or in your own datacenter." +
-      " " +
-      "Choose the storage solution that best fits your security and performance requirements.",
+      "Deploy in one click to our managed cloud, host it in your own cluster, or run it in-memory for local dev. Same API, same guarantees, everywhere.",
     image:
       "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
-    heading: "Integrate",
-    subheading: "Trigger Events/Workflows & Load Vault Data",
+    heading: "Connect agents & apps",
+    subheading: "Type-safe SDKs and native MCP",
     body:
-      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
-      " " +
-      "Or, just use SchemaVaults as a powerful content management system.",
+      "Point your agents, workflows, or apps at the vault — every read and write is validated against your schema. No more guessing what shape your data is in.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];
@@ -70,10 +64,11 @@ export function HowItWorksFeaturesFlow({
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            How It Works
+            From idea to production in three steps
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            No boilerplate migrations, no schema drift, no untyped JSON blobs.
+            Just a single source of truth your whole stack agrees on.
           </p>
         </div>
 
