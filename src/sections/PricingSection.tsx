@@ -163,8 +163,8 @@ export default function PricingSection() {
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Start free. Scale as you grow. No credit card required, and every
+            plan can be self-hosted.
           </p>
         </div>
 

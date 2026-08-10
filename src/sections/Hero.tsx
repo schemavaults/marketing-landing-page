@@ -4,13 +4,13 @@ import usePrivateBeta from "@/hooks/usePrivateBeta";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { BackgroundBlur, Button, cn, Wordmark } from "@schemavaults/ui";
-import { ArrowRight, BookOpenText, Mail } from "lucide-react";
+import { ArrowRight, BookOpenText, Mail, ShieldCheck } from "lucide-react";
 import type { ReactElement } from "react";
 
 const backgroundImageHref =
   "/media/marketing-landing-page/hero-background.webp";
 const description: string =
-  "Define your data types once as schemas. Use, re-use and compose them to validate & store data for your workflows, websites, mobile apps, or content management systems.";
+  "Define your data model once. Reuse it across your AI agents, workflows, websites, and mobile apps — with end-to-end type safety and a graph database you can query, extend, and self-host.";
 
 function HeroSectionBackgroundContent(): ReactElement {
   return (
@@ -40,10 +40,11 @@ function HeroSectionContent(): ReactElement {
           "font-bold max-w-[90vw] md:max-w-[75vw] lg:max-w-[60vw]",
         )}
       >
-        Welcome to <Wordmark />
+        Type-safe data for the AI age
       </h1>
       <h2 className="text-lg md:text-xl font-medium text-center tracking-tight text-muted-foreground">
-        Type-safe data for AI agents, workflows, and apps.
+        <Wordmark /> is the schema-first graph database for AI agents,
+        workflows, and modern apps.
       </h2>
       <p className="max-w-[75vw] md:max-w-[65vw] lg:max-w-[58vw] xl:max-w-[50vw] text-center">
         {description}
@@ -74,11 +75,15 @@ function HeroSectionContent(): ReactElement {
             href={registerHref}
             className="flex flex-row flex-nowrap gap-2 items-center justify-start"
           >
-            {privateBeta ? "Register with invite code" : "Get started"}
+            {privateBeta ? "Register with invite code" : "Start free"}
             <ArrowRight className="h-4 w-4" />
           </a>
         </Button>
       </div>
+      <p className="mt-3 flex flex-row flex-nowrap items-center justify-center gap-2 text-xs md:text-sm text-muted-foreground">
+        <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+        <span>Free forever plan • No credit card required • Self-host anytime</span>
+      </p>
     </div>
   );
 }
