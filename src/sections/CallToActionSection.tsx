@@ -6,8 +6,10 @@ import { cn } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -15,6 +17,8 @@ export interface CTASectionProps {
 
 export function CTASection({ Link }: CTASectionProps): ReactElement {
   const emails = useOrgEmailAddresses();
+  const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
 
   return (
     <section
@@ -25,14 +29,40 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to simplify how you work with data?
+              {privateBeta
+                ? "Be first in line when we open the doors."
+                : "Ready to simplify how you work with data?"}
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              {privateBeta ? (
+                <>
+                  <Wordmark /> is currently in private beta. Drop your email
+                  below and we&apos;ll notify you the moment public early access
+                  opens up.
+                </>
+              ) : (
+                <>
+                  Spin up your first vault in minutes with our free plan, or
+                  join the mailing list to keep up with what&apos;s new in{" "}
+                  <Wordmark />.
+                </>
+              )}
             </p>
           </div>
+
+          {!privateBeta && (
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 items-center justify-center">
+              <Button size="lg" asChild>
+                <a
+                  href={registerHref}
+                  className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+                >
+                  Get started free
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+          )}
 
           <JoinMailingListForm />
 
@@ -60,7 +90,7 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            Free forever plan • No setup fees • Cancel anytime
           </p>
         </div>
       </div>

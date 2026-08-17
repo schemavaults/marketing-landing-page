@@ -87,42 +87,26 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="https://mail.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Mailing Lists
                 </Link>
               </li>
-              {/* <li>
+              <li>
                 <Link
-                  href="#"
+                  href={`mailto:${emails.salesEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Blog
+                  Contact Sales
                 </Link>
-              </li> */}
-              {/* <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Careers
-                </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   href={`mailto:${emails.supportEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Contact
+                  Contact Support
                 </Link>
               </li>
             </ul>
@@ -167,22 +151,11 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
-          <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
