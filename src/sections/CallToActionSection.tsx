@@ -25,16 +25,20 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to simplify how you work with data?
+              Be first in line for early access.
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              Join the waitlist and we&apos;ll send you an invite the moment{" "}
+              <Wordmark /> opens to the public — plus early looks at new
+              features and integrations before anyone else.
             </p>
           </div>
 
           <JoinMailingListForm />
+
+          <p className="text-xs text-muted-foreground">
+            No spam · Unsubscribe in one click
+          </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`mailto:${emails.salesEmail}`}>
@@ -44,7 +48,7 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
                 className="flex flex-row flex-nowrap gap-2 items-center justify-start"
               >
                 <Mail className="h-4 w-4" />
-                Contact Sales
+                Talk to sales
               </Button>
             </Link>
             <Link href={`mailto:${emails.supportEmail}`}>
@@ -54,13 +58,13 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
                 className="flex flex-row flex-nowrap gap-2 items-center justify-start"
               >
                 <Mail className="h-4 w-4" />
-                Contact Support
+                Contact support
               </Button>
             </Link>
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            Free forever plan · No setup fees · Cancel anytime
           </p>
         </div>
       </div>

@@ -20,34 +20,34 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 const defaultFeatures: Feature[] = [
   {
     id: "1",
-    heading: "Define Datatype Schema",
-    subheading: "Structure Your Information",
+    heading: "Define your schema",
+    subheading: "Model your data in minutes",
     body:
-      "Start by defining your data schema and types using our visual schema editor interface or agentic chatbot." +
+      "Sketch your data model in our visual schema editor — or just describe it in plain English to our agentic chatbot." +
       " " +
-      "Create custom data structures that fit your specific needs.",
+      "One schema becomes the source of truth for every app, workflow, and agent downstream.",
     image:
       "/media/marketing-landing-page/feature-flow-images/1-schema-editor.png",
   },
   {
     id: "2",
-    heading: "Create Your Vault",
-    subheading: "Secure Storage Solutions",
+    heading: "Spin up a vault",
+    subheading: "Deploy anywhere in one click",
     body:
-      "Deploy your data vault anywhere - on our cloud platform for easy scalability and set-up, in-memory for lightning-fast local access, or in your own datacenter." +
+      "Ship your vault on our managed cloud, run it in-memory for lightning-fast local access, or self-host it in your own datacenter." +
       " " +
-      "Choose the storage solution that best fits your security and performance requirements.",
+      "Pick the storage, region, and compliance posture that fit your product.",
     image:
       "/media/marketing-landing-page/feature-flow-images/2-vault-graph-browser.png",
   },
   {
     id: "3",
-    heading: "Integrate",
-    subheading: "Trigger Events/Workflows & Load Vault Data",
+    heading: "Ship the integration",
+    subheading: "Agents, workflows, and apps — same shape",
     body:
-      "Create intelligent agents or workflows that interact with your data and respond to real-time events (that actually know what type of data they're working with)." +
+      "Wire up AI agents and workflows that already know the shape of your data, or use SchemaVaults as a headless CMS for your frontend." +
       " " +
-      "Or, just use SchemaVaults as a powerful content management system.",
+      "TypeScript SDKs and MCP support get you from schema to production in an afternoon.",
     image: "/media/marketing-landing-page/feature-flow-images/3-integrate.png",
   },
 ];
@@ -70,10 +70,10 @@ export function HowItWorksFeaturesFlow({
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            How It Works
+            From schema to production in three steps
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Define your data once, then reuse the same type-safe shape across every agent, workflow, and app you ship.
           </p>
         </div>
 

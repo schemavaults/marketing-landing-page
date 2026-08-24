@@ -10,10 +10,8 @@ import {
 import {
   Database,
   Zap,
-  Shield,
   Globe,
   Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
   Workflow,
@@ -25,62 +23,57 @@ import { ReactElement } from "react";
 const features = [
   {
     icon: Database,
-    title: "Vault Graph Storage",
+    title: "Vault graph storage",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Vaults are schema-enforced databases that model your data as a graph — more expressive than a relational schema and safer than a document store.",
   },
   {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Type-safe agent memory",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
-      " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Your AI agents read and write memory in the exact shape you expected — stream thoughts and artifacts into your vaults over Model Context Protocol (MCP).",
   },
   {
     icon: Workflow,
-    title: "Workflows & Data Pipelines",
+    title: "Workflows & data pipelines",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
+      "Stop guessing what shape your data is in at each stage. Every step validates against the same schema you defined once.",
   },
   {
     icon: Recycle,
-    title: "Stop repeating yourself",
+    title: "One schema, everywhere",
     description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
-      " " +
-      "Nest schemas within other schemas.",
+      "Write it once and reuse it across your frontend, backend, workflows, and agents. Nest and compose schemas so change lands in a single place.",
   },
   {
     icon: AppWindowMac,
-    title: "Low-Code Type Safety",
+    title: "Low-code type safety",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Model your data in our rich visual editor, describe it in plain English to our AI, or drop into the TypeScript SDK — whichever fits the moment.",
   },
   {
     icon: Cloud,
-    title: "Serverless or Self-Hosted",
+    title: "Serverless or self-hosted",
     description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
+      "Run on our managed cloud when you want zero ops, or bring your own compute for data residency and compliance.",
   },
   {
     icon: Globe,
-    title: "Global CDN Sync",
+    title: "Global edge sync",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
+      "Replicate your vaults across regions so every user hits your data at edge latency — no matter where they are.",
   },
-
   {
     icon: Code,
-    title: "Developer Friendly",
+    title: "Developer-friendly",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "End-to-end TypeScript type safety. First-class SDKs and MCP support so your editor autocompletes the shape your vault actually stores.",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Lightning-fast queries",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Traverse complex graphs in milliseconds. Our query planner optimizes across schemas so joins stay cheap as your data grows.",
   },
 ];
 
@@ -100,9 +93,9 @@ export function CoreFeaturesSection(): ReactElement {
             The graph database that you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Built for the AI-native stack — with the ergonomics of a modern
+            document store, the guarantees of a typed schema, and the traversal
+            power of a graph database. Write code only when you want to.
           </p>
         </div>
 
