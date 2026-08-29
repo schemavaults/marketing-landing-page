@@ -8,6 +8,9 @@ import {
   cn,
   Form,
   FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
   Input,
   useForm,
   useToast,
@@ -18,7 +21,10 @@ import { z } from "zod";
 
 const joinMailingListForm = z
   .object({
-    email: z.string().email(),
+    email: z
+      .string()
+      .min(1, "Enter your email address so we know where to write.")
+      .email("That does not look like a valid email address."),
   })
   .required({ email: true })
   .strict();
@@ -82,23 +88,44 @@ export function JoinMailingListForm(): ReactElement {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit, onSubmitFailure)}
-        className={cn("flex flex-col sm:flex-row gap-4 max-w-md mx-auto")}
+        className={cn("flex flex-col gap-2 max-w-md mx-auto")}
       >
-        <Input
-          className="flex-1"
-          {...form.register("email")}
-          type="email"
-          placeholder="Enter your email"
-          disabled={submitting}
-        />
-        <Button size="lg" type="submit" disabled={submitting}>
-          Join Mailing List
-          {submitting ? (
-            <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-          ) : (
-            <ArrowRight className="ml-2 h-4 w-4" />
-          )}
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-4 w-full">
+          {/*
+            Rendering the field through FormField/FormMessage surfaces the
+            validation error inline, next to the input the visitor has to fix,
+            instead of only in a toast that disappears.
+          */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="flex-1 text-left">
+                <FormControl>
+                  <Input
+                    {...field}
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@company.com"
+                    disabled={submitting}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button size="lg" type="submit" disabled={submitting}>
+            Join Mailing List
+            {submitting ? (
+              <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+            ) : (
+              <ArrowRight className="ml-2 h-4 w-4" />
+            )}
+          </Button>
+        </div>
+        <p className="text-xs text-muted-foreground text-center">
+          No spam, and no sharing your address. Unsubscribe in one click.
+        </p>
       </form>
     </Form>
   );

@@ -6,6 +6,7 @@ import type { FC, ReactElement } from "react";
 import type { ImageProps } from "next/image";
 import useLoginPageHref from "@/hooks/useLoginPageHref";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import { MobileDropdownMenu } from "./MobileDropdownMenu";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
@@ -24,12 +25,15 @@ export function Header({
 }: HeaderProps): ReactElement {
   const loginHref: string = useLoginPageHref();
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
 
   return (
     <header
       className={cn(
         "fixed top-0 z-50",
-        "w-screen",
+        // `w-full` rather than `w-screen`: `w-screen` ignores the vertical
+        // scrollbar and pushes the header a few pixels past the viewport.
+        "w-full",
         "border-b",
         "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
         "px-2 md:px-4 lg:px-6 xl:px-8",
@@ -66,6 +70,12 @@ export function Header({
             Pricing
           </Link>
           <Link
+            href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+            className="transition-colors hover:text-foreground/80 text-foreground/60"
+          >
+            FAQ
+          </Link>
+          <Link
             href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
@@ -81,9 +91,22 @@ export function Header({
             </Button>
           </Link>
 
-          <Link href={registerHref}>
-            <Button size="sm">Get Started</Button>
-          </Link>
+          {/*
+            The register page is invite-gated during the private beta, so the
+            persistent header CTA points at the waitlist — the action a visitor
+            without an invite code can actually complete.
+          */}
+          {privateBeta ? (
+            <Link
+              href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
+            >
+              <Button size="sm">Join Waitlist</Button>
+            </Link>
+          ) : (
+            <Link href={registerHref}>
+              <Button size="sm">Start Free</Button>
+            </Link>
+          )}
 
           <MobileDropdownMenu triggerClassName="md:hidden" />
         </div>

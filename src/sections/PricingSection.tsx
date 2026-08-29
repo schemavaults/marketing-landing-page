@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, X } from "lucide-react";
-import { Button } from "@schemavaults/ui";
+import { Button, cn } from "@schemavaults/ui";
 import {
   Card,
   CardContent,
@@ -15,6 +15,8 @@ import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import sectionAnchorOffsetClassName from "@/lib/sectionAnchorOffsetClassName";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 const plan_names = [
@@ -51,6 +53,18 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  /**
+   * While the private beta is running, the register page is invite-gated. A
+   * visitor who clicks "Start Personal Plan" would hit a wall they cannot pass,
+   * which is the worst possible outcome for someone who has just decided they
+   * want the product. Point the self-serve plans at the waitlist instead, and
+   * say why on the card.
+   */
+  const selfServeCtaLink: string = privateBeta
+    ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+    : registerHref;
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +87,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: privateBeta ? "Join the waitlist" : "Get Started Free",
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCtaLink,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +109,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Personal Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCtaLink,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +130,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Teams Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCtaLink,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +159,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, selfServeCtaLink, privateBeta]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -155,7 +169,10 @@ export default function PricingSection() {
   return (
     <section
       id={MarketingLandingPageSectionIds.PRICING_SECTION}
-      className="py-24 bg-gradient-to-b from-background to-muted/20"
+      className={cn(
+        "py-24 bg-gradient-to-b from-background to-muted/20",
+        sectionAnchorOffsetClassName,
+      )}
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -166,6 +183,13 @@ export default function PricingSection() {
             Choose the perfect plan for your needs. Start free and scale as you
             grow.
           </p>
+          {privateBeta && (
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-4">
+              These are the plans available at public launch. During the private
+              beta, join the waitlist and we will send an invite as access opens
+              up.
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
@@ -238,6 +262,15 @@ export default function PricingSection() {
         <div className="text-center mt-16">
           <p className="text-muted-foreground mb-4">
             All plans include our core features and regular updates
+          </p>
+          <p className="text-sm text-muted-foreground mb-2">
+            Still deciding?{" "}
+            <a
+              href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+              className="text-primary hover:underline"
+            >
+              Read the frequently asked questions
+            </a>
           </p>
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}

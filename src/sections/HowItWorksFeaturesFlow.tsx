@@ -13,6 +13,7 @@ export interface FeaturesFlowProps {
 }
 
 import FullscreenImage from "@/components/FullscreenImage";
+import sectionAnchorOffsetClassName from "@/lib/sectionAnchorOffsetClassName";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { cn } from "@schemavaults/ui";
 import { ArrowRight, ArrowDown } from "lucide-react";
@@ -59,12 +60,13 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
         "to-accent",
         "flex flex-col justify-start items-center",
+        sectionAnchorOffsetClassName,
       )}
     >
       <div className="container px-4 md:px-6">
@@ -73,7 +75,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from an idea about your data to agents and apps reading
+            it safely.
           </p>
         </div>
 
@@ -123,6 +126,10 @@ export function HowItWorksFeaturesFlow({
                   <img
                     src={feature.image}
                     alt={feature.heading}
+                    width={400}
+                    height={350}
+                    loading="lazy"
+                    decoding="async"
                     className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
