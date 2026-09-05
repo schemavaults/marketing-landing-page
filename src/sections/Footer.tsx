@@ -7,15 +7,47 @@ import type { FC } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
-export interface FooterProps {
+/**
+ * Optional legal/company destinations. Anything not supplied is omitted from
+ * the footer entirely: a link that goes nowhere costs more trust than a
+ * missing one, especially on a page selling data storage.
+ */
+export interface FooterLinkHrefs {
+  aboutHref?: string;
+  privacyPolicyHref?: string;
+  termsOfServiceHref?: string;
+  cookiePolicyHref?: string;
+}
+
+export interface FooterProps extends FooterLinkHrefs {
   logoHref: string;
   Link: typeof LinkComponent;
   Image: FC<ImageProps>;
 }
 
-export function Footer({ Link, Image, logoHref }: FooterProps) {
+export function Footer({
+  Link,
+  Image,
+  logoHref,
+  aboutHref,
+  privacyPolicyHref,
+  termsOfServiceHref,
+  cookiePolicyHref,
+}: FooterProps) {
   const currentDate = new Date();
   const emails = useOrgEmailAddresses();
+
+  const legalLinks: readonly { href: string; label: string }[] = [
+    ...(privacyPolicyHref
+      ? [{ href: privacyPolicyHref, label: "Privacy Policy" }]
+      : []),
+    ...(termsOfServiceHref
+      ? [{ href: termsOfServiceHref, label: "Terms of Service" }]
+      : []),
+    ...(cookiePolicyHref
+      ? [{ href: cookiePolicyHref, label: "Cookie Policy" }]
+      : []),
+  ];
   return (
     <footer className="border-t bg-muted/50">
       <div className="container px-4 md:px-6 py-12">
@@ -49,6 +81,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
+                  href={`#${MarketingLandingPageSectionIds.USE_CASES_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Use Cases
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`#${MarketingLandingPageSectionIds.FEATURES_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
@@ -61,6 +101,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
                 </Link>
               </li>
               {/*<li>
@@ -85,14 +133,16 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
+              {aboutHref && (
+                <li>
+                  <Link
+                    href={aboutHref}
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    About
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
@@ -172,17 +222,19 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
-          <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
-          </div>
+          {legalLinks.length > 0 && (
+            <div className="flex space-x-4 text-xs text-muted-foreground">
+              {legalLinks.map((legalLink) => (
+                <Link
+                  key={legalLink.href}
+                  href={legalLink.href}
+                  className="hover:text-foreground"
+                >
+                  {legalLink.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </footer>

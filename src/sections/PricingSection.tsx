@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 const plan_names = [
@@ -51,6 +52,16 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  /**
+   * During the private beta, self-serve registration requires an invite code.
+   * Sending pricing traffic straight there is a dead end, so the sign-up plans
+   * point at the waitlist instead until general availability.
+   */
+  const selfServeHref: string = privateBeta
+    ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+    : registerHref;
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +84,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: privateBeta ? "Join the waitlist" : "Get Started Free",
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeHref,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +106,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Personal Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeHref,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +127,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Teams Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeHref,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +156,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, privateBeta, selfServeHref]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -165,6 +176,11 @@ export default function PricingSection() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Choose the perfect plan for your needs. Start free and scale as you
             grow.
+          </p>
+          <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-4">
+            {privateBeta
+              ? "These are our general availability prices. Join the waitlist now and pick a plan when your access opens up."
+              : "No setup fees. No credit card required to start on the Free plan. Change or cancel your plan at any time."}
           </p>
         </div>
 
@@ -222,7 +238,12 @@ export default function PricingSection() {
 
               <CardFooter className="pt-8">
                 {plan.ctaLink ? (
-                  <Button variant={plan.ctaVariant} className="w-full" asChild>
+                  <Button
+                    variant={plan.ctaVariant}
+                    className="w-full"
+                    asChild
+                    data-analytics-id={`pricing-cta-${plan.name.toLowerCase()}`}
+                  >
                     <a href={plan.ctaLink}>{plan.cta}</a>
                   </Button>
                 ) : (
@@ -238,6 +259,15 @@ export default function PricingSection() {
         <div className="text-center mt-16">
           <p className="text-muted-foreground mb-4">
             All plans include our core features and regular updates
+          </p>
+          <p className="text-sm text-muted-foreground mb-2">
+            Got a question about a plan?{" "}
+            <a
+              href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+              className="text-primary hover:underline"
+            >
+              Read the FAQ
+            </a>
           </p>
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}

@@ -59,7 +59,7 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -73,7 +73,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from a blank schema to data your apps, workflows, and
+            agents can trust.
           </p>
         </div>
 
@@ -120,8 +121,15 @@ export function HowItWorksFeaturesFlow({
             <div key={feature.id} className="flex flex-col items-center">
               <div className="flex flex-col items-center max-w-md mx-auto">
                 <div className="relative mb-6">
-                  <img
+                  {/*
+                    Screenshots are the strongest proof on the page; mobile
+                    visitors need the same tap-to-enlarge affordance that
+                    desktop visitors get.
+                  */}
+                  <FullscreenImage
                     src={feature.image}
+                    width={400}
+                    height={240}
                     alt={feature.heading}
                     className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
                   />

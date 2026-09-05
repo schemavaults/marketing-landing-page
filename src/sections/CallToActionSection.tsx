@@ -6,8 +6,10 @@ import { cn } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -15,6 +17,8 @@ export interface CTASectionProps {
 
 export function CTASection({ Link }: CTASectionProps): ReactElement {
   const emails = useOrgEmailAddresses();
+  const privateBeta: boolean = usePrivateBeta();
+  const registerHref: string = useRegisterPageHref();
 
   return (
     <section
@@ -28,16 +32,43 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
               Ready to simplify how you work with data?
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              {privateBeta ? (
+                <>
+                  <Wordmark /> is in private beta. Enter your email below and we
+                  will let you know the moment your access is ready — no spam,
+                  and you can unsubscribe in one click.
+                </>
+              ) : (
+                <>
+                  Start building with <Wordmark /> today, or leave your email to
+                  hear about new features as they ship — no spam, and you can
+                  unsubscribe in one click.
+                </>
+              )}
             </p>
           </div>
 
           <JoinMailingListForm />
 
+          {!privateBeta && (
+            <div className="flex justify-center">
+              <Button size="lg" asChild data-analytics-id="cta-register">
+                <a
+                  href={registerHref}
+                  className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+                >
+                  Create your free account
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+          )}
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={`mailto:${emails.salesEmail}`}>
+            <Link
+              href={`mailto:${emails.salesEmail}`}
+              data-analytics-id="cta-contact-sales"
+            >
               <Button
                 variant="outline"
                 size="lg"
@@ -47,7 +78,10 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
                 Contact Sales
               </Button>
             </Link>
-            <Link href={`mailto:${emails.supportEmail}`}>
+            <Link
+              href={`mailto:${emails.supportEmail}`}
+              data-analytics-id="cta-contact-support"
+            >
               <Button
                 variant="outline"
                 size="lg"
@@ -60,7 +94,9 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            {privateBeta
+              ? "Free tier at launch • No setup fees • Cancel anytime"
+              : "Try Free • No setup fees • Cancel anytime"}
           </p>
         </div>
       </div>

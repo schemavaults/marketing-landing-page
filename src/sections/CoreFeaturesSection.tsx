@@ -90,19 +90,19 @@ export function CoreFeaturesSection(): ReactElement {
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
-        "w-screen",
+        "w-full",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            The graph database you can just talk to
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Built to handle complex graph workloads at any scale — describe your
+            data in plain language, or reach for the TypeScript SDKs. The same
+            schemas back both.
           </p>
         </div>
 
