@@ -89,8 +89,9 @@ export function CoreFeaturesSection(): ReactElement {
     <section
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
-        "py-24 bg-muted/50",
-        "w-screen",
+        "py-24 bg-background",
+        "w-full",
+        "scroll-mt-16",
         "flex justify-center items-start",
       )}
     >

@@ -1,15 +1,18 @@
 import type { PropsWithChildren } from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@schemavaults/theme/globals.css";
 import ClientProviders from "./client-providers";
+import {
+  buildMarketingLandingPageMetadata,
+  marketingLandingPageViewport,
+} from "@/metadata";
 
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "SchemaVaults",
-  description: "Schema-validated secure cloud data storage",
-};
+export const metadata: Metadata = buildMarketingLandingPageMetadata();
+
+export const viewport: Viewport = marketingLandingPageViewport;
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (

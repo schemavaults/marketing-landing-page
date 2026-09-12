@@ -59,7 +59,9 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto",
+        // Offset the fixed header so anchor jumps do not hide the heading.
+        "scroll-mt-16",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",

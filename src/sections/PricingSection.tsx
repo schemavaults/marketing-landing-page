@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 const plan_names = [
@@ -51,6 +52,13 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  // During private beta the register page requires an invite code, so every
+  // self-serve plan CTA routes to the waitlist instead of a dead end.
+  const selfServeCtaHref: string = privateBeta
+    ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+    : registerHref;
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +81,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: privateBeta ? "Join the waitlist" : "Get Started Free",
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCtaHref,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +103,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Personal Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCtaHref,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +124,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Teams Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCtaHref,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +153,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, selfServeCtaHref, privateBeta]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -155,7 +163,7 @@ export default function PricingSection() {
   return (
     <section
       id={MarketingLandingPageSectionIds.PRICING_SECTION}
-      className="py-24 bg-gradient-to-b from-background to-muted/20"
+      className="py-24 scroll-mt-16 bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -166,6 +174,11 @@ export default function PricingSection() {
             Choose the perfect plan for your needs. Start free and scale as you
             grow.
           </p>
+          {privateBeta && (
+            <p className="text-sm text-muted-foreground">
+              Pricing shown applies at general availability.
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">

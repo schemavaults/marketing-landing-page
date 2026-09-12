@@ -6,8 +6,10 @@ import { cn } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -15,11 +17,18 @@ export interface CTASectionProps {
 
 export function CTASection({ Link }: CTASectionProps): ReactElement {
   const emails = useOrgEmailAddresses();
+  const privateBeta: boolean = usePrivateBeta();
+  const registerHref: string = useRegisterPageHref();
 
   return (
     <section
       id={MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}
-      className={cn("py-24", "w-full", "flex justify-center items-start")}
+      className={cn(
+        "py-24",
+        "w-full",
+        "scroll-mt-16",
+        "flex justify-center items-start",
+      )}
     >
       <div className="container px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -28,39 +37,65 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
               Ready to simplify how you work with data?
             </h2>
             <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+              {privateBeta ? (
+                <>
+                  <Wordmark /> is in private beta today. Leave your email and we
+                  will let you know the moment early access opens up.
+                </>
+              ) : (
+                <>
+                  Create your first vault on the free plan in minutes. Leave
+                  your email to get product updates from the <Wordmark /> team.
+                </>
+              )}
             </p>
           </div>
 
-          <JoinMailingListForm />
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={`mailto:${emails.salesEmail}`}>
-              <Button
-                variant="outline"
-                size="lg"
-                className="flex flex-row flex-nowrap gap-2 items-center justify-start"
-              >
-                <Mail className="h-4 w-4" />
-                Contact Sales
+          {/*
+            One primary conversion action per section: the waitlist during
+            private beta, registration afterwards.
+          */}
+          {privateBeta ? (
+            <JoinMailingListForm />
+          ) : (
+            <div className="flex flex-col items-center gap-6">
+              <Button size="lg" asChild>
+                <a
+                  href={registerHref}
+                  className="flex flex-row flex-nowrap gap-2 items-center justify-center"
+                >
+                  Start free
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
-            </Link>
-            <Link href={`mailto:${emails.supportEmail}`}>
-              <Button
-                variant="outline"
-                size="lg"
-                className="flex flex-row flex-nowrap gap-2 items-center justify-start"
-              >
-                <Mail className="h-4 w-4" />
-                Contact Support
-              </Button>
-            </Link>
-          </div>
+              <JoinMailingListForm />
+            </div>
+          )}
 
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            Free tier, forever &bull; No setup fees &bull; Cancel anytime
+          </p>
+
+          {/*
+            Secondary contact routes are deliberately rendered as quiet
+            text links so they do not compete with the primary action above.
+          */}
+          <p className="text-sm text-muted-foreground">
+            Questions about a larger deployment?{" "}
+            <Link
+              href={`mailto:${emails.salesEmail}`}
+              className="text-primary hover:underline"
+            >
+              Talk to sales
+            </Link>{" "}
+            or{" "}
+            <Link
+              href={`mailto:${emails.supportEmail}`}
+              className="text-primary hover:underline"
+            >
+              contact support
+            </Link>
+            .
           </p>
         </div>
       </div>
