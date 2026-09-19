@@ -59,11 +59,36 @@ export default async function joinPublicMailingList({
     );
   }
 
-  await fetch(endpoint, {
-    method: "POST",
-    body: JSON.stringify({
-      mailing_list_id,
-      email,
-    }),
-  });
+  let response: Response;
+  try {
+    // NOTE: deliberately no `Content-Type: application/json` header. Without
+    // it this stays a CORS "simple request"; adding it would trigger an
+    // OPTIONS preflight against mail.schemavaults.com, which would silently
+    // break every sign-up unless that route answers preflights.
+    response = await fetch(endpoint, {
+      method: "POST",
+      body: JSON.stringify({
+        mailing_list_id,
+        email,
+      }),
+    });
+  } catch (e: unknown) {
+    throw new Error(
+      "Could not reach the SchemaVaults mail server. Please check your connection and try again.",
+      { cause: e },
+    );
+  }
+
+  if (!response.ok) {
+    if (debug) {
+      console.error(
+        `[joinMailingList] Mail server responded with a non-OK status: ${response.status}`,
+      );
+    }
+    throw new Error(
+      `Could not add you to the mailing list (server responded ${response.status}).` +
+        " " +
+        "Please try again in a moment.",
+    );
+  }
 }

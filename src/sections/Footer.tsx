@@ -3,19 +3,47 @@
 import type { default as LinkComponent } from "next/link";
 import { ThemeSelector, Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
-import type { FC } from "react";
+import type { FC, ReactElement } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+
+/**
+ * Destinations for the company/legal links in the footer.
+ *
+ * These default to `"#"` so that existing consumers keep today's behaviour,
+ * but every consuming app should pass real URLs: a dead "Privacy Policy" link
+ * is a meaningful trust signal to lose on a page selling data storage.
+ */
+export interface FooterLegalHrefs {
+  about?: string;
+  privacyPolicy?: string;
+  termsOfService?: string;
+  cookiePolicy?: string;
+}
 
 export interface FooterProps {
   logoHref: string;
   Link: typeof LinkComponent;
   Image: FC<ImageProps>;
+  legalHrefs?: FooterLegalHrefs;
 }
 
-export function Footer({ Link, Image, logoHref }: FooterProps) {
+export function Footer({
+  Link,
+  Image,
+  logoHref,
+  legalHrefs,
+}: FooterProps): ReactElement {
   const currentDate = new Date();
   const emails = useOrgEmailAddresses();
+
+  const aboutHref: string = legalHrefs?.about ?? "#";
+  const legalLinks: readonly { href: string; label: string }[] = [
+    { href: legalHrefs?.privacyPolicy ?? "#", label: "Privacy Policy" },
+    { href: legalHrefs?.termsOfService ?? "#", label: "Terms of Service" },
+    { href: legalHrefs?.cookiePolicy ?? "#", label: "Cookie Policy" },
+  ];
+
   return (
     <footer className="border-t bg-muted/50">
       <div className="container px-4 md:px-6 py-12">
@@ -31,8 +59,9 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               <Wordmark className="text-xl" />
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              The next-generation data validation, storage, and workflow
-              platform for the modern AI age.
+              The schema-first data platform for AI agents, workflows, and apps.
+              Define your data once, then validate, store and re-use it
+              everywhere.
             </p>
           </div>
 
@@ -63,6 +92,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
+                </Link>
+              </li>
               {/*<li>
                 <Link
                   href="https://docs.schemavaults.com"
@@ -87,7 +124,7 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href={aboutHref}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   About
@@ -157,6 +194,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li> */}
               <li>
                 <Link
+                  href={`mailto:${emails.salesEmail}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Contact Sales
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`mailto:${emails.supportEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
@@ -167,21 +212,18 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+        <div className="border-t mt-12 pt-8 flex flex-col gap-4 sm:flex-row sm:justify-between items-center">
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
-            © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
+            &copy; {currentDate.getFullYear()} <Wordmark />. All rights
+            reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
           <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
+            {legalLinks.map(({ href, label }) => (
+              <Link key={label} href={href} className="hover:text-foreground">
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

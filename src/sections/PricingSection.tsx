@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, Mail, X } from "lucide-react";
 import { Button } from "@schemavaults/ui";
 import {
   Card,
@@ -13,6 +13,7 @@ import {
 import { Badge } from "@schemavaults/ui";
 import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
@@ -51,6 +52,21 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  // During the private beta, self-serve sign-up is gated behind an invite
+  // code, so sending visitors straight to /auth/register is a dead end.
+  // Point the self-serve plans at the waitlist instead, and say so.
+  const selfServeCta: { label: string; href: string } = useMemo(
+    () =>
+      privateBeta
+        ? {
+            label: "Join the waitlist",
+            href: `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`,
+          }
+        : { label: "", href: registerHref },
+    [privateBeta, registerHref],
+  );
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +89,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: selfServeCta.label || "Get Started Free",
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +111,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: selfServeCta.label || "Start Personal Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +132,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: selfServeCta.label || "Start Teams Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +161,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, selfServeCta]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -155,17 +171,24 @@ export default function PricingSection() {
   return (
     <section
       id={MarketingLandingPageSectionIds.PRICING_SECTION}
-      className="py-24 bg-gradient-to-b from-background to-muted/20"
+      className="py-24 w-full scroll-mt-16 bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight mb-4">
             Simple, transparent pricing
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
             Choose the perfect plan for your needs. Start free and scale as you
             grow.
           </p>
+          {privateBeta && (
+            <p className="mt-6 text-sm text-muted-foreground max-w-2xl mx-auto">
+              These are the prices we will launch with. While SchemaVaults is in
+              private beta, plans are not yet self-serve &mdash; join the
+              waitlist and we will let you know the moment your plan opens up.
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
@@ -174,7 +197,7 @@ export default function PricingSection() {
               key={plan.name}
               className={`relative flex flex-col ${
                 plan.popular
-                  ? "border-primary shadow-lg scale-105"
+                  ? "border-primary shadow-lg lg:scale-105 lg:z-10"
                   : "border-border"
               }`}
             >
@@ -206,10 +229,19 @@ export default function PricingSection() {
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start gap-3">
                       {feature.included ? (
-                        <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                        <Check
+                          className="h-5 w-5 text-green-500 shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
                       ) : (
-                        <X className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
+                        <X
+                          className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
                       )}
+                      <span className="sr-only">
+                        {feature.included ? "Included:" : "Not included:"}
+                      </span>
                       <span
                         className={`text-sm ${feature.included ? "text-foreground" : "text-muted-foreground"}`}
                       >
@@ -243,8 +275,9 @@ export default function PricingSection() {
             Need something custom?{" "}
             <a
               href={`mailto:${emails.salesEmail}`}
-              className="text-primary hover:underline"
+              className="text-primary hover:underline inline-flex flex-row flex-nowrap gap-1 items-center"
             >
+              <Mail className="h-3 w-3" aria-hidden="true" />
               Contact our sales team
             </a>
           </p>

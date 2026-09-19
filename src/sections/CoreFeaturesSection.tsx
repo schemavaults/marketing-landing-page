@@ -90,19 +90,20 @@ export function CoreFeaturesSection(): ReactElement {
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
-        "w-screen",
+        "w-full scroll-mt-16",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-balance">
+            Everything you need to ship type-safe data
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg text-pretty">
+            From visual schema design to graph storage, agent memory and global
+            sync &mdash; powerful enough for the most complex workloads, and
+            built so you never have to write a line of code (unless you want
+            to!).
           </p>
         </div>
 
@@ -114,7 +115,10 @@ export function CoreFeaturesSection(): ReactElement {
             >
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
+                  <feature.icon
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <CardTitle className="text-xl">{feature.title}</CardTitle>
               </CardHeader>

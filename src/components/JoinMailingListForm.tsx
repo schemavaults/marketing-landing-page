@@ -8,6 +8,10 @@ import {
   cn,
   Form,
   FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
   Input,
   useForm,
   useToast,
@@ -18,7 +22,10 @@ import { z } from "zod";
 
 const joinMailingListForm = z
   .object({
-    email: z.string().email(),
+    email: z
+      .string()
+      .min(1, { message: "Please enter your email address." })
+      .email({ message: "That does not look like a valid email address." }),
   })
   .required({ email: true })
   .strict();
@@ -62,43 +69,67 @@ export function JoinMailingListForm(): ReactElement {
       if (debug) {
         console.log(`[JoinMailingListForm] Successfully joined mailing list!`);
       }
+      // Clear the field so a success toast is not left sitting next to an
+      // email address that looks like it still needs submitting.
+      form.reset({ email: "" });
       toast({
-        title: "Successfully joined mailing list!",
-        description: "Look forward to hearing from us soon!",
+        title: "You're on the list!",
+        description:
+          "Check your inbox — we'll be in touch as soon as there's news.",
       });
     });
   }
 
   function onSubmitFailure(e: unknown): void {
-    console.error("Failed to submit join mailing list form: ", e);
-    toast({
-      variant: "destructive",
-      title: "Failed to submit form to join mailing list!",
-      description: "Double-check your form inputs!",
-    });
+    // Field-level messages are rendered inline by <FormMessage />; this only
+    // runs for submit attempts that never reach the server.
+    if (debug) {
+      console.error("Failed to submit join mailing list form: ", e);
+    }
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit, onSubmitFailure)}
-        className={cn("flex flex-col sm:flex-row gap-4 max-w-md mx-auto")}
+        className={cn("flex flex-col gap-2 max-w-md mx-auto w-full")}
       >
-        <Input
-          className="flex-1"
-          {...form.register("email")}
-          type="email"
-          placeholder="Enter your email"
-          disabled={submitting}
-        />
-        <Button size="lg" type="submit" disabled={submitting}>
-          Join Mailing List
-          {submitting ? (
-            <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-          ) : (
-            <ArrowRight className="ml-2 h-4 w-4" />
-          )}
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-4 w-full">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="flex-1 text-left">
+                <FormLabel className="sr-only">Email address</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    placeholder="you@company.com"
+                    disabled={submitting}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button size="lg" type="submit" disabled={submitting}>
+            Join Mailing List
+            {submitting ? (
+              <Loader2
+                className="ml-2 h-4 w-4 animate-spin"
+                aria-hidden="true"
+              />
+            ) : (
+              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+            )}
+          </Button>
+        </div>
+        <p className="text-xs text-muted-foreground text-center">
+          No spam, ever. Unsubscribe in one click.
+        </p>
       </form>
     </Form>
   );

@@ -59,7 +59,7 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto scroll-mt-16",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -72,8 +72,9 @@ export function HowItWorksFeaturesFlow({
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
             How It Works
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-pretty">
+            Three steps from a blank page to typed data your agents, apps and
+            workflows can rely on.
           </p>
         </div>
 
@@ -90,7 +91,10 @@ export function HowItWorksFeaturesFlow({
                     alt={feature.heading}
                     className="rounded-lg shadow-lg object-cover text-center"
                   />
-                  <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold"
+                  >
                     {index + 1}
                   </div>
                 </div>
@@ -107,7 +111,7 @@ export function HowItWorksFeaturesFlow({
 
               {index < features.length - 1 && (
                 <div className="mx-8 flex items-center">
-                  <ArrowRight className="h-8 w-8 text-primary" />
+                  <ArrowRight className="h-8 w-8 text-primary" aria-hidden="true" />
                 </div>
               )}
             </div>
@@ -123,9 +127,16 @@ export function HowItWorksFeaturesFlow({
                   <img
                     src={feature.image}
                     alt={feature.heading}
+                    width={400}
+                    height={350}
+                    loading="lazy"
+                    decoding="async"
                     className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
                   />
-                  <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold"
+                  >
                     {index + 1}
                   </div>
                 </div>
@@ -142,7 +153,7 @@ export function HowItWorksFeaturesFlow({
 
               {index < features.length - 1 && (
                 <div className="mt-8 flex justify-center">
-                  <ArrowDown className="h-8 w-8 text-primary" />
+                  <ArrowDown className="h-8 w-8 text-primary" aria-hidden="true" />
                 </div>
               )}
             </div>
