@@ -90,26 +90,26 @@ export function CoreFeaturesSection(): ReactElement {
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
-        "w-screen",
+        "w-full",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            One schema. Every place your data goes.
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            A graph store that enforces the shape of your data, wherever it is
+            written from. Describe a schema in plain language, draw it in the
+            editor, or define it in TypeScript — whichever fits how you work.
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <Card
-              key={index}
+              key={feature.title}
               className="border-0 shadow-lg hover:shadow-xl transition-shadow"
             >
               <CardHeader>

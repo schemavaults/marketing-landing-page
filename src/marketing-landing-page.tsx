@@ -13,6 +13,7 @@ import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import PricingSection from "@/sections/PricingSection";
+import FaqSection from "@/sections/FaqSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
 
@@ -22,6 +23,7 @@ import OrganizationContactEmailAddressesProvider from "@/providers/OrganizationC
 import type { AuthLinkHrefsContextType } from "@/contexts/AuthLinkHrefsContext";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import PrivateBetaContext from "@/contexts/PrivateBetaContext";
+import type { FooterProps } from "@/sections/Footer";
 
 export interface MarketingLandingPageProps
   extends
@@ -33,6 +35,10 @@ export interface MarketingLandingPageProps
   brandHref: string;
   debug?: boolean;
   privateBeta?: boolean;
+  /** Real destinations for the footer's legal links; omitted links are hidden. */
+  legalHrefs?: FooterProps["legalHrefs"];
+  /** Destination for the footer's "About" link; hidden when unset. */
+  aboutHref?: FooterProps["aboutHref"];
 }
 
 export function MarketingLandingPage(
@@ -71,11 +77,15 @@ export function MarketingLandingPage(
               <HowItWorksFeaturesFlow />
               <CoreFeaturesSection />
               <PricingSection />
+              {/* Objections get answered immediately before the final ask. */}
+              <FaqSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}
                 Image={props.Image}
                 logoHref={logoHref}
+                legalHrefs={props.legalHrefs}
+                aboutHref={props.aboutHref}
               />
             </main>
           </AuthLinksHrefsProvider>

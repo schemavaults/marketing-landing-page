@@ -3,7 +3,7 @@
 import type { default as LinkComponent } from "next/link";
 import { ThemeSelector, Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
-import type { FC } from "react";
+import type { FC, ReactElement } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
@@ -11,11 +11,45 @@ export interface FooterProps {
   logoHref: string;
   Link: typeof LinkComponent;
   Image: FC<ImageProps>;
+  /**
+   * Destinations for the legal links in the footer bar. A link is only
+   * rendered once it has a real destination — a "Privacy Policy" that goes
+   * nowhere costs more credibility with a security reviewer than an absent
+   * one, so fill these in rather than pointing them at "#".
+   */
+  legalHrefs?: Partial<Record<LegalLinkId, string>>;
+  /** Destination for the "About" link. Omitted from the footer when unset. */
+  aboutHref?: string;
 }
 
-export function Footer({ Link, Image, logoHref }: FooterProps) {
+export type LegalLinkId = "privacy" | "terms" | "cookies";
+
+const legalLinkLabels: Readonly<Record<LegalLinkId, string>> = {
+  privacy: "Privacy Policy",
+  terms: "Terms of Service",
+  cookies: "Cookie Policy",
+};
+
+const legalLinkOrder: readonly LegalLinkId[] = ["privacy", "terms", "cookies"];
+
+export function Footer({
+  Link,
+  Image,
+  logoHref,
+  legalHrefs,
+  aboutHref,
+}: FooterProps): ReactElement {
   const currentDate = new Date();
   const emails = useOrgEmailAddresses();
+
+  const legalLinks: readonly { id: LegalLinkId; href: string }[] =
+    legalLinkOrder
+      .map((id: LegalLinkId) => ({ id, href: legalHrefs?.[id] }))
+      .filter(
+        (entry): entry is { id: LegalLinkId; href: string } =>
+          typeof entry.href === "string" && entry.href.length > 0,
+      );
+
   return (
     <footer className="border-t bg-muted/50">
       <div className="container px-4 md:px-6 py-12">
@@ -31,8 +65,8 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               <Wordmark className="text-xl" />
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              The next-generation data validation, storage, and workflow
-              platform for the modern AI age.
+              Define your data types once as schemas, then re-use them across
+              your agents, workflows, and apps.
             </p>
           </div>
 
@@ -63,36 +97,30 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
-              {/*<li>
-                <Link
-                  href="https://docs.schemavaults.com"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Documentation
-                </Link>
-              </li>
               <li>
                 <Link
-                  href="#"
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  API Reference
+                  FAQ
                 </Link>
-              </li>*/}
+              </li>
             </ul>
           </div>
 
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
+              {aboutHref && (
+                <li>
+                  <Link
+                    href={aboutHref}
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    About
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
@@ -101,22 +129,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Mailing Lists
                 </Link>
               </li>
-              {/* <li>
+              <li>
                 <Link
-                  href="#"
+                  href={`mailto:${emails.salesEmail}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Blog
+                  Talk to Sales
                 </Link>
-              </li> */}
-              {/* <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Careers
-                </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   href={`mailto:${emails.supportEmail}`}
@@ -139,22 +159,6 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Auth Help Center
                 </Link>
               </li>
-              {/* <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Community
-                </Link>
-              </li> */}
-              {/* <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Status
-                </Link>
-              </li> */}
               <li>
                 <Link
                   href={`mailto:${emails.supportEmail}`}
@@ -167,22 +171,20 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+        <div className="border-t mt-12 pt-8 flex flex-col gap-4 sm:flex-row justify-between items-center">
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
-          <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
-          </div>
+          {legalLinks.length > 0 && (
+            <div className="flex space-x-4 text-xs text-muted-foreground">
+              {legalLinks.map(({ id, href }) => (
+                <Link key={id} href={href} className="hover:text-foreground">
+                  {legalLinkLabels[id]}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </footer>

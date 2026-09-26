@@ -59,7 +59,7 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -73,7 +73,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from &ldquo;what shape is this data?&rdquo; to a vault
+            your apps, agents, and workflows can all trust.
           </p>
         </div>
 

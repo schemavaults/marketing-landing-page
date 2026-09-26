@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 const plan_names = [
@@ -51,6 +52,12 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  // While registration is invite-only, a "Start Personal Plan" button that
+  // dead-ends at an invite gate reads as a bait-and-switch. Point self-serve
+  // plans at the waitlist instead, and say plainly that these are launch prices.
+  const waitlistHref: string = `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`;
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -158,18 +165,32 @@ export default function PricingSection() {
       className="py-24 bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">
+        <div className="text-center mb-16 space-y-4">
+          {privateBeta && (
+            <Badge variant="secondary">Pricing at general availability</Badge>
+          )}
+          <h2 className="text-4xl font-bold tracking-tight">
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            {privateBeta
+              ? "These are the plans we will launch with. Join the waitlist now and you will be able to start on the free tier the day your access opens."
+              : "Choose the perfect plan for your needs. Start free and scale as you grow."}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {pricingPlansList.map((plan: PricingPlan<PlanName>) => (
+          {pricingPlansList.map((plan: PricingPlan<PlanName>) => {
+            // Enterprise already routes to a human, which works at any stage.
+            const gateSelfServeBehindWaitlist: boolean =
+              privateBeta && plan.name !== "Enterprise";
+            const ctaLabel: string = gateSelfServeBehindWaitlist
+              ? "Join the waitlist"
+              : plan.cta;
+            const ctaHref: string | undefined = gateSelfServeBehindWaitlist
+              ? waitlistHref
+              : plan.ctaLink;
+            return (
             <Card
               key={plan.name}
               className={`relative flex flex-col ${
@@ -220,24 +241,40 @@ export default function PricingSection() {
                 </ul>
               </CardContent>
 
-              <CardFooter className="pt-8">
-                {plan.ctaLink ? (
+              <CardFooter className="flex flex-col gap-2 pt-8">
+                {ctaHref ? (
                   <Button variant={plan.ctaVariant} className="w-full" asChild>
-                    <a href={plan.ctaLink}>{plan.cta}</a>
+                    <a href={ctaHref}>{ctaLabel}</a>
                   </Button>
                 ) : (
                   <Button variant={plan.ctaVariant} className="w-full">
-                    {plan.cta}
+                    {ctaLabel}
                   </Button>
+                )}
+                {plan.name === "Free" && !privateBeta && (
+                  <p className="text-xs text-muted-foreground text-center">
+                    No credit card required.
+                  </p>
                 )}
               </CardFooter>
             </Card>
-          ))}
+            );
+          })}
         </div>
 
         <div className="text-center mt-16">
           <p className="text-muted-foreground mb-4">
             All plans include our core features and regular updates
+          </p>
+          <p className="text-muted-foreground mb-4 text-sm">
+            Not sure which plan fits?{" "}
+            <a
+              href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+              className="text-primary hover:underline"
+            >
+              Read the FAQ
+            </a>
+            .
           </p>
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}
