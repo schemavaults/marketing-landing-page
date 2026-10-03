@@ -13,6 +13,7 @@ import {
 import joinPublicMailingList from "@/lib/client/joinPublicMailingList";
 import isValidUuid from "@/lib/isValidUuid";
 import isValidEmail from "@/lib/isValidEmail";
+import type { TrackConversionEventFunction } from "@/contexts/ConversionEventsContext";
 
 export interface MarketingLandingPageClientComponentProps {
   environment: SchemaVaultsAppEnvironment;
@@ -66,6 +67,16 @@ export default function MarketingLandingPageClientComponent({
     [environment, mailing_list_id],
   );
 
+  // The real schemavaults.com app should pass its analytics client here; the
+  // preview app just logs so the funnel events are visible while developing.
+  const onConversionEvent: TrackConversionEventFunction = useMemo(
+    () => (event, properties) => {
+      if (environment === "production") return;
+      console.log("[landing-page conversion event]", event, properties ?? {});
+    },
+    [environment],
+  );
+
   return (
     <JoinMailingListSubmitFunctionContext.Provider
       value={joinMailingListCallback}
@@ -80,6 +91,7 @@ export default function MarketingLandingPageClientComponent({
         Link={Link}
         debug={environment === "development"}
         privateBeta={private_beta}
+        onConversionEvent={onConversionEvent}
       />
     </JoinMailingListSubmitFunctionContext.Provider>
   );

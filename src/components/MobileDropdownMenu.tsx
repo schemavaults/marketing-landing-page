@@ -2,15 +2,19 @@
 
 import useLoginPageHref from "@/hooks/useLoginPageHref";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import { headerNavigationLinks } from "./Header";
+import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@schemavaults/ui";
-import { LogIn, Menu, UserPlus } from "lucide-react";
+import { LogIn, Mail, Menu, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { ReactElement } from "react";
 
@@ -23,6 +27,7 @@ export function MobileDropdownMenu({
 }: MobileDropdownMenuProps): ReactElement {
   const loginHref: string = useLoginPageHref();
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
 
   const menuItemClassName: string = "hover:cursor-pointer";
   const menuItemIconClassName: string = "h-4 w-4 mr-2";
@@ -30,12 +35,41 @@ export function MobileDropdownMenu({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className={triggerClassName}>
+        <Button
+          variant="ghost"
+          size="sm"
+          className={triggerClassName}
+          aria-label="Open navigation menu"
+        >
           <Menu className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="start">
+      <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel>Navigation Menu</DropdownMenuLabel>
+
+        {/* Mobile visitors previously had no way to reach any section of the
+            page from the menu — only login and register. */}
+        {headerNavigationLinks.map(({ id, label }) => (
+          <Link key={id} href={`#${id}`}>
+            <DropdownMenuItem className={menuItemClassName}>
+              {label}
+            </DropdownMenuItem>
+          </Link>
+        ))}
+
+        <DropdownMenuSeparator />
+
+        <Link
+          href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
+        >
+          <DropdownMenuItem className={menuItemClassName}>
+            <Mail className={menuItemIconClassName} />
+            {privateBeta ? "Request an invite" : "Join mailing list"}
+          </DropdownMenuItem>
+        </Link>
+
+        <DropdownMenuSeparator />
+
         <Link href={loginHref}>
           <DropdownMenuItem className={menuItemClassName}>
             <LogIn className={menuItemIconClassName} />
