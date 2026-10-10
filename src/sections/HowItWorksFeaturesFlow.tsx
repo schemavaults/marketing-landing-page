@@ -14,8 +14,10 @@ export interface FeaturesFlowProps {
 
 import FullscreenImage from "@/components/FullscreenImage";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { cn } from "@schemavaults/ui";
+import { Button, cn } from "@schemavaults/ui";
 import { ArrowRight, ArrowDown } from "lucide-react";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 
 const defaultFeatures: Feature[] = [
   {
@@ -55,11 +57,14 @@ const defaultFeatures: Feature[] = [
 export function HowItWorksFeaturesFlow({
   features = defaultFeatures,
 }: FeaturesFlowProps) {
+  const privateBeta: boolean = usePrivateBeta();
+  const registerHref: string = useRegisterPageHref();
+
   return (
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto scroll-mt-16",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -73,7 +78,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from a blank page to schema-validated data your agents,
+            apps, and workflows can rely on.
           </p>
         </div>
 
@@ -120,8 +126,15 @@ export function HowItWorksFeaturesFlow({
             <div key={feature.id} className="flex flex-col items-center">
               <div className="flex flex-col items-center max-w-md mx-auto">
                 <div className="relative mb-6">
-                  <img
+                  {/*
+                    Was a raw <img>: that skipped next/image optimisation and
+                    made the first in-view screenshot a heavy, unsized request
+                    on exactly the devices with the least bandwidth.
+                  */}
+                  <FullscreenImage
                     src={feature.image}
+                    width={400}
+                    height={350}
                     alt={feature.heading}
                     className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
                   />
@@ -147,6 +160,33 @@ export function HowItWorksFeaturesFlow({
               )}
             </div>
           ))}
+        </div>
+
+        {/*
+          Mid-page conversion point: before this, the only actions between the
+          hero and the footer were inside the pricing table.
+        */}
+        <div className="mt-14 lg:mt-20 flex flex-col items-center gap-3">
+          <Button size="lg" asChild>
+            <a
+              href={
+                privateBeta
+                  ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+                  : registerHref
+              }
+              className="flex flex-row flex-nowrap gap-2 items-center justify-center"
+            >
+              {privateBeta
+                ? "Get early access"
+                : "Create your first vault free"}
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+          <p className="text-xs md:text-sm text-muted-foreground text-center">
+            {privateBeta
+              ? "Takes 15 seconds. One email when your invite is ready."
+              : "No setup fees. Start on the free forever plan."}
+          </p>
         </div>
       </div>
     </section>

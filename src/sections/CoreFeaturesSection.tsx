@@ -10,25 +10,22 @@ import {
 import {
   Database,
   Zap,
-  Shield,
   Globe,
   Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
   Workflow,
   AppWindowMac,
   Recycle,
 } from "lucide-react";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
+/**
+ * Ordered so the differentiating claims (type-safe agents, schema re-use) sit
+ * in the first row: a nine-card grid is scanned top-left first and most
+ * visitors never reach the bottom row.
+ */
 const features = [
-  {
-    icon: Database,
-    title: "Vault Graph Storage",
-    description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
-  },
   {
     icon: BotMessageSquare,
     title: "Type-Safe Agent Thoughts",
@@ -36,12 +33,6 @@ const features = [
       "Ensure your AI agents store memories and produce output in the shape that you expected." +
       " " +
       "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
-  },
-  {
-    icon: Workflow,
-    title: "Workflows & Data Pipelines",
-    description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
   },
   {
     icon: Recycle,
@@ -52,10 +43,22 @@ const features = [
       "Nest schemas within other schemas.",
   },
   {
+    icon: Workflow,
+    title: "Workflows & Data Pipelines",
+    description:
+      "Stop guessing what shape your data is in at each stage of your workflows.",
+  },
+  {
+    icon: Database,
+    title: "Vault Graph Storage",
+    description:
+      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+  },
+  {
     icon: AppWindowMac,
     title: "Low-Code Type Safety",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Use our rich schema editor to define a schema — or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
   },
   {
     icon: Cloud,
@@ -64,23 +67,22 @@ const features = [
       "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
   },
   {
-    icon: Globe,
-    title: "Global CDN Sync",
-    description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
-  },
-
-  {
     icon: Code,
     title: "Developer Friendly",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "Built with end-to-end type safety — use our TypeScript SDKs to easily consume & write schema-validated data.",
+  },
+  {
+    icon: Globe,
+    title: "Global CDN Sync",
+    description:
+      "Sync data across multiple storage regions for getting data to your users fast, regardless of where they are.",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Graph Queries Without Joins",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Traverse deeply-linked records without hand-writing joins — describe the relationship you want and let the query planner walk the graph.",
   },
 ];
 
@@ -90,19 +92,19 @@ export function CoreFeaturesSection(): ReactElement {
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
-        "w-screen",
+        "w-full scroll-mt-16",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            Everything you need to keep your data in shape
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            A graph database you can just talk to — built to handle complex
+            graph workloads at any scale, without writing a line of code unless
+            you want to.
           </p>
         </div>
 

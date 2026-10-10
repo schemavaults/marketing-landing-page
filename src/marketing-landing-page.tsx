@@ -13,6 +13,7 @@ import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import PricingSection from "@/sections/PricingSection";
+import FAQSection from "@/sections/FAQSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
 
@@ -55,6 +56,21 @@ export function MarketingLandingPage(
             loginHref={props.loginHref}
             registerHref={props.registerHref}
           >
+            {/*
+              Keyboard users previously had to tab through the whole header
+              (and the theme selector) before reaching the hero CTA.
+            */}
+            <a
+              href="#main-content"
+              className={cn(
+                "sr-only focus:not-sr-only",
+                "focus:fixed focus:top-2 focus:left-2 focus:z-[60]",
+                "focus:rounded-md focus:bg-background focus:px-4 focus:py-2",
+                "focus:ring-2 focus:ring-primary",
+              )}
+            >
+              Skip to main content
+            </a>
             <Header
               brandHref={props.brandHref}
               logoHref={logoHref}
@@ -62,6 +78,7 @@ export function MarketingLandingPage(
               Link={props.Link}
             />
             <main
+              id="main-content"
               className={cn(
                 "w-full overflow-x-hidden min-h-screen h-auto",
                 "flex flex-col gap-0",
@@ -71,6 +88,12 @@ export function MarketingLandingPage(
               <HowItWorksFeaturesFlow />
               <CoreFeaturesSection />
               <PricingSection />
+              {/*
+                FAQ sits between pricing and the waitlist so that the questions
+                that stop people signing up are answered immediately before the
+                form they are being asked to fill in.
+              */}
+              <FAQSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}

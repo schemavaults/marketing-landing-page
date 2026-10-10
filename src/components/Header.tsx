@@ -5,6 +5,7 @@ import { Button, cn, ThemeSelector, Wordmark } from "@schemavaults/ui";
 import type { FC, ReactElement } from "react";
 import type { ImageProps } from "next/image";
 import useLoginPageHref from "@/hooks/useLoginPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import { MobileDropdownMenu } from "./MobileDropdownMenu";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
@@ -24,26 +25,31 @@ export function Header({
 }: HeaderProps): ReactElement {
   const loginHref: string = useLoginPageHref();
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
 
   return (
     <header
       className={cn(
         "fixed top-0 z-50",
-        "w-screen",
+        "w-full",
         "border-b",
         "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
         "px-2 md:px-4 lg:px-6 xl:px-8",
       )}
     >
       <div className="w-full flex h-16 items-center justify-between">
-        <Link className="flex items-center space-x-2" href={brandHref}>
+        <Link
+          className="flex items-center space-x-2 shrink-0"
+          href={brandHref}
+        >
           <Image
             src={logoHref}
             alt="SchemaVaults Logo"
             width={40}
             height={40}
           />
-          <Wordmark className="text-xl" />
+          {/* The wordmark collided with the CTA on narrow phones. */}
+          <Wordmark className="text-xl hidden xs:inline-block" />
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -66,14 +72,14 @@ export function Header({
             Pricing
           </Link>
           <Link
-            href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
+            href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Mailing List
+            FAQ
           </Link>
         </nav>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-2 md:gap-4 shrink-0">
           <ThemeSelector variant="compact" className="hidden md:inline-flex" />
           <Link href={loginHref}>
             <Button variant="ghost" size="sm" className="hidden md:inline-flex">
@@ -81,9 +87,26 @@ export function Header({
             </Button>
           </Link>
 
-          <Link href={registerHref}>
-            <Button size="sm">Get Started</Button>
-          </Link>
+          {/*
+            During the private beta "Get Started" sent people to an invite-code
+            wall; the waitlist is the action they can actually complete.
+          */}
+          {privateBeta ? (
+            <Link
+              href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
+            >
+              <Button size="sm" className="whitespace-nowrap">
+                <span className="sm:hidden">Early access</span>
+                <span className="hidden sm:inline">Get early access</span>
+              </Button>
+            </Link>
+          ) : (
+            <Link href={registerHref}>
+              <Button size="sm" className="whitespace-nowrap">
+                Start free
+              </Button>
+            </Link>
+          )}
 
           <MobileDropdownMenu triggerClassName="md:hidden" />
         </div>

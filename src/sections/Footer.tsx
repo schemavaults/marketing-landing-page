@@ -5,6 +5,7 @@ import { ThemeSelector, Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
 import type { FC } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 export interface FooterProps {
@@ -16,6 +17,7 @@ export interface FooterProps {
 export function Footer({ Link, Image, logoHref }: FooterProps) {
   const currentDate = new Date();
   const emails = useOrgEmailAddresses();
+  const privateBeta: boolean = usePrivateBeta();
   return (
     <footer className="border-t bg-muted/50">
       <div className="container px-4 md:px-6 py-12">
@@ -34,6 +36,13 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               The next-generation data validation, storage, and workflow
               platform for the modern AI age.
             </p>
+            {/* Last-chance conversion point for visitors who scrolled past the CTA. */}
+            <Link
+              href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
+              className="inline-flex text-sm font-medium text-primary hover:underline"
+            >
+              {privateBeta ? "Get early access" : "Start free"} &rarr;
+            </Link>
           </div>
 
           <div className="space-y-4">
@@ -63,6 +72,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
+                </Link>
+              </li>
               {/*<li>
                 <Link
                   href="https://docs.schemavaults.com"
@@ -85,6 +102,12 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
+              {/*
+                TODO(marketing): these need real destinations. A data-storage
+                product with a dead "Privacy Policy" link loses enterprise
+                evaluators at the footer, so they are flagged here rather than
+                pointed at placeholder URLs.
+              */}
               <li>
                 <Link
                   href="#"
@@ -97,6 +120,8 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                 <Link
                   href="https://mail.schemavaults.com"
                   className="text-muted-foreground hover:text-foreground"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Mailing Lists
                 </Link>
@@ -135,6 +160,8 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                 <Link
                   href={"https://auth.schemavaults.com/help"}
                   className="text-muted-foreground hover:text-foreground"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Auth Help Center
                 </Link>
