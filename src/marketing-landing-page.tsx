@@ -10,11 +10,16 @@ import AuthLinksHrefsProvider from "@/providers/AuthLinkHrefsProvider";
 
 /** Landing Page Sections */
 import HeroSection from "@/sections/Hero";
+import TrustStripSection, { type Testimonial } from "@/sections/TrustStripSection";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
+import CodeExampleSection from "@/sections/CodeExampleSection";
 import PricingSection from "@/sections/PricingSection";
+import FaqSection from "@/sections/FaqSection";
 import CallToActionSection from "@/sections/CallToActionSection";
-import Footer from "@/sections/Footer";
+import Footer, {
+  type MarketingLandingPageLegalHrefs,
+} from "@/sections/Footer";
 
 /** Context Providers */
 import DebugContext from "@/contexts/DebugContext";
@@ -33,6 +38,16 @@ export interface MarketingLandingPageProps
   brandHref: string;
   debug?: boolean;
   privateBeta?: boolean;
+  /** Optional "About" page linked from the footer. */
+  aboutHref?: string;
+  /** Footer legal links; each is omitted when its href is not supplied. */
+  legalHrefs?: MarketingLandingPageLegalHrefs;
+  /**
+   * Real, attributable quotes from customers or design partners, rendered
+   * directly beneath the hero. Left empty until we have some -- see
+   * `TrustStripSection`.
+   */
+  testimonials?: readonly Testimonial[];
 }
 
 export function MarketingLandingPage(
@@ -68,14 +83,19 @@ export function MarketingLandingPage(
               )}
             >
               <HeroSection />
+              <TrustStripSection testimonials={props.testimonials} />
               <HowItWorksFeaturesFlow />
               <CoreFeaturesSection />
+              <CodeExampleSection />
               <PricingSection />
+              <FaqSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}
                 Image={props.Image}
                 logoHref={logoHref}
+                aboutHref={props.aboutHref}
+                legalHrefs={props.legalHrefs}
               />
             </main>
           </AuthLinksHrefsProvider>

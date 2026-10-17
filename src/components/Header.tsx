@@ -8,6 +8,7 @@ import useLoginPageHref from "@/hooks/useLoginPageHref";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import { MobileDropdownMenu } from "./MobileDropdownMenu";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 
 export interface HeaderProps {
   brandHref: string;
@@ -24,12 +25,24 @@ export function Header({
 }: HeaderProps): ReactElement {
   const loginHref: string = useLoginPageHref();
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  /**
+   * In private beta the header button has to point at the action a visitor can
+   * actually complete; "Get Started" into an invite-code wall is a bounce.
+   */
+  const headerCtaHref: string = privateBeta
+    ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+    : registerHref;
+  const headerCtaLabel: string = privateBeta
+    ? "Join waitlist"
+    : "Get Started";
 
   return (
     <header
       className={cn(
         "fixed top-0 z-50",
-        "w-screen",
+        "w-full",
         "border-b",
         "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
         "px-2 md:px-4 lg:px-6 xl:px-8",
@@ -66,10 +79,10 @@ export function Header({
             Pricing
           </Link>
           <Link
-            href={`#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`}
+            href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
             className="transition-colors hover:text-foreground/80 text-foreground/60"
           >
-            Mailing List
+            FAQ
           </Link>
         </nav>
 
@@ -81,8 +94,8 @@ export function Header({
             </Button>
           </Link>
 
-          <Link href={registerHref}>
-            <Button size="sm">Get Started</Button>
+          <Link href={headerCtaHref}>
+            <Button size="sm">{headerCtaLabel}</Button>
           </Link>
 
           <MobileDropdownMenu triggerClassName="md:hidden" />

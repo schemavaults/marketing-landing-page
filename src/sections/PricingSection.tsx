@@ -10,12 +10,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@schemavaults/ui";
-import { Badge } from "@schemavaults/ui";
+import { Badge, cn } from "@schemavaults/ui";
 import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+import SECTION_SCROLL_MARGIN_CLASSNAME from "@/lib/sectionScrollMargin";
 
 const plan_names = [
   "Free",
@@ -50,7 +52,19 @@ export default function PricingSection() {
   const emails: IOrganizationContactEmailAddressesContextType =
     useOrgEmailAddresses();
 
+  const privateBeta: boolean = usePrivateBeta();
+
   const registerHref: string = useRegisterPageHref();
+
+  /**
+   * During the private beta, self-serve sign-up needs an invite code, so a
+   * "Get Started Free" button pointed at the register page is a dead end for
+   * almost everyone who clicks it. Send those visitors to the waitlist instead
+   * and keep the plan comparison itself intact.
+   */
+  const signupHref: string = privateBeta
+    ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+    : registerHref;
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +87,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: privateBeta ? "Join the waitlist" : "Get Started Free",
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: signupHref,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +109,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Personal Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: signupHref,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +130,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Teams Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: signupHref,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +159,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, privateBeta, signupHref]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -155,7 +169,10 @@ export default function PricingSection() {
   return (
     <section
       id={MarketingLandingPageSectionIds.PRICING_SECTION}
-      className="py-24 bg-gradient-to-b from-background to-muted/20"
+      className={cn(
+        "py-24 bg-gradient-to-b from-background to-muted/20",
+        SECTION_SCROLL_MARGIN_CLASSNAME,
+      )}
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -166,6 +183,12 @@ export default function PricingSection() {
             Choose the perfect plan for your needs. Start free and scale as you
             grow.
           </p>
+          {privateBeta && (
+            <p className="text-sm text-muted-foreground max-w-2xl mx-auto mt-4">
+              Beta pricing, published early so you can budget for it. Waitlist
+              members will be told before anything changes.
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
@@ -192,7 +215,18 @@ export default function PricingSection() {
                   {plan.description}
                 </CardDescription>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
+                  {/*
+                    "Contact Sales" is not a number: at `text-4xl` it wrapped
+                    onto two lines and threw the card's rhythm off.
+                  */}
+                  <span
+                    className={cn(
+                      "font-bold",
+                      plan.price.startsWith("$") ? "text-4xl" : "text-2xl",
+                    )}
+                  >
+                    {plan.price}
+                  </span>
                   {plan.period && (
                     <span className="text-muted-foreground ml-1">
                       /{plan.period}

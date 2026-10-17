@@ -15,6 +15,7 @@ export interface FeaturesFlowProps {
 import FullscreenImage from "@/components/FullscreenImage";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 import { cn } from "@schemavaults/ui";
+import SECTION_SCROLL_MARGIN_CLASSNAME from "@/lib/sectionScrollMargin";
 import { ArrowRight, ArrowDown } from "lucide-react";
 
 const defaultFeatures: Feature[] = [
@@ -59,7 +60,8 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto",
+        SECTION_SCROLL_MARGIN_CLASSNAME,
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -73,7 +75,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from an idea about your data to agents and apps reading
+            and writing it safely. No migrations to hand-write along the way.
           </p>
         </div>
 
@@ -120,10 +123,12 @@ export function HowItWorksFeaturesFlow({
             <div key={feature.id} className="flex flex-col items-center">
               <div className="flex flex-col items-center max-w-md mx-auto">
                 <div className="relative mb-6">
-                  <img
+                  <FullscreenImage
                     src={feature.image}
+                    width={480}
+                    height={420}
                     alt={feature.heading}
-                    className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
+                    className="rounded-lg shadow-lg w-full max-w-sm h-auto object-contain"
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
                     {index + 1}

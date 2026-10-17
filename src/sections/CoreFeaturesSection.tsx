@@ -1,4 +1,5 @@
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+import SECTION_SCROLL_MARGIN_CLASSNAME from "@/lib/sectionScrollMargin";
 import {
   Card,
   CardContent,
@@ -38,12 +39,6 @@ const features = [
       "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
   },
   {
-    icon: Workflow,
-    title: "Workflows & Data Pipelines",
-    description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
-  },
-  {
     icon: Recycle,
     title: "Stop repeating yourself",
     description:
@@ -52,10 +47,16 @@ const features = [
       "Nest schemas within other schemas.",
   },
   {
+    icon: Workflow,
+    title: "Workflows & Data Pipelines",
+    description:
+      "Stop guessing what shape your data is in at each stage of your workflows.",
+  },
+  {
     icon: AppWindowMac,
     title: "Low-Code Type Safety",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Use our rich schema editor to define a schema — or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer.)",
   },
   {
     icon: Cloud,
@@ -67,20 +68,20 @@ const features = [
     icon: Globe,
     title: "Global CDN Sync",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
+      "Sync data across multiple storage regions for getting data to your users fast — regardless of where they are.",
   },
 
   {
     icon: Code,
     title: "Developer Friendly",
     description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "Built with end-to-end type safety — use our TypeScript SDKs to easily consume & write schema-validated data.",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Built for Graph Traversal",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Follow relationships between records in a single query instead of assembling them from a chain of joins.",
   },
 ];
 
@@ -90,19 +91,21 @@ export function CoreFeaturesSection(): ReactElement {
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
-        "w-screen",
+        "w-full",
         "flex justify-center items-start",
+        SECTION_SCROLL_MARGIN_CLASSNAME,
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            One definition, every surface your data touches
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Author a schema in the visual editor, by describing it to the
+            assistant, or in TypeScript — whichever suits you — then reuse
+            that exact definition across your vaults, apps, pipelines, and
+            agents.
           </p>
         </div>
 

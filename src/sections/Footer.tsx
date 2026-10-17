@@ -3,19 +3,52 @@
 import type { default as LinkComponent } from "next/link";
 import { ThemeSelector, Wordmark } from "@schemavaults/ui";
 import type { ImageProps } from "next/image";
-import type { FC } from "react";
+import type { FC, ReactElement } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+
+/**
+ * Hrefs for the legal documents linked in the footer bar.
+ *
+ * Each one is optional and the corresponding link is omitted when it is not
+ * supplied: these previously pointed at `#`, and a policy link that goes
+ * nowhere reads as carelessness about exactly the thing a prospective customer
+ * is trying to evaluate.
+ */
+export interface MarketingLandingPageLegalHrefs {
+  privacyPolicyHref?: string;
+  termsOfServiceHref?: string;
+  cookiePolicyHref?: string;
+}
 
 export interface FooterProps {
   logoHref: string;
   Link: typeof LinkComponent;
   Image: FC<ImageProps>;
+  /** Optional "About" page; the link is hidden when not provided. */
+  aboutHref?: string;
+  legalHrefs?: MarketingLandingPageLegalHrefs;
 }
 
-export function Footer({ Link, Image, logoHref }: FooterProps) {
+export function Footer({
+  Link,
+  Image,
+  logoHref,
+  aboutHref,
+  legalHrefs,
+}: FooterProps): ReactElement {
   const currentDate = new Date();
   const emails = useOrgEmailAddresses();
+
+  const legalLinks: readonly { label: string; href: string }[] = [
+    { label: "Privacy Policy", href: legalHrefs?.privacyPolicyHref },
+    { label: "Terms of Service", href: legalHrefs?.termsOfServiceHref },
+    { label: "Cookie Policy", href: legalHrefs?.cookiePolicyHref },
+  ].filter(
+    (link): link is { label: string; href: string } =>
+      typeof link.href === "string" && link.href.length > 0,
+  );
+
   return (
     <footer className="border-t bg-muted/50">
       <div className="container px-4 md:px-6 py-12">
@@ -57,10 +90,26 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
+                  href={`#${MarketingLandingPageSectionIds.CODE_EXAMPLE_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  See the code
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`#${MarketingLandingPageSectionIds.PRICING_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
                 </Link>
               </li>
               {/*<li>
@@ -85,14 +134,16 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Link>
-              </li>
+              {aboutHref && (
+                <li>
+                  <Link
+                    href={aboutHref}
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    About
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
@@ -117,6 +168,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Careers
                 </Link>
               </li> */}
+              <li>
+                <Link
+                  href={`mailto:${emails.salesEmail}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Talk to Sales
+                </Link>
+              </li>
               <li>
                 <Link
                   href={`mailto:${emails.supportEmail}`}
@@ -167,22 +226,24 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+        <div className="border-t mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted-foreground" suppressHydrationWarning>
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
-          <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
-          </div>
+          {legalLinks.length > 0 && (
+            <div className="flex space-x-4 text-xs text-muted-foreground">
+              {legalLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </footer>

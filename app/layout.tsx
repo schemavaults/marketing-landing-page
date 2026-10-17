@@ -2,14 +2,21 @@ import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 import "@schemavaults/theme/globals.css";
 import ClientProviders from "./client-providers";
+import createMarketingLandingPageMetadata from "@/lib/createMarketingLandingPageMetadata";
 
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "SchemaVaults",
-  description: "Schema-validated secure cloud data storage",
-};
+/*
+ * Shared with the real schemavaults.com app via
+ * `createMarketingLandingPageMetadata()` so the Open Graph / Twitter card tags
+ * stay in one place instead of being re-typed per consumer.
+ */
+export const metadata: Metadata = createMarketingLandingPageMetadata({
+  // Keep preview deployments out of search indexes.
+  indexable:
+    process.env.NEXT_PUBLIC_SCHEMAVAULTS_APP_ENVIRONMENT === "production",
+});
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
