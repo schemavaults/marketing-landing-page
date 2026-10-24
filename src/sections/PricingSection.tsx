@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, X, Mail } from "lucide-react";
 import { Button } from "@schemavaults/ui";
 import {
   Card,
@@ -15,6 +15,7 @@ import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 const plan_names = [
@@ -51,6 +52,17 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  /**
+   * During the private beta, self-serve signup is invite-only: sending a
+   * visitor to the register page from a pricing card is a dead end, so the
+   * plan CTAs point at the waitlist instead.
+   */
+  const waitlistHref: string = `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`;
+  const planCtaHref: string = privateBeta ? waitlistHref : registerHref;
+  const planCtaLabel = (label: string): string =>
+    privateBeta ? "Join the waitlist" : label;
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +85,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: planCtaLabel("Get Started Free"),
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: planCtaHref,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +107,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: planCtaLabel("Start Personal Plan"),
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: planCtaHref,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +128,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: planCtaLabel("Start Teams Plan"),
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: planCtaHref,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +157,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, planCtaHref, privateBeta]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -155,7 +167,7 @@ export default function PricingSection() {
   return (
     <section
       id={MarketingLandingPageSectionIds.PRICING_SECTION}
-      className="py-24 bg-gradient-to-b from-background to-muted/20"
+      className="py-24 scroll-mt-16 bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -166,6 +178,13 @@ export default function PricingSection() {
             Choose the perfect plan for your needs. Start free and scale as you
             grow.
           </p>
+          {privateBeta && (
+            <p className="mt-4 text-sm text-muted-foreground max-w-2xl mx-auto">
+              These are our planned launch prices. SchemaVaults is in private
+              beta today &mdash; join the waitlist and you will be able to pick
+              a plan when public early access opens.
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
@@ -180,7 +199,7 @@ export default function PricingSection() {
             >
               {plan.popular && (
                 <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
-                  Most Popular
+                  {privateBeta ? "Recommended" : "Most Popular"}
                 </Badge>
               )}
 
@@ -235,19 +254,24 @@ export default function PricingSection() {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">
-            All plans include our core features and regular updates
+        <div className="text-center mt-16 space-y-4">
+          <p className="text-muted-foreground">
+            All plans include our core features and regular updates. Change or
+            cancel your plan whenever you like &mdash; no setup fees.
           </p>
           <p className="text-sm text-muted-foreground">
-            Need something custom?{" "}
+            Not sure which plan fits, or need self-hosting, a custom SLA, or
+            your own compute?
+          </p>
+          <Button variant="outline" asChild>
             <a
               href={`mailto:${emails.salesEmail}`}
-              className="text-primary hover:underline"
+              className="flex flex-row flex-nowrap gap-2 items-center justify-center"
             >
-              Contact our sales team
+              <Mail className="h-4 w-4" />
+              Talk to a human
             </a>
-          </p>
+          </Button>
         </div>
       </div>
     </section>

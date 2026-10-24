@@ -89,20 +89,20 @@ export function CoreFeaturesSection(): ReactElement {
     <section
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
-        "py-24 bg-muted/50",
-        "w-screen",
+        "py-24 bg-muted/50 scroll-mt-16",
+        "w-full",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+            Stop guessing what shape your data is in
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+            Schemas define the shape; vaults enforce it. Your apps, workflows,
+            and AI agents all read the same definition &mdash; through a visual
+            editor, a chat with our AI, or our TypeScript SDKs.
           </p>
         </div>
 

@@ -13,8 +13,9 @@ import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import PricingSection from "@/sections/PricingSection";
+import FaqSection from "@/sections/FaqSection";
 import CallToActionSection from "@/sections/CallToActionSection";
-import Footer from "@/sections/Footer";
+import Footer, { type FooterLegalHrefs } from "@/sections/Footer";
 
 /** Context Providers */
 import DebugContext from "@/contexts/DebugContext";
@@ -33,6 +34,11 @@ export interface MarketingLandingPageProps
   brandHref: string;
   debug?: boolean;
   privateBeta?: boolean;
+  /** Footer links to pages that may not exist yet; omitted links are hidden. */
+  aboutHref?: string;
+  docsHref?: string;
+  statusPageHref?: string;
+  legalHrefs?: FooterLegalHrefs;
 }
 
 export function MarketingLandingPage(
@@ -71,11 +77,16 @@ export function MarketingLandingPage(
               <HowItWorksFeaturesFlow />
               <CoreFeaturesSection />
               <PricingSection />
+              <FaqSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}
                 Image={props.Image}
                 logoHref={logoHref}
+                aboutHref={props.aboutHref}
+                docsHref={props.docsHref}
+                statusPageHref={props.statusPageHref}
+                legalHrefs={props.legalHrefs}
               />
             </main>
           </AuthLinksHrefsProvider>

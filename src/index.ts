@@ -3,5 +3,6 @@ export {
   MarketingLandingPage as default,
 } from "./marketing-landing-page";
 export type { MarketingLandingPageProps } from "./marketing-landing-page";
+export type { FooterLegalHrefs } from "./sections/Footer";
 
 export { JoinMailingListSubmitFunctionContext } from "./contexts/JoinMailingListSubmitFunctionContext";

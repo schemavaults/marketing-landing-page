@@ -14,7 +14,9 @@ export interface FeaturesFlowProps {
 
 import FullscreenImage from "@/components/FullscreenImage";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { cn } from "@schemavaults/ui";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import { Button, cn } from "@schemavaults/ui";
 import { ArrowRight, ArrowDown } from "lucide-react";
 
 const defaultFeatures: Feature[] = [
@@ -55,11 +57,14 @@ const defaultFeatures: Feature[] = [
 export function HowItWorksFeaturesFlow({
   features = defaultFeatures,
 }: FeaturesFlowProps) {
+  const privateBeta: boolean = usePrivateBeta();
+  const registerHref: string = useRegisterPageHref();
+
   return (
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto scroll-mt-16",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -73,7 +78,8 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from an idea about your data to typed, validated storage
+            your apps and agents can rely on.
           </p>
         </div>
 
@@ -147,6 +153,28 @@ export function HowItWorksFeaturesFlow({
               )}
             </div>
           ))}
+        </div>
+
+        {/* Mid-page conversion point: readers who get this far are warm. */}
+        <div className="mt-12 lg:mt-16 flex flex-col items-center gap-2">
+          <Button size="lg" asChild>
+            <a
+              href={
+                privateBeta
+                  ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+                  : registerHref
+              }
+              className="flex flex-row flex-nowrap gap-2 items-center justify-start"
+            >
+              {privateBeta ? "Join the launch waitlist" : "Define your first schema"}
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+          <p className="text-sm text-muted-foreground">
+            {privateBeta
+              ? "We will email you the moment public early access opens."
+              : "Free plan, $0 forever. No setup fees."}
+          </p>
         </div>
       </div>
     </section>
