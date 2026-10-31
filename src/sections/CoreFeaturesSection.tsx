@@ -10,10 +10,8 @@ import {
 import {
   Database,
   Zap,
-  Shield,
   Globe,
   Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
   Workflow,
@@ -22,65 +20,77 @@ import {
 } from "lucide-react";
 import { ReactElement } from "react";
 
+/**
+ * Ordered most-differentiating first. Visitors skim the first row and the last
+ * line of a grid, so the claims that only SchemaVaults can make lead, and the
+ * table-stakes infrastructure claims follow.
+ */
 const features = [
   {
-    icon: Database,
-    title: "Vault Graph Storage",
+    icon: Recycle,
+    title: "Write a schema once, reuse it everywhere",
     description:
-      '"Vaults" are databases enforced by a "schema" (a specification for the "shape" of data allowed). More flexible than a traditional relational database.',
+      "Use the same data types in your frontend apps, backend services, and workflows." +
+      " " +
+      "Compose and nest schemas inside other schemas instead of redefining them per project.",
   },
   {
     icon: BotMessageSquare,
-    title: "Type-Safe Agent Thoughts",
+    title: "Agents that can't invent their own data shapes",
     description:
-      "Ensure your AI agents store memories and produce output in the shape that you expected." +
+      "Your AI agents store memories and produce output in the shape you expected, because the vault validates on write." +
       " " +
-      "Store thoughts and artifacts in your vaults with Model Context Protocol (MCP).",
+      "Read and write thoughts and artifacts over Model Context Protocol (MCP).",
+  },
+  {
+    icon: Database,
+    title: "Vault graph storage",
+    description:
+      'Vaults are databases governed by a schema — a specification for the shape of data allowed inside them.' +
+      " " +
+      "More flexible than a traditional relational database, and stricter than a document store.",
   },
   {
     icon: Workflow,
-    title: "Workflows & Data Pipelines",
+    title: "Workflows and data pipelines you can reason about",
     description:
-      "Stop guessing what shape your data is in at each stage of your workflows.",
-  },
-  {
-    icon: Recycle,
-    title: "Stop repeating yourself",
-    description:
-      "Write schemas once and use the same data-types in your frontend apps, backend apps, and workflows." +
+      "Stop guessing what shape your data is in at each stage of a pipeline." +
       " " +
-      "Nest schemas within other schemas.",
+      "Every hand-off is checked against the schema it claims to satisfy.",
   },
   {
     icon: AppWindowMac,
-    title: "Low-Code Type Safety",
+    title: "Define schemas visually or in code",
     description:
-      "Use our rich schema editor to define a schema-- or just tell our AI what you're trying to store. (Or use our TypeScript SDKs, if you prefer)",
+      "Use the rich schema editor to build a schema, describe what you are trying to store to our AI, or write it with our TypeScript SDKs." +
+      " " +
+      "The three stay in sync.",
+  },
+  {
+    icon: Code,
+    title: "End-to-end type safety",
+    description:
+      "Our TypeScript SDKs give you inferred types for everything you read and write, so a schema change surfaces in your editor rather than in production.",
   },
   {
     icon: Cloud,
-    title: "Serverless or Self-Hosted",
+    title: "Serverless or self-hosted",
     description:
-      "Let us manage your data in the cloud; alternatively, host your data locally or in your own compute cluster.",
+      "Let us manage your data in our cloud, or run vaults locally, in-memory, or in your own compute cluster." +
+      " " +
+      "Your data never has to leave your infrastructure.",
   },
   {
     icon: Globe,
-    title: "Global CDN Sync",
+    title: "Multi-region replication",
     description:
-      "Sync data across multiple storage regions for getting data to your users fast-- regardless of where they are.",
-  },
-
-  {
-    icon: Code,
-    title: "Developer Friendly",
-    description:
-      "Built with end-to-end type safety-- use our TypeScript SDKs to easily consume & write schema-validated data.",
+      "Sync vault data across storage regions so reads are served close to your users, wherever they are.",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Built for graph traversals",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Follow relationships between records without hand-writing joins, with query planning tuned for connected data.",
   },
 ];
 
@@ -90,19 +100,19 @@ export function CoreFeaturesSection(): ReactElement {
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
-        "w-screen",
+        "w-full",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-balance">
+            One source of truth for the shape of your data
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg text-pretty">
+            Everything you need to define, validate, store, and query
+            structured data — whether you reach for the visual editor, the
+            chatbot, or the TypeScript SDK.
           </p>
         </div>
 
@@ -114,7 +124,10 @@ export function CoreFeaturesSection(): ReactElement {
             >
               <CardHeader>
                 <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
+                  <feature.icon
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <CardTitle className="text-xl">{feature.title}</CardTitle>
               </CardHeader>

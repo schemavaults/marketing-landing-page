@@ -13,8 +13,9 @@ import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
 import PricingSection from "@/sections/PricingSection";
+import FaqSection from "@/sections/FaqSection";
 import CallToActionSection from "@/sections/CallToActionSection";
-import Footer from "@/sections/Footer";
+import Footer, { type SiteLegalLinkHrefs } from "@/sections/Footer";
 
 /** Context Providers */
 import DebugContext from "@/contexts/DebugContext";
@@ -26,7 +27,8 @@ import PrivateBetaContext from "@/contexts/PrivateBetaContext";
 export interface MarketingLandingPageProps
   extends
     AuthLinkHrefsContextType,
-    IOrganizationContactEmailAddressesContextType {
+    IOrganizationContactEmailAddressesContextType,
+    SiteLegalLinkHrefs {
   Image: FC<ImageProps>;
   Link: typeof Link;
   logoHref?: string;
@@ -71,11 +73,16 @@ export function MarketingLandingPage(
               <HowItWorksFeaturesFlow />
               <CoreFeaturesSection />
               <PricingSection />
+              <FaqSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}
                 Image={props.Image}
                 logoHref={logoHref}
+                privacyPolicyHref={props.privacyPolicyHref}
+                termsOfServiceHref={props.termsOfServiceHref}
+                cookiePolicyHref={props.cookiePolicyHref}
+                aboutHref={props.aboutHref}
               />
             </main>
           </AuthLinksHrefsProvider>

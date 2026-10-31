@@ -59,11 +59,38 @@ export default async function joinPublicMailingList({
     );
   }
 
-  await fetch(endpoint, {
-    method: "POST",
-    body: JSON.stringify({
-      mailing_list_id,
-      email,
-    }),
-  });
+  let response: Response;
+  try {
+    response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mailing_list_id,
+        email,
+      }),
+    });
+  } catch (e: unknown) {
+    // `fetch` only rejects on a transport-level failure (offline, DNS, CORS).
+    throw new Error(
+      "Could not reach the SchemaVaults mail server to join the mailing list.",
+      { cause: e },
+    );
+  }
+
+  // `fetch` resolves for 4xx and 5xx responses. Without this check a rejected
+  // sign-up is reported to the visitor as a success, and we silently lose the
+  // lead.
+  if (!response.ok) {
+    throw new Error(
+      `The mail server rejected the mailing list sign-up (HTTP ${response.status}).`,
+    );
+  }
+
+  if (debug) {
+    console.log(
+      `[joinMailingList] Mail server accepted the sign-up (HTTP ${response.status}).`,
+    );
+  }
 }

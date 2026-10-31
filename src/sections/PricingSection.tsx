@@ -11,10 +11,12 @@ import {
   CardTitle,
 } from "@schemavaults/ui";
 import { Badge } from "@schemavaults/ui";
+import { cn } from "@schemavaults/ui";
 import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
 const plan_names = [
@@ -51,6 +53,16 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  /**
+   * During the private beta, self-serve sign-up is gated behind an invite
+   * code, so sending a visitor who just clicked "Start Teams Plan" to the
+   * registration page is a dead end. Point every self-serve plan at the
+   * waitlist instead, and say plainly that these prices are not yet final.
+   */
+  const waitlistHref: string = `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`;
+  const selfServeHref: string = privateBeta ? waitlistHref : registerHref;
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +85,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: privateBeta ? "Join the waitlist" : "Get Started Free",
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeHref,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +107,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Personal Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeHref,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +128,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: privateBeta ? "Join the waitlist" : "Start Teams Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeHref,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +157,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, privateBeta, selfServeHref]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -159,27 +171,46 @@ export default function PricingSection() {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">
-            Simple, transparent pricing
+          <h2 className="text-4xl font-bold tracking-tight mb-4 text-balance">
+            {privateBeta
+              ? "Pricing we're planning at launch"
+              : "Simple, transparent pricing"}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+            {privateBeta
+              ? "Here is where we expect plans to land when SchemaVaults opens to the public. Join the waitlist and we will tell you before anything is charged."
+              : "Choose the perfect plan for your needs. Start free and scale as you grow."}
           </p>
+          {privateBeta && (
+            <p className="mt-6 text-sm text-muted-foreground">
+              <Badge variant="outline" className="mr-2 align-middle">
+                Private beta
+              </Badge>
+              Plans and limits below are not final and may change before
+              general availability.
+            </p>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        {/*
+          `pt-4` on the grid leaves room for the "Most Popular" badge, which is
+          positioned above the top edge of its card.
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-4 max-w-7xl mx-auto">
           {pricingPlansList.map((plan: PricingPlan<PlanName>) => (
             <Card
               key={plan.name}
-              className={`relative flex flex-col ${
+              className={cn(
+                "relative flex flex-col",
+                // A ring rather than `scale-105`: scaling a grid item makes it
+                // overlap its neighbours and blurs its text on some browsers.
                 plan.popular
-                  ? "border-primary shadow-lg scale-105"
-                  : "border-border"
-              }`}
+                  ? "border-primary ring-2 ring-primary/40 shadow-lg"
+                  : "border-border",
+              )}
             >
               {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
+                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground whitespace-nowrap">
                   Most Popular
                 </Badge>
               )}
@@ -192,7 +223,17 @@ export default function PricingSection() {
                   {plan.description}
                 </CardDescription>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
+                  <span
+                    className={cn(
+                      "font-bold",
+                      // A worded price ("Contact Sales") wraps onto two lines
+                      // at the size used for dollar amounts, which knocks that
+                      // card's feature list out of alignment with the rest.
+                      plan.price.startsWith("$") ? "text-4xl" : "text-3xl",
+                    )}
+                  >
+                    {plan.price}
+                  </span>
                   {plan.period && (
                     <span className="text-muted-foreground ml-1">
                       /{plan.period}
@@ -206,13 +247,27 @@ export default function PricingSection() {
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start gap-3">
                       {feature.included ? (
-                        <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                        <Check
+                          className="h-5 w-5 text-green-500 shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
                       ) : (
-                        <X className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
+                        <X
+                          className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
                       )}
                       <span
-                        className={`text-sm ${feature.included ? "text-foreground" : "text-muted-foreground"}`}
+                        className={cn(
+                          "text-sm",
+                          feature.included
+                            ? "text-foreground"
+                            : "text-muted-foreground",
+                        )}
                       >
+                        <span className="sr-only">
+                          {feature.included ? "Included: " : "Not included: "}
+                        </span>
                         {feature.name}
                       </span>
                     </li>
@@ -223,7 +278,10 @@ export default function PricingSection() {
               <CardFooter className="pt-8">
                 {plan.ctaLink ? (
                   <Button variant={plan.ctaVariant} className="w-full" asChild>
-                    <a href={plan.ctaLink}>{plan.cta}</a>
+                    <a href={plan.ctaLink}>
+                      {plan.cta}
+                      <span className="sr-only">{` — ${plan.name} plan`}</span>
+                    </a>
                   </Button>
                 ) : (
                   <Button variant={plan.ctaVariant} className="w-full">
@@ -235,17 +293,18 @@ export default function PricingSection() {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">
-            All plans include our core features and regular updates
+        <div className="text-center mt-16 space-y-4">
+          <p className="text-muted-foreground">
+            Every plan includes schema validation, the visual schema editor,
+            and our TypeScript SDKs.
           </p>
           <p className="text-sm text-muted-foreground">
-            Need something custom?{" "}
+            Need something custom, or want to self-host?{" "}
             <a
               href={`mailto:${emails.salesEmail}`}
               className="text-primary hover:underline"
             >
-              Contact our sales team
+              Talk to our sales team
             </a>
           </p>
         </div>
