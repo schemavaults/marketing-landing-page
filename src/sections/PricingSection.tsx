@@ -15,7 +15,9 @@ import { useMemo } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+import { cn } from "@schemavaults/ui";
 
 const plan_names = [
   "Free",
@@ -51,6 +53,29 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  /**
+   * During the private beta, self-serve sign-up is gated behind an invite
+   * code, so sending a visitor straight to the register page is a dead end.
+   * Point the self-serve plans at the waitlist instead and label the button
+   * honestly; Enterprise always goes to a human.
+   */
+  const selfServeCta: { href: string; label: (plan: PlanName) => string } =
+    useMemo(
+      () =>
+        privateBeta
+          ? {
+              href: `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`,
+              label: () => "Join the waitlist",
+            }
+          : {
+              href: registerHref,
+              label: (plan: PlanName) =>
+                plan === "Free" ? "Get started free" : `Start ${plan} plan`,
+            },
+      [privateBeta, registerHref],
+    );
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +98,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: selfServeCta.label("Free"),
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +120,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: selfServeCta.label("Personal"),
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +141,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: selfServeCta.label("Teams"),
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +170,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, selfServeCta]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -155,16 +180,21 @@ export default function PricingSection() {
   return (
     <section
       id={MarketingLandingPageSectionIds.PRICING_SECTION}
-      className="py-24 bg-gradient-to-b from-background to-muted/20"
+      className={cn(
+        "w-full py-24 bg-gradient-to-b from-background to-muted/20",
+        /** Offset anchor scrolling for the fixed header. */
+        "scroll-mt-16",
+      )}
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight mb-4">
             Simple, transparent pricing
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+            Start on the free tier &mdash; no credit card, no trial clock.
+            Upgrade only once you have outgrown it, and keep everything you
+            built.
           </p>
         </div>
 
@@ -172,11 +202,12 @@ export default function PricingSection() {
           {pricingPlansList.map((plan: PricingPlan<PlanName>) => (
             <Card
               key={plan.name}
-              className={`relative flex flex-col ${
+              className={cn(
+                "relative flex flex-col",
                 plan.popular
-                  ? "border-primary shadow-lg scale-105"
-                  : "border-border"
-              }`}
+                  ? "border-primary shadow-lg lg:scale-105 lg:z-10"
+                  : "border-border",
+              )}
             >
               {plan.popular && (
                 <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground">
@@ -192,7 +223,22 @@ export default function PricingSection() {
                   {plan.description}
                 </CardDescription>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
+                  {/*
+                    "Contact Sales" at text-4xl wrapped onto two lines and
+                    pushed the Enterprise feature list out of alignment with
+                    the other three cards. Only actual prices get the big
+                    treatment.
+                  */}
+                  <span
+                    className={cn(
+                      "font-bold",
+                      plan.price.startsWith("$")
+                        ? "text-4xl"
+                        : "text-2xl whitespace-nowrap",
+                    )}
+                  >
+                    {plan.price}
+                  </span>
                   {plan.period && (
                     <span className="text-muted-foreground ml-1">
                       /{plan.period}
@@ -204,15 +250,42 @@ export default function PricingSection() {
               <CardContent className="flex-1">
                 <ul className="space-y-3">
                   {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-3">
+                    <li
+                      key={featureIndex}
+                      className={cn(
+                        "flex items-start gap-3",
+                        /**
+                         * A column of hard "X" marks on the entry plan reads
+                         * as a list of reasons not to start. Keep the
+                         * exclusions (they are honest and aid comparison) but
+                         * stop them competing with what the plan does give
+                         * you.
+                         */
+                        !feature.included && "opacity-60",
+                      )}
+                    >
                       {feature.included ? (
-                        <Check className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
+                        <Check
+                          className="h-5 w-5 text-green-500 shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
                       ) : (
-                        <X className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
+                        <X
+                          className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5"
+                          aria-hidden="true"
+                        />
                       )}
                       <span
-                        className={`text-sm ${feature.included ? "text-foreground" : "text-muted-foreground"}`}
+                        className={cn(
+                          "text-sm",
+                          feature.included
+                            ? "text-foreground"
+                            : "text-muted-foreground",
+                        )}
                       >
+                        <span className="sr-only">
+                          {feature.included ? "Included: " : "Not included: "}
+                        </span>
                         {feature.name}
                       </span>
                     </li>
@@ -236,8 +309,12 @@ export default function PricingSection() {
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground mb-2">
             All plans include our core features and regular updates
+          </p>
+          <p className="text-sm text-muted-foreground mb-4">
+            Prices in USD, billed monthly. Cancel anytime &mdash; your schemas
+            and data are yours to export.
           </p>
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}

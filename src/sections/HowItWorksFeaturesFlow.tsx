@@ -59,7 +59,9 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto",
+        /** Offset anchor scrolling for the fixed header. */
+        "scroll-mt-16",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -72,8 +74,9 @@ export function HowItWorksFeaturesFlow({
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
             How It Works
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto text-pretty">
+            Three steps from &ldquo;what shape is this data?&rdquo; to agents,
+            apps and pipelines that already know the answer.
           </p>
         </div>
 
@@ -87,7 +90,7 @@ export function HowItWorksFeaturesFlow({
                     src={feature.image}
                     width={400}
                     height={350}
-                    alt={feature.heading}
+                    alt={`${feature.heading}: ${feature.subheading}`}
                     className="rounded-lg shadow-lg object-cover text-center"
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
@@ -122,7 +125,9 @@ export function HowItWorksFeaturesFlow({
                 <div className="relative mb-6">
                   <img
                     src={feature.image}
-                    alt={feature.heading}
+                    alt={`${feature.heading}: ${feature.subheading}`}
+                    loading="lazy"
+                    decoding="async"
                     className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">

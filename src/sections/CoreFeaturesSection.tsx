@@ -10,10 +10,8 @@ import {
 import {
   Database,
   Zap,
-  Shield,
   Globe,
   Code,
-  BarChart3,
   Cloud,
   BotMessageSquare,
   Workflow,
@@ -90,19 +88,22 @@ export function CoreFeaturesSection(): ReactElement {
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
         "py-24 bg-muted/50",
-        "w-screen",
+        "w-full",
+        /** Offset anchor scrolling for the fixed header. */
+        "scroll-mt-16",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-balance">
+            A graph database you can just talk to &mdash; and a type system you
+            can build on
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg text-pretty">
+            Built to handle complex graph workloads at any scale, whether you
+            drive it from the schema editor, the assistant, or the TypeScript
+            SDKs.
           </p>
         </div>
 

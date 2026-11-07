@@ -11,8 +11,11 @@ import AuthLinksHrefsProvider from "@/providers/AuthLinkHrefsProvider";
 /** Landing Page Sections */
 import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
+import SeeItInCodeSection from "@/sections/SeeItInCodeSection";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
+import TrustSection from "@/sections/TrustSection";
 import PricingSection from "@/sections/PricingSection";
+import FaqSection from "@/sections/FaqSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
 
@@ -67,10 +70,20 @@ export function MarketingLandingPage(
                 "flex flex-col gap-0",
               )}
             >
+              {/*
+                Section order follows the question a prospect asks next:
+                hook (Hero) -> how does it work (HowItWorks) -> show me
+                (SeeItInCode) -> what else (CoreFeatures) -> can I trust it
+                (Trust) -> what does it cost (Pricing) -> but what about...
+                (Faq) -> convert (CallToAction).
+              */}
               <HeroSection />
               <HowItWorksFeaturesFlow />
+              <SeeItInCodeSection />
               <CoreFeaturesSection />
+              <TrustSection />
               <PricingSection />
+              <FaqSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}

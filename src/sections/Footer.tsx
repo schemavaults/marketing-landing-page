@@ -7,6 +7,27 @@ import type { FC } from "react";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
 
+interface FooterLegalLink {
+  href: string;
+  label: string;
+}
+
+/**
+ * TODO(legal): every one of these is still a placeholder `#` anchor that
+ * scrolls to the top of the page. They MUST be pointed at real pages before
+ * the public launch — Privacy/Terms/Cookie links are the first thing a
+ * procurement or security reviewer clicks on a data-storage vendor's site,
+ * and a link that goes nowhere reads as "this company is not ready".
+ *
+ * Deliberately left as `#` rather than guessed paths so this does not ship a
+ * set of 404s; collected here so the fix is one edit.
+ */
+const legalLinks: readonly FooterLegalLink[] = [
+  { href: "#", label: "Privacy Policy" },
+  { href: "#", label: "Terms of Service" },
+  { href: "#", label: "Cookie Policy" },
+];
+
 export interface FooterProps {
   logoHref: string;
   Link: typeof LinkComponent;
@@ -49,6 +70,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
               </li>
               <li>
                 <Link
+                  href={`#${MarketingLandingPageSectionIds.SEE_IT_IN_CODE_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  See It In Code
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`#${MarketingLandingPageSectionIds.FEATURES_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
@@ -61,6 +90,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   className="text-muted-foreground hover:text-foreground"
                 >
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
                 </Link>
               </li>
               {/*<li>
@@ -87,10 +124,10 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="#"
+                  href={`#${MarketingLandingPageSectionIds.TRUST_SECTION}`}
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  About
+                  Why SchemaVaults
                 </Link>
               </li>
               <li>
@@ -173,15 +210,16 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           </p>
           <ThemeSelector variant="segmented" size="sm" />
           <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
-            </Link>
+            {/** See the TODO(legal) note on `legalLinks` above. */}
+            {legalLinks.map((legalLink: FooterLegalLink, index: number) => (
+              <Link
+                key={`${legalLink.label}-${index}`}
+                href={legalLink.href}
+                className="hover:text-foreground"
+              >
+                {legalLink.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
