@@ -9,7 +9,7 @@
     "send-email-to-mailing-list": {
       "source": "schemavaults/send-email",
       "sourceType": "github",
-      "computedHash": "0d32a4cd229419d2d83d523e9308d6077e183d3c7922aba3931fbc0702b9daaa"
+      "computedHash": "a0868b1223a5666ef2a316520c750c0f1bf7d4e7dde0daf67f1896888a287b7d"
     }
   }
 }
