@@ -1,6 +1,6 @@
 {
   "name": "@schemavaults/marketing-landing-page",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "private": false,
   "license": "UNLICENSED",
   "description": "SchemaVaults landing page. Product features, waitlist, screenshots, testimonials, etc.",
@@ -19,6 +19,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "next": "16.2.6",
+    "@next/third-parties": "16.2.6",
     "server-only": "0.0.1"
   },
   "devDependencies": {
