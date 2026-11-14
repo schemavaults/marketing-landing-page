@@ -63,6 +63,14 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
                   Pricing
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`#${MarketingLandingPageSectionIds.FAQ_SECTION}`}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  FAQ
+                </Link>
+              </li>
               {/*<li>
                 <Link
                   href="https://docs.schemavaults.com"
@@ -85,14 +93,16 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
           <div className="space-y-4">
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="space-y-2 text-sm">
+              {/*
+                TODO(marketing): restore once an /about page exists. A link to
+                "#" reads as a broken site, which costs more trust than an
+                absent nav item.
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="/about" className="text-muted-foreground hover:text-foreground">
                   About
                 </Link>
               </li>
+              */}
               <li>
                 <Link
                   href="https://mail.schemavaults.com"
@@ -172,15 +182,25 @@ export function Footer({ Link, Image, logoHref }: FooterProps) {
             © {currentDate.getFullYear()} <Wordmark />. All rights reserved.
           </p>
           <ThemeSelector variant="segmented" size="sm" />
+          {/*
+            TODO(marketing): BLOCKER for enterprise/self-serve conversion --
+            these pages do not exist yet, so the links were pointing at "#".
+            Publish a Privacy Policy, Terms of Service, and Cookie Policy and
+            restore the links below. Procurement and security reviewers look
+            for these before they will take a vendor seriously, and a
+            mailing-list signup form arguably needs a privacy policy to link to.
           <div className="flex space-x-4 text-xs text-muted-foreground">
-            <Link href="#" className="hover:text-foreground">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Cookie Policy
+            <Link href="/legal/privacy" className="hover:text-foreground">Privacy Policy</Link>
+            <Link href="/legal/terms" className="hover:text-foreground">Terms of Service</Link>
+            <Link href="/legal/cookies" className="hover:text-foreground">Cookie Policy</Link>
+          </div>
+          */}
+          <div className="flex space-x-4 text-xs text-muted-foreground">
+            <Link
+              href={`mailto:${emails.supportEmail}`}
+              className="hover:text-foreground"
+            >
+              Questions about your data? Email us
             </Link>
           </div>
         </div>

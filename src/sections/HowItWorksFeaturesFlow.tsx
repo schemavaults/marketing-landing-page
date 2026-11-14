@@ -59,7 +59,7 @@ export function HowItWorksFeaturesFlow({
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto scroll-mt-16",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -73,22 +73,29 @@ export function HowItWorksFeaturesFlow({
             How It Works
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Three steps from &ldquo;what shape is this data?&rdquo; to data your
+            code, your agents, and your team can rely on.
           </p>
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:flex items-center justify-center gap-8">
+        <div className="hidden lg:flex items-stretch justify-center gap-8">
           {features.map((feature, index) => (
-            <div key={feature.id} className="flex items-center">
+            <div key={feature.id} className="flex items-start">
               <div className="flex flex-col items-center max-w-sm">
-                <div className="relative mb-6">
+                <div className="relative mb-6 w-full">
                   <FullscreenImage
                     src={feature.image}
                     width={400}
                     height={350}
-                    alt={feature.heading}
-                    className="rounded-lg shadow-lg object-cover text-center"
+                    alt={`SchemaVaults ${feature.heading} interface`}
+                    className={cn(
+                      "rounded-lg shadow-lg text-center",
+                      // object-contain, not object-cover: these are product
+                      // screenshots -- cropping them makes them unreadable,
+                      // and an illegible screenshot proves nothing.
+                      "w-full h-[260px] object-contain bg-background/60 p-2",
+                    )}
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
                     {index + 1}
@@ -106,7 +113,7 @@ export function HowItWorksFeaturesFlow({
               </div>
 
               {index < features.length - 1 && (
-                <div className="mx-8 flex items-center">
+                <div className="mx-8 flex items-center h-[260px]">
                   <ArrowRight className="h-8 w-8 text-primary" />
                 </div>
               )}
@@ -120,10 +127,13 @@ export function HowItWorksFeaturesFlow({
             <div key={feature.id} className="flex flex-col items-center">
               <div className="flex flex-col items-center max-w-md mx-auto">
                 <div className="relative mb-6">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={feature.image}
-                    alt={feature.heading}
-                    className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
+                    alt={`SchemaVaults ${feature.heading} interface`}
+                    loading="lazy"
+                    decoding="async"
+                    className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-contain bg-background/60 p-2"
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
                     {index + 1}

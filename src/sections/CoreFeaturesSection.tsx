@@ -78,9 +78,9 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Lightning Fast Queries",
+    title: "Fast Graph Traversals",
     description:
-      "Execute complex graph traversals in milliseconds with our advanced query optimization engine.",
+      "Walk deeply-nested relationships in a single query instead of stitching together joins in application code.",
   },
 ];
 
@@ -89,20 +89,20 @@ export function CoreFeaturesSection(): ReactElement {
     <section
       id={MarketingLandingPageSectionIds.FEATURES_SECTION}
       className={cn(
-        "py-24 bg-muted/50",
-        "w-screen",
+        "py-24 bg-muted/50 scroll-mt-16",
+        "w-full",
         "flex justify-center items-start",
       )}
     >
       <div className="container px-4 md:px-6">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            The graph database that you can just talk to
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-balance">
+            One schema. Every surface. Nothing out of sync.
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg">
-            Powerful features designed to handle the most complex graph
-            workloads at any scale. Built so you never have to write a line of
-            code (unless you want to!).
+          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg text-balance">
+            A graph datastore you can define by talking to it &mdash; built so
+            your agents, pipelines, and apps all read and write the same
+            guaranteed shapes. Write code only when you want to.
           </p>
         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, X } from "lucide-react";
-import { Button } from "@schemavaults/ui";
+import { Button, cn } from "@schemavaults/ui";
 import {
   Card,
   CardContent,
@@ -16,6 +16,7 @@ import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
 import type { IOrganizationContactEmailAddressesContextType } from "@/contexts/OrganizationContactEmailAddressesContext";
 import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
 
 const plan_names = [
   "Free",
@@ -51,6 +52,23 @@ export default function PricingSection() {
     useOrgEmailAddresses();
 
   const registerHref: string = useRegisterPageHref();
+  const privateBeta: boolean = usePrivateBeta();
+
+  /**
+   * During the private beta, self-serve signup requires an invite code, so
+   * sending a visitor to the register page from a pricing card is a dead end.
+   * Every self-serve CTA therefore routes to the waitlist instead; only
+   * "Contact Sales" stays reachable, because sales can act on it today.
+   */
+  const selfServeCta = useMemo(
+    () => ({
+      label: privateBeta ? "Join the waitlist" : undefined,
+      href: privateBeta
+        ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+        : registerHref,
+    }),
+    [privateBeta, registerHref],
+  );
 
   // Easy configuration - adjust prices, limits, and features here
   const pricingConfig: PricingConfig = useMemo(() => {
@@ -73,9 +91,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Get Started Free",
+        cta: selfServeCta.label ?? "Get Started Free",
         ctaVariant: "outline" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Personal: {
         name: "Personal",
@@ -95,9 +113,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: false },
           { name: "SSO authentication", included: false },
         ],
-        cta: "Start Personal Plan",
+        cta: selfServeCta.label ?? "Start Personal Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Teams: {
         name: "Teams",
@@ -116,9 +134,9 @@ export default function PricingSection() {
           { name: "Custom integrations", included: true },
           { name: "SSO authentication", included: true },
         ],
-        cta: "Start Teams Plan",
+        cta: selfServeCta.label ?? "Start Teams Plan",
         ctaVariant: "default" as const,
-        ctaLink: registerHref,
+        ctaLink: selfServeCta.href,
       },
       Enterprise: {
         name: "Enterprise",
@@ -145,7 +163,7 @@ export default function PricingSection() {
         ctaLink: `mailto:${emails.salesEmail satisfies string}`,
       },
     };
-  }, [emails, registerHref]);
+  }, [emails, selfServeCta]);
 
   const pricingPlansList: readonly PricingPlan<PlanName>[] = useMemo(
     () => Object.values(pricingConfig),
@@ -155,7 +173,7 @@ export default function PricingSection() {
   return (
     <section
       id={MarketingLandingPageSectionIds.PRICING_SECTION}
-      className="py-24 bg-gradient-to-b from-background to-muted/20"
+      className="py-24 scroll-mt-16 bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -163,9 +181,25 @@ export default function PricingSection() {
             Simple, transparent pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your needs. Start free and scale as you
-            grow.
+            Start free, keep your schemas, and only pay once a vault is doing
+            real work. No setup fees.
           </p>
+          {privateBeta && (
+            <p
+              className={cn(
+                "mt-6 mx-auto max-w-2xl",
+                "rounded-lg border border-border bg-muted/40",
+                "px-4 py-3 text-sm text-muted-foreground",
+              )}
+            >
+              These are the plans we intend to launch with.{" "}
+              <span className="text-foreground font-medium">
+                Nothing is charged during the private beta
+              </span>{" "}
+              &mdash; join the waitlist and we will tell you before pricing
+              takes effect.
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
@@ -237,7 +271,8 @@ export default function PricingSection() {
 
         <div className="text-center mt-16">
           <p className="text-muted-foreground mb-4">
-            All plans include our core features and regular updates
+            Every plan includes the schema editor, the AI schema assistant, and
+            the TypeScript SDKs.
           </p>
           <p className="text-sm text-muted-foreground">
             Need something custom?{" "}
