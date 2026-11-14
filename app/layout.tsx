@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "@schemavaults/theme/globals.css";
 import ClientProviders from "./client-providers";
 
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
   title: "SchemaVaults",
   description: "Schema-validated secure cloud data storage",
 };
+
+const googleMeasurementId: string | undefined =
+  process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID?.trim() || undefined;
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -23,6 +27,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       >
         <ClientProviders>{children}</ClientProviders>
       </body>
+      {googleMeasurementId && <GoogleAnalytics gaId={googleMeasurementId} />}
     </html>
   );
 }
