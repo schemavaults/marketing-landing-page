@@ -2,13 +2,12 @@
 
 import {
   getAppEnvironment,
-  getHardcodedClientWebAppDomain,
-  SCHEMAVAULTS_MAIL_APP_DEFINITION,
   type SchemaVaultsAppEnvironment,
 } from "@schemavaults/app-definitions";
 
 import isValidEmail from "@/lib/isValidEmail";
 import isValidUuid from "@/lib/isValidUuid";
+import { getMailServerUrl } from "@/lib/schemavaults-app-urls";
 
 export interface IJoinMailingListOpts {
   mailing_list_id: string;
@@ -20,10 +19,7 @@ export interface IJoinMailingListOpts {
 function getSchemaVaultsMailServerUrl(
   environment: SchemaVaultsAppEnvironment = getAppEnvironment(),
 ): string {
-  return getHardcodedClientWebAppDomain(
-    SCHEMAVAULTS_MAIL_APP_DEFINITION.app_id,
-    environment,
-  );
+  return getMailServerUrl(environment);
 }
 
 export default async function joinPublicMailingList({
