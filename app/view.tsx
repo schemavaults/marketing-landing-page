@@ -5,11 +5,8 @@ import MarketingLandingPage from "@/marketing-landing-page";
 import Image from "next/image";
 import Link from "next/link";
 import { JoinMailingListSubmitFunctionContext } from "@/contexts/JoinMailingListSubmitFunctionContext";
-import {
-  getHardcodedClientWebAppDomain,
-  SCHEMAVAULTS_REGISTRY_FRONTEND,
-  type SchemaVaultsAppEnvironment,
-} from "@schemavaults/app-definitions";
+import type { SchemaVaultsAppEnvironment } from "@schemavaults/app-definitions";
+import { getRegistryFrontendUrl } from "@/lib/schemavaults-app-urls";
 import joinPublicMailingList from "@/lib/client/joinPublicMailingList";
 import isValidUuid from "@/lib/isValidUuid";
 import isValidEmail from "@/lib/isValidEmail";
@@ -38,11 +35,7 @@ export default function MarketingLandingPageClientComponent({
   private_beta,
 }: MarketingLandingPageClientComponentProps): ReactElement {
   const registry_url: string = useMemo(
-    (): string =>
-      getHardcodedClientWebAppDomain(
-        SCHEMAVAULTS_REGISTRY_FRONTEND.app_id,
-        environment,
-      ),
+    (): string => getRegistryFrontendUrl(environment),
     [environment],
   );
 
