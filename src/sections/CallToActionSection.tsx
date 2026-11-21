@@ -6,8 +6,10 @@ import { cn } from "@schemavaults/ui";
 import type { ReactElement } from "react";
 import type { default as LinkComponent } from "next/link";
 import useOrgEmailAddresses from "@/hooks/useOrgEmailAddresses";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export interface CTASectionProps {
   Link: typeof LinkComponent;
@@ -15,6 +17,8 @@ export interface CTASectionProps {
 
 export function CTASection({ Link }: CTASectionProps): ReactElement {
   const emails = useOrgEmailAddresses();
+  const privateBeta: boolean = usePrivateBeta();
+  const registerHref: string = useRegisterPageHref();
 
   return (
     <section
@@ -25,42 +29,63 @@ export function CTASection({ Link }: CTASectionProps): ReactElement {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Ready to simplify how you work with data?
+              {privateBeta
+                ? "Get your invite to the private beta"
+                : "Start building on your own schemas today"}
             </h2>
-            <p className="mx-auto max-w-[600px] text-muted-foreground text-lg">
-              Start building with <Wordmark /> as soon as it is available to the
-              public. Enter your email below to get notified when early access
-              is available.
+            <p className="mx-auto max-w-[620px] text-muted-foreground text-lg">
+              {privateBeta ? (
+                <>
+                  We&rsquo;re inviting private-beta users in batches. Leave your
+                  email and you&rsquo;ll get one message from us the moment your{" "}
+                  <Wordmark /> invite is ready.
+                </>
+              ) : (
+                <>
+                  Create your first vault in minutes on the free plan, or leave
+                  your email for occasional <Wordmark /> product updates.
+                </>
+              )}
             </p>
           </div>
 
-          <JoinMailingListForm />
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={`mailto:${emails.salesEmail}`}>
-              <Button
-                variant="outline"
-                size="lg"
-                className="flex flex-row flex-nowrap gap-2 items-center justify-start"
-              >
-                <Mail className="h-4 w-4" />
-                Contact Sales
+          {/* The single conversion action on the page gets the spotlight: one
+              form, nothing of equal visual weight competing beside it. */}
+          {privateBeta ? (
+            <JoinMailingListForm />
+          ) : (
+            <div className="space-y-6">
+              <Button size="lg" asChild>
+                <a
+                  href={registerHref}
+                  className="flex flex-row flex-nowrap gap-2 items-center justify-center"
+                >
+                  Start free — no credit card
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Button>
-            </Link>
-            <Link href={`mailto:${emails.supportEmail}`}>
-              <Button
-                variant="outline"
-                size="lg"
-                className="flex flex-row flex-nowrap gap-2 items-center justify-start"
-              >
-                <Mail className="h-4 w-4" />
-                Contact Support
-              </Button>
-            </Link>
-          </div>
+              <JoinMailingListForm />
+            </div>
+          )}
 
+          {/* Secondary routes, deliberately demoted to text links. As buttons
+              they competed with the primary action for the same click. */}
           <p className="text-sm text-muted-foreground">
-            Try Free • No setup fees • Cancel anytime
+            Evaluating for a team?{" "}
+            <Link
+              href={`mailto:${emails.salesEmail}`}
+              className="text-foreground font-medium underline underline-offset-4 hover:text-primary"
+            >
+              Talk to sales
+            </Link>
+            {" · "}
+            Already a user?{" "}
+            <Link
+              href={`mailto:${emails.supportEmail}`}
+              className="text-foreground font-medium underline underline-offset-4 hover:text-primary"
+            >
+              Contact support
+            </Link>
           </p>
         </div>
       </div>

@@ -12,9 +12,16 @@ import AuthLinksHrefsProvider from "@/providers/AuthLinkHrefsProvider";
 import HeroSection from "@/sections/Hero";
 import HowItWorksFeaturesFlow from "@/sections/HowItWorksFeaturesFlow";
 import CoreFeaturesSection from "@/sections/CoreFeaturesSection";
+import SocialProofSection from "@/sections/SocialProofSection";
 import PricingSection from "@/sections/PricingSection";
+import FaqSection from "@/sections/FaqSection";
 import CallToActionSection from "@/sections/CallToActionSection";
 import Footer from "@/sections/Footer";
+import type {
+  MarketingSiteCompanyHrefs,
+  MarketingSiteLegalHrefs,
+} from "@/sections/Footer";
+import type { SocialProofSectionProps } from "@/sections/SocialProofSection";
 
 /** Context Providers */
 import DebugContext from "@/contexts/DebugContext";
@@ -26,13 +33,22 @@ import PrivateBetaContext from "@/contexts/PrivateBetaContext";
 export interface MarketingLandingPageProps
   extends
     AuthLinkHrefsContextType,
-    IOrganizationContactEmailAddressesContextType {
+    IOrganizationContactEmailAddressesContextType,
+    MarketingSiteLegalHrefs,
+    MarketingSiteCompanyHrefs {
   Image: FC<ImageProps>;
   Link: typeof Link;
   logoHref?: string;
   brandHref: string;
   debug?: boolean;
   privateBeta?: boolean;
+  /**
+   * Real quotes, logos and metrics. The social proof section renders nothing
+   * at all when this is omitted, so the page never ships placeholder proof —
+   * but supplying even one named quote is the highest-leverage change
+   * available to this page.
+   */
+  socialProof?: Omit<SocialProofSectionProps, "Image">;
 }
 
 export function MarketingLandingPage(
@@ -70,12 +86,22 @@ export function MarketingLandingPage(
               <HeroSection />
               <HowItWorksFeaturesFlow />
               <CoreFeaturesSection />
+              <SocialProofSection {...props.socialProof} Image={props.Image} />
               <PricingSection />
+              <FaqSection />
               <CallToActionSection Link={props.Link} />
               <Footer
                 Link={props.Link}
                 Image={props.Image}
                 logoHref={logoHref}
+                privacyPolicyHref={props.privacyPolicyHref}
+                termsOfServiceHref={props.termsOfServiceHref}
+                cookiePolicyHref={props.cookiePolicyHref}
+                aboutHref={props.aboutHref}
+                blogHref={props.blogHref}
+                careersHref={props.careersHref}
+                docsHref={props.docsHref}
+                statusHref={props.statusHref}
               />
             </main>
           </AuthLinksHrefsProvider>

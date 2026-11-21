@@ -13,8 +13,10 @@ export interface FeaturesFlowProps {
 }
 
 import FullscreenImage from "@/components/FullscreenImage";
+import usePrivateBeta from "@/hooks/usePrivateBeta";
+import useRegisterPageHref from "@/hooks/useRegisterPageHref";
 import MarketingLandingPageSectionIds from "@/MarketingLandingPageSectionIds";
-import { cn } from "@schemavaults/ui";
+import { Button, cn } from "@schemavaults/ui";
 import { ArrowRight, ArrowDown } from "lucide-react";
 
 const defaultFeatures: Feature[] = [
@@ -55,11 +57,14 @@ const defaultFeatures: Feature[] = [
 export function HowItWorksFeaturesFlow({
   features = defaultFeatures,
 }: FeaturesFlowProps) {
+  const privateBeta: boolean = usePrivateBeta();
+  const registerHref: string = useRegisterPageHref();
+
   return (
     <section
       id={MarketingLandingPageSectionIds.HOW_IT_WORKS_FEATURES_FLOW_SECTION}
       className={cn(
-        "w-screen h-auto",
+        "w-full h-auto",
         "py-12 md:py-24 lg:py-32",
         "bg-gradient-to-b",
         "from-gray-50 dark:from-gray-600",
@@ -70,10 +75,11 @@ export function HowItWorksFeaturesFlow({
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            How It Works
+            Three steps to data you can trust
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Get ready to transform how you manage and interact with your data.
+            Describe the shape of your data, put it somewhere, and point your
+            apps and agents at it. No migration project required.
           </p>
         </div>
 
@@ -123,6 +129,8 @@ export function HowItWorksFeaturesFlow({
                   <img
                     src={feature.image}
                     alt={feature.heading}
+                    loading="lazy"
+                    decoding="async"
                     className="rounded-lg shadow-lg w-full max-w-sm h-48 sm:h-60 object-cover"
                   />
                   <div className="absolute -top-4 -left-4 bg-primary text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold">
@@ -147,6 +155,30 @@ export function HowItWorksFeaturesFlow({
               )}
             </div>
           ))}
+        </div>
+
+        {/* Mid-page call to action: the visitor who just read the three steps
+            is as convinced as they will be, and the next CTA is otherwise two
+            full sections away. */}
+        <div className="mt-16 flex flex-col items-center gap-3">
+          <Button size="lg" asChild>
+            <a
+              href={
+                privateBeta
+                  ? `#${MarketingLandingPageSectionIds.CALL_TO_ACTION_SECTION}`
+                  : registerHref
+              }
+              className="flex flex-row flex-nowrap gap-2 items-center justify-center"
+            >
+              {privateBeta ? "Get early access" : "Create your first vault"}
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+          <p className="text-sm text-muted-foreground text-center">
+            {privateBeta
+              ? "Free during the beta — we will email you when your invite is ready."
+              : "Free plan, no credit card required."}
+          </p>
         </div>
       </div>
     </section>
